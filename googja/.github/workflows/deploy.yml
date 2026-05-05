@@ -1,0 +1,56 @@
+name: Deploy Astro Web to GCE
+
+on:
+  push:
+    branches:
+      - main # Change this to your default branch if different
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Recommended Node.js version
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: npm ci || npm install
+
+      - name: Build Astro project
+        run: npm run build
+
+      - name: Copy files to GCE
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.GCE_HOST }}
+          username: ${{ secrets.GCE_USER }}
+          key: ${{ secrets.GCE_SSH_KEY }}
+          source: "dist"
+          target: "/tmp/astro_deploy_googja"
+          rm: true
+
+      - name: Deploy on GCE
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.GCE_HOST }}
+          username: ${{ secrets.GCE_USER }}
+          key: ${{ secrets.GCE_SSH_KEY }}
+          script: |
+            # Ensure target directory exists
+            sudo mkdir -p /var/www/googja
+            
+            # Sync files from tmp to target, overwriting files
+            # source is /tmp/astro_deploy_googja/dist/ because scp copies the directory structure inside source
+            sudo rsync -av /tmp/astro_deploy_googja/dist/ /var/www/googja/
+            
+            # Set ownership to www-data
+            sudo chown -R www-data:www-data /var/www/googja
+            
+            # Cleanup
+            rm -rf /tmp/astro_deploy_googja
