@@ -7,6 +7,16 @@ export default defineConfig({
 	integrations: [
 		starlight({
 			title: 'My Docs',
+			head: [
+				{
+					tag: 'script',
+					attrs: {
+						src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7543104245383277',
+						async: true,
+						crossorigin: 'anonymous',
+					},
+				},
+			],
 			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/withastro/starlight' }],
 			sidebar: [
 				{
