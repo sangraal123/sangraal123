@@ -17,7 +17,7 @@ I strategically use **Flutter** for my personal projects and **Expo** for team d
 - 📱 My Apps: **BrainInfinity**
   - [Google Play](https://play.google.com/store/apps/details?id=com.sangraal.androidfirst&hl=en)
   - [App Store](https://apps.apple.com/us/app/brain-infinity/id6755319401)
-  - [Web](https://braininfinigy.googja.dev)
+  - [Web](https://braininfinity.googja.dev)
 - ⚡ Fun fact: I handle the entire app lifecycle myself—from UI implementation and Firebase backend integration to CI/CD automation and cross-platform releases!
 
 ---
