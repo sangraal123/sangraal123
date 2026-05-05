@@ -32,7 +32,7 @@ jobs:
           username: ${{ secrets.GCE_USER }}
           key: ${{ secrets.GCE_SSH_KEY }}
           source: "dist"
-          target: "/tmp/astro_deploy_googja"
+          target: "/tmp/astro_deploy_home"
           rm: true
 
       - name: Deploy on GCE
@@ -43,14 +43,14 @@ jobs:
           key: ${{ secrets.GCE_SSH_KEY }}
           script: |
             # Ensure target directory exists
-            sudo mkdir -p /var/www/googja
+            sudo mkdir -p /var/www/home
             
             # Sync files from tmp to target, overwriting files
-            # source is /tmp/astro_deploy_googja/dist/ because scp copies the directory structure inside source
-            sudo rsync -av /tmp/astro_deploy_googja/dist/ /var/www/googja/
+            # source is /tmp/astro_deploy_home/dist/ because scp copies the directory structure inside source
+            sudo rsync -av /tmp/astro_deploy_home/dist/ /var/www/home/
             
             # Set ownership to www-data
-            sudo chown -R www-data:www-data /var/www/googja
+            sudo chown -R www-data:www-data /var/www/home
             
             # Cleanup
-            rm -rf /tmp/astro_deploy_googja
+            rm -rf /tmp/astro_deploy_home
