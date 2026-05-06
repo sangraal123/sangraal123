@@ -24,24 +24,32 @@ export default defineConfig({
 					autogenerate: { directory: 'prep' },
 				},
 				{
-					label: 'Phase 2: Flutter基礎編（仮）',
-					autogenerate: { directory: 'flutter' },
+					label: 'Phase 2: Expo基礎編（仮）',
+					autogenerate: { directory: 'expo' },
 				},
 				{
-					label: 'Phase 3: Expo基礎編（仮）',
-					autogenerate: { directory: 'expo' },
+					label: 'Phase 3: フロントエンド編（仮）',
+					autogenerate: { directory: 'frontend' },
 				},
 				{
 					label: 'Phase 4: バックエンド編（仮）',
 					autogenerate: { directory: 'backend' },
 				},
 				{
-					label: 'Phase 5: アプリ品質改善編（仮）',
-					autogenerate: { directory: 'quality' },
+					label: 'Phase 5: データベース編（仮）',
+					autogenerate: { directory: 'database' },
 				},
 				{
-					label: 'Phase 6: 収益化・公開編（仮）',
+					label: 'Phase 6: Expo応用編（仮）',
+					autogenerate: { directory: 'advanced' },
+				},
+				{
+					label: 'Phase 7: 収益化・公開編（仮）',
 					autogenerate: { directory: 'publish' },
+				},
+				{
+					label: 'Phase Ex: 品質改善・セキュリティ編（仮）',
+					autogenerate: { directory: 'security' },
 				},
 			],
 		}),
