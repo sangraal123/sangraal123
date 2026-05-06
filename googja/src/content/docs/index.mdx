@@ -1,40 +1,49 @@
 ---
-title: Welcome to Starlight
-description: Get started building your docs site with Starlight.
+title: VibeCode Mobile
+description: FlutterとExpoで、バイブコーディングによるスマホアプリ開発を学ぶ実践ガイド。
 template: splash # Remove or comment out this line to display the site sidebar on this page.
 hero:
-  tagline: Congrats on setting up a new Starlight project!
+  title: バイブコーディングで、スマホアプリを作る。
+  tagline: FlutterとExpoを使い、AIに指示しながらモバイルアプリを企画・実装・公開・収益化するための実践ドキュメントを公開しています。プロンプト、仕様書テンプレート、実装チュートリアル、公開前チェックリストまでまとめています。
   image:
     file: ../../assets/houston.webp
   actions:
-    - text: Example Guide
-      link: /guides/example/
+    - text: バイブコーディングを始める
+      link: /prep/01/
       icon: right-arrow
-    - text: Read the Starlight docs
-      link: https://starlight.astro.build
-      icon: external
+      variant: primary
+    - text: Flutterで作る
+      link: /flutter/01/
+      icon: right-arrow
+      variant: primary
+    - text: Expoで作る
+      link: /expo/01/
+      icon: right-arrow
+      variant: primary
+    - text: ロードマップを見る
+      link: /prep/01/
+      icon: document
       variant: minimal
 ---
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
 
-## Next steps
+## 学習ロードマップ
 
-<CardGrid stagger>
-	<Card title="Update content" icon="pencil">
-		Edit `src/content/docs/index.mdx` to see this page change.
+<CardGrid>
+	<Card title="Step 1：準備する" icon="setting">
+		AIサブスク、IDE、開発環境、プロンプトの基本。
 	</Card>
-	<Card title="Change page layout" icon="document">
-		Delete `template: splash` in `src/content/docs/index.mdx` to display a
-		sidebar on this page.
+	<Card title="Step 2：小さく作る" icon="pencil">
+		Flutter / Expoで最小アプリを作る。
 	</Card>
-	<Card title="Add new content" icon="add-document">
-		Add Markdown or MDX files to `src/content/docs` to create new pages.
+	<Card title="Step 3：機能を足す" icon="add-document">
+		画面遷移、フォーム、保存、ログイン、CRUDなど。
 	</Card>
-	<Card title="Configure your site" icon="setting">
-		Edit your `sidebar` and other config in `astro.config.mjs`.
+	<Card title="Step 4：品質を上げる" icon="star">
+		AI生成コードのレビュー、リファクタリング、エラー修正、セキュリティ。
 	</Card>
-	<Card title="Read the docs" icon="open-book">
-		Learn more in [the Starlight Docs](https://starlight.astro.build/).
+	<Card title="Step 5：公開・収益化する" icon="rocket">
+		AdMob、アプリ内課金、ビルド、ストア申請、ASO。
 	</Card>
 </CardGrid>

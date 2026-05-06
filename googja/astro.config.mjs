@@ -6,7 +6,7 @@ import starlight from '@astrojs/starlight';
 export default defineConfig({
 	integrations: [
 		starlight({
-			title: 'My Docs',
+			title: 'VibeCode Mobile',
 			head: [
 				{
 					tag: 'script',
@@ -17,18 +17,31 @@ export default defineConfig({
 					},
 				},
 			],
-			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/withastro/starlight' }],
+			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/sangraal123/sangraal123' }],
 			sidebar: [
 				{
-					label: 'Guides',
-					items: [
-						// Each item here is one entry in the navigation menu.
-						{ label: 'Example Guide', slug: 'guides/example' },
-					],
+					label: 'Phase 1: 準備編（仮）',
+					autogenerate: { directory: 'prep' },
 				},
 				{
-					label: 'Reference',
-					autogenerate: { directory: 'reference' },
+					label: 'Phase 2: Flutter基礎編（仮）',
+					autogenerate: { directory: 'flutter' },
+				},
+				{
+					label: 'Phase 3: Expo基礎編（仮）',
+					autogenerate: { directory: 'expo' },
+				},
+				{
+					label: 'Phase 4: バックエンド編（仮）',
+					autogenerate: { directory: 'backend' },
+				},
+				{
+					label: 'Phase 5: アプリ品質改善編（仮）',
+					autogenerate: { directory: 'quality' },
+				},
+				{
+					label: 'Phase 6: 収益化・公開編（仮）',
+					autogenerate: { directory: 'publish' },
 				},
 			],
 		}),
