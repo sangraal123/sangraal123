@@ -16,6 +16,23 @@ export default defineConfig({
 						crossorigin: 'anonymous',
 					},
 				},
+				{
+					tag: 'script',
+					attrs: {
+						src: 'https://www.googletagmanager.com/gtag/js?id=G-LVGMSBE3V5',
+						async: true,
+					},
+				},
+				{
+					tag: 'script',
+					content: `
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LVGMSBE3V5');
+`,
+				},
 			],
 			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/sangraal123/sangraal123' }],
 			sidebar: [
