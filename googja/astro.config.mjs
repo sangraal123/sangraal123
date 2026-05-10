@@ -19,7 +19,7 @@ export default defineConfig({
 				{
 					tag: 'script',
 					attrs: {
-						src: 'https://www.googletagmanager.com/gtag/js?id=G-LVGMSBE3V5',
+						src: 'https://www.googletagmanager.com/gtag/js?id=G-5ZWD1BZHLD',
 						async: true,
 					},
 				},
@@ -30,7 +30,7 @@ export default defineConfig({
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'G-LVGMSBE3V5');
+  gtag('config', 'G-5ZWD1BZHLD');
 `,
 				},
 			],
