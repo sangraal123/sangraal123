@@ -37,36 +37,32 @@ export default defineConfig({
 			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/sangraal123/sangraal123' }],
 			sidebar: [
 				{
-					label: 'Phase 1: 準備編（仮）',
+					label: 'Phase01：準備編（仮）',
 					autogenerate: { directory: 'prep' },
 				},
 				{
-					label: 'Phase 2: Expo基礎編（仮）',
-					autogenerate: { directory: 'expo' },
+					label: 'Phase02：リサーチ編（仮）',
+					autogenerate: { directory: 'research' },
 				},
 				{
-					label: 'Phase 3: フロントエンド編（仮）',
-					autogenerate: { directory: 'frontend' },
+					label: 'Phase03：リデザイン編（仮）',
+					autogenerate: { directory: 'redesign' },
 				},
 				{
-					label: 'Phase 4: バックエンド編（仮）',
-					autogenerate: { directory: 'backend' },
+					label: 'Phase04：コーディング編（仮）',
+					autogenerate: { directory: 'coding' },
 				},
 				{
-					label: 'Phase 5: データベース編（仮）',
-					autogenerate: { directory: 'database' },
+					label: 'Phase05：フィードバック編（仮）',
+					autogenerate: { directory: 'feedback' },
 				},
 				{
-					label: 'Phase 6: Expo応用編（仮）',
-					autogenerate: { directory: 'advanced' },
-				},
-				{
-					label: 'Phase 7: 収益化・公開編（仮）',
+					label: 'Phase06：公開編（仮）',
 					autogenerate: { directory: 'publish' },
 				},
 				{
-					label: 'Phase Ex: 品質改善・セキュリティ編（仮）',
-					autogenerate: { directory: 'security' },
+					label: 'PhaseEx：発展事項編（仮）',
+					autogenerate: { directory: 'advanced' },
 				},
 			],
 		}),
