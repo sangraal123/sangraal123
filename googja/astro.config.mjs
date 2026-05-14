@@ -57,7 +57,7 @@ export default defineConfig({
 					autogenerate: { directory: 'feedback' },
 				},
 				{
-					label: 'Phase06：公開＆収益化編（仮）',
+					label: 'Phase06：公開＆マネタイズ編（仮）',
 					autogenerate: { directory: 'publish' },
 				},
 				{
