@@ -37,31 +37,31 @@ export default defineConfig({
 			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/sangraal123/sangraal123' }],
 			sidebar: [
 				{
-					label: 'Phase01：準備編（仮）',
+					label: 'Phase01：準備編',
 					autogenerate: { directory: 'prep' },
 				},
 				{
-					label: 'Phase02：リサーチ編（仮）',
+					label: 'Phase02：リサーチ編',
 					autogenerate: { directory: 'research' },
 				},
 				{
-					label: 'Phase03：リデザイン編（仮）',
+					label: 'Phase03：リデザイン編',
 					autogenerate: { directory: 'redesign' },
 				},
 				{
-					label: 'Phase04：コーディング編（仮）',
+					label: 'Phase04：コーディング編',
 					autogenerate: { directory: 'coding' },
 				},
 				{
-					label: 'Phase05：フィードバック編（仮）',
+					label: 'Phase05：フィードバック編',
 					autogenerate: { directory: 'feedback' },
 				},
 				{
-					label: 'Phase06：公開＆マネタイズ編（仮）',
+					label: 'Phase06：公開＆マネタイズ編',
 					autogenerate: { directory: 'publish' },
 				},
 				{
-					label: 'PhaseEx：発展事項編（仮）',
+					label: 'PhaseEx：発展事項編',
 					autogenerate: { directory: 'advanced' },
 				},
 			],
