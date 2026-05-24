@@ -61,7 +61,7 @@ export default defineConfig({
 					autogenerate: { directory: 'publish' },
 				},
 				{
-					label: 'PhaseEx：発展事項編（仮）',
+					label: 'PhaseEx：応用事項編（仮）',
 					autogenerate: { directory: 'advanced' },
 				},
 			],
