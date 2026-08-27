@@ -1,47 +1,9 @@
 ---
-title: VibeCode Mobile
-description: Expoで、バイブコーディングによるスマホアプリ開発を学ぶ実践ガイド。
-template: splash # Remove or comment out this line to display the site sidebar on this page.
-hero:
-  title: バイブコーディングで、スマホアプリを作る。
-  tagline: Expoを使い、AIに指示しながらモバイルアプリを企画・実装・公開・収益化するための実践ドキュメントを公開しています。プロンプト、仕様書テンプレート、実装チュートリアル、公開前チェックリストまでまとめています。
-  image:
-    file: ../../assets/houston.webp
-  actions:
-    - text: バイブコーディングを始める
-      link: /prep/01/
-      icon: right-arrow
-      variant: primary
-    - text: ロードマップを見る
-      link: /prep/01/
-      icon: document
-      variant: minimal
+title: sangraal — Cross-platform Product Engineer
+description: AIエージェントを活用し、モバイルプロダクトを企画からストア公開まで一貫して開発するsangraalのポートフォリオ。
+template: splash
 ---
 
-import { Card, CardGrid } from '@astrojs/starlight/components';
+import PortfolioHome from '../../components/PortfolioHome.astro';
 
-## 学習ロードマップ
-
-<CardGrid>
-	<Card title="Phase01：準備編（仮）" icon="setting">
-		VibeCodingの全体像、AIサブスク選び、Expo環境構築。
-	</Card>
-	<Card title="Phase02：リサーチ編（仮）" icon="magnifier">
-		Deep Researchでの企画、ターゲット設定、競合調査。
-	</Card>
-	<Card title="Phase03：リデザイン編（仮）" icon="pencil">
-		Google Stitchでの画面案、導線設計、UI仕様書の作成。
-	</Card>
-	<Card title="Phase04：コーディング編（仮）" icon="random">
-		Spec Kitでの開発、コンポーネント化、GitHub保存。
-	</Card>
-	<Card title="Phase05：フィードバック編（仮）" icon="list-format">
-		Firebase App Distributionでのテスト配布、テスター管理、改善。
-	</Card>
-	<Card title="Phase06：公開＆マネタイズ編（仮）" icon="rocket">
-		EAS Build、ストア申請準備、ストア掲載文のAI作成。
-	</Card>
-	<Card title="PhaseEx：応用事項編（仮）" icon="star">
-		Firebase連携、Push通知、AI機能、課金実装、CI/CD。
-	</Card>
-</CardGrid>
+<PortfolioHome />

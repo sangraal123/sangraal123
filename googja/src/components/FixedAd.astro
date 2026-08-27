@@ -1,0 +1,42 @@
+---
+const slotId = `googja-fixed-ad-${Math.random().toString(36).slice(2)}`;
+---
+
+<aside class="fixed-ad" aria-label="広告">
+	<p class="fixed-ad__label">Advertisement</p>
+	<div id={slotId} class="fixed-ad__slot"></div>
+</aside>
+
+<script define:vars={{ slotId }}>
+	const minimumWidth = 782;
+	if (window.innerWidth >= minimumWidth) {
+		window.googletag = window.googletag || { cmd: [] };
+
+		if (!document.querySelector('script[data-googja-gpt]')) {
+			const script = document.createElement('script');
+			script.async = true;
+			script.src = 'https://securepubads.g.doubleclick.net/tag/js/gpt.js';
+			script.dataset.googjaGpt = 'true';
+			document.head.appendChild(script);
+		}
+
+		googletag.cmd.push(() => {
+			const slot = googletag.defineSlot(
+				'/22729271064/trinity-cubed-046491',
+				[750, 300],
+				slotId,
+			);
+			if (!slot) return;
+			slot.addService(googletag.pubads());
+			googletag.pubads().addEventListener('slotRenderEnded', (event) => {
+				if (event.slot === slot && event.isEmpty) {
+					document.getElementById(slotId)?.closest('.fixed-ad')?.remove();
+				}
+			});
+			googletag.enableServices();
+			googletag.display(slotId);
+		});
+	} else {
+		document.getElementById(slotId)?.closest('.fixed-ad')?.remove();
+	}
+</script>
