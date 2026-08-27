@@ -1,0 +1,62 @@
+---
+title: Brain Infinity
+description: FlutterでiOS・Android・Webへ公開した日英対応の脳トレゲームのケーススタディ。
+template: splash
+---
+
+import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+<div className="portfolio-page-intro">
+<p className="eyebrow">PRODUCT CASE STUDY</p>
+
+# Brain Infinity
+
+Math、Logic、Memory、Attention、Languageの5領域を、短時間のクイズで継続的にトレーニングするクロスプラットフォームアプリです。
+
+<div className="project-meta"><span>Released</span><span>Flutter</span><span>iOS</span><span>Android</span><span>Web</span><span>日本語 / English</span></div>
+</div>
+
+## 担当範囲
+
+企画からUI実装、質問データ、進捗保存、Firebase Analytics、広告、CI/CD、App Store・Google Play公開まで、一連のプロダクトライフサイクルを担当しています。
+
+<CardGrid>
+	<Card title="Training" icon="star">
+		5カテゴリ × 3レベル。各セッション10問、1問30秒で構成しています。
+	</Card>
+	<Card title="Progress" icon="list-format">
+		日次ストリーク、プレイカレンダー、カテゴリ別スコア、脳力プロフィールを端末内に保存します。
+	</Card>
+	<Card title="Accessibility" icon="accessibility">
+		高コントラスト、モーション低減、文字拡大、効果音キャプション、色だけに依存しない表示を用意しています。
+	</Card>
+	<Card title="Release" icon="rocket">
+		一つのFlutterコードベースからiOS、Android、Webへビルドし、ストア用素材もテストから生成します。
+	</Card>
+</CardGrid>
+
+## 技術構成
+
+| 領域 | 採用技術 |
+| --- | --- |
+| UI / App | Flutter、Material 3、GoRouter |
+| State | Provider、Flutter Bloc |
+| Data | SharedPreferences、JSON question sets |
+| Analytics / Ads | Firebase Analytics、Google Mobile Ads |
+| Quality | flutter_test、Mockito、レスポンシブ回帰テスト |
+| Delivery | GitHub Actions、App Store Connect、Google Play Console |
+
+## 設計上の判断
+
+- スマートフォンだけでなく、タブレット縦横・デスクトップでも画面幅と向きを見てレイアウトを切り替えています。
+- 年齢確認が完了する前に分析・広告リクエストを開始しない構成にし、子ども向け設定を最初のリクエストから適用します。
+- Webデモではゲーム体験を優先し、ディスプレイ広告をアプリ画面の外へ移しました。
+- 日本語・英語、テーマ、文字倍率、ストア指定サイズを組み合わせたスクリーンショットをテストから生成します。
+
+## 公開先
+
+<CardGrid>
+	<LinkCard title="Web版を試す" href="https://braininfinity.googja.dev/" description="ブラウザからそのままプレイできます。" />
+	<LinkCard title="App Store" href="https://apps.apple.com/us/app/brain-infinity/id6755319401" description="iPhone・iPad版。" />
+	<LinkCard title="Google Play" href="https://play.google.com/store/apps/details?id=com.sangraal.androidfirst&hl=en" description="Android版。" />
+</CardGrid>
