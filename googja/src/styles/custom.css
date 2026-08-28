@@ -95,7 +95,7 @@
 .feature-card__metric div { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; padding: 1.3rem; background: var(--portfolio-paper); }
 .feature-card__metric strong { color: var(--portfolio-indigo); font-size: 2.5rem; }
 .feature-card__metric span { color: #76798a; font-size: .75rem; text-align: right; text-transform: uppercase; }
-.work-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 1rem; }
+.work-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(min(260px,100%),1fr)); gap: 1rem; }
 .work-card { min-height: 260px; padding: 1.6rem; border: 1px solid #deddd7; border-radius: 22px; background: rgba(255,255,255,.52); color: inherit !important; text-decoration: none !important; transition: transform .2s ease, box-shadow .2s ease; }
 .work-card:hover { transform: translateY(-5px); box-shadow: 0 18px 45px rgba(20,24,55,.09); }
 .work-card > span { color: var(--portfolio-indigo); font-size: .72rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
@@ -153,3 +153,78 @@
 @media (prefers-reduced-motion: reduce) {
 	.work-card { transition: none; }
 }
+
+/* ══ 金継ぎ追補スタイル（googja.dev トップページ・2026-08-28）══
+   naoshi の自動処方を下敷きに、役割の判断で手直しした版。
+   元の規則と同じセレクタ・同じ media で後から上書きする。:root の変数は触らない。
+
+   ★ 全規則を body:has(.portfolio-hero) でトップページに限定している。
+     理由: 再巡回（全27ページ）で、Starlightの共有部品（ヘッダーの見出し色・検索ボタンの罫線・⌘Kチップの角丸）を
+     素で上書きすると記事ページ23枚の散らかり度が上がったため（例 /coding/02 18→26）。
+     .portfolio-hero はトップにしか無いので、これで他ページへの染み出しが止まる。
+
+   手仕事の判断:
+   1. 低コントラストの寄せ先を #0000EE（既定リンク青）ではなく #5E6172 に統一
+      （地 #E6E5DF で比4.85・地 #F7F5EF で比5.62＝どちらも床4.5を越える。役割は「補足の文字」なので青くしない）
+   2. 地色 #F7F5EF（生成り）は白へ統合しない＝ページの地とヘッダーの地が揃った節の拍。潰すと帯が消える
+   3. ⌘K チップの地 #EDEEF3 も白へ統合しない＝白い検索欄の中でチップが溶けて消える（手触りの喪失）
+   4. .product-mark の角丸76.5pxは残す＝このページにしか無い主役（アプリアイコン）の固有の形・例外1つ
+   5. 泣き別れは word-break: auto-phrase で文節折りにする（naoshi が STOP した理由の是正） */
+
+/* ── 破れ: 低コントラスト（比3.95 → 4.85）＋ 似て非なる色 #76798A → #5E6172 ── */
+body:has(.portfolio-hero) .feature-card__metric span { color: #5E6172; }
+
+/* ── 破れ: 極小文字 11.5px → 12px ── */
+body:has(.portfolio-hero) .work-card > span { font-size: 12px; }
+
+/* ── 乱れ: 文字サイズの段数過多（役割内の割れを寄せる） ── */
+body:has(.portfolio-hero) .portfolio-nav { font-size: 16px; }
+body:has(.portfolio-hero) .portfolio-footer { font-size: 16px; }
+body:has(.portfolio-hero) .portfolio-hero__lead { font-size: 16px; }
+body:has(.portfolio-hero) .portfolio-hero__visual > p strong { font-size: 16px; }
+body:has(.portfolio-hero) .about-preview p { font-size: 16px; }
+body:has(.portfolio-hero) .feature-list { font-size: 16px; }
+body:has(.portfolio-hero) .work-card p { font-size: 16px; }
+body:has(.portfolio-hero) .portfolio-hero__visual > p { font-size: 12.8px; }
+body:has(.portfolio-hero) .eyebrow { font-size: 12.8px; }
+body:has(.portfolio-hero) .feature-card__metric span { font-size: 12.2px; }
+body:has(.portfolio-hero) .status-line { font-size: 12.2px; }
+@media (min-width: 50rem) {
+  body:has(.portfolio-hero) button:where(.astro-v37mnknz)[data-open-modal] { font-size: 16px; }
+}
+
+/* ── 乱れ: 角丸 7種 → 3種（999 / 22 / 8。主役の76.5pxだけ例外で残す） ── */
+body:has(.portfolio-hero) button:where(.astro-v37mnknz) > kbd:where(.astro-v37mnknz) { border-radius: 8px; }
+body:has(.portfolio-hero) .status-dot { border-radius: 8px; }
+body:has(.portfolio-hero) .feature-card__metric { border-radius: 22px; }
+body:has(.portfolio-hero) .guide-callout { border-radius: 22px; }
+body:has(.portfolio-hero) .feature-card { border-radius: 22px; }
+
+/* ── 乱れ: 似て非なる色（地色2種は残す・文字色とアクセントだけ寄せる） ── */
+body:has(.portfolio-hero) .feature-card p { color: #5E6172; }
+body:has(.portfolio-hero) .status-line { color: #5E6172; }
+body:has(.portfolio-hero) .capability-strip { color: #5E6172; }
+body:has(.portfolio-hero) .portfolio-nav__brand span { color: #5E6172; }
+/* 暗いカード（work-card--guide）は白文字なので除外＝床を割らせない */
+body:has(.portfolio-hero) .work-card:not(.work-card--guide) p { color: #5E6172; }
+body:has(.portfolio-hero) .site-title:where(.astro-m46x6ez3) { color: #4540DD; }
+body:has(.portfolio-hero) a:where(.astro-wy4te6ga) { color: #4540DD; }
+body:has(.portfolio-hero) svg:where(.astro-c6vsoqas) { color: #4540DD; }
+body:has(.portfolio-hero) div.feature-card__content div.text-links a:nth-child(1) { color: #4540DD; }
+body:has(.portfolio-hero) div.feature-card__content div.text-links a:nth-child(2) { color: #4540DD; }
+body:has(.portfolio-hero) section.portfolio-section div.section-heading a { color: #4540DD; }
+/* 罫線の灰2種を1本へ（currentcolor を固定色にするのは手の判断） */
+body:has(.portfolio-hero) button:where(.astro-v37mnknz),
+body:has(.portfolio-hero) a:where(.astro-u2l5gyhi) { border-color: #DEDDD7; }
+/* 節の中の文中リンク。ボタン（白文字＋濃い地）は除外して床を守る */
+body:has(.portfolio-hero) section.portfolio-section > div > a:not(.button) { color: #4540DD; }
+@media (min-width: 768px) {
+  body:has(.portfolio-hero) div.sl-markdown-content section.portfolio-section a { color: #4540DD; }
+}
+
+/* ── ずれ: 言葉の泣き別れ（カタカナ語が行の途中で割れる）を文節折りにする ── */
+body:has(.portfolio-hero) .portfolio-hero__lead,
+body:has(.portfolio-hero) .feature-card__content p,
+body:has(.portfolio-hero) .work-card p,
+body:has(.portfolio-hero) .about-preview p,
+body:has(.portfolio-hero) .guide-callout p { word-break: auto-phrase; }
