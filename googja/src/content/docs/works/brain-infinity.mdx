@@ -2,9 +2,17 @@
 title: Brain Infinity
 description: FlutterでiOS・Android・Webへ公開した日英対応の脳トレゲームのケーススタディ。
 template: splash
+prev: false
+next: false
 ---
 
+import PortfolioNav from '../../../components/PortfolioNav.astro';
+import PortfolioFooter from '../../../components/PortfolioFooter.astro';
 import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+<PortfolioNav />
+
+<div class="portfolio-page">
 
 <div className="portfolio-page-intro">
 <p className="eyebrow">PRODUCT CASE STUDY</p>
@@ -60,3 +68,7 @@ Math、Logic、Memory、Attention、Languageの5領域を、短時間のクイ�
 	<LinkCard title="App Store" href="https://apps.apple.com/us/app/brain-infinity/id6755319401" description="iPhone・iPad版。" />
 	<LinkCard title="Google Play" href="https://play.google.com/store/apps/details?id=com.sangraal.androidfirst&hl=en" description="Android版。" />
 </CardGrid>
+
+</div>
+
+<PortfolioFooter />

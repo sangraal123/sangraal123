@@ -2,9 +2,17 @@
 title: About sangraal
 description: クロスプラットフォーム開発者sangraalのプロフィール、得意領域、開発方針。
 template: splash
+prev: false
+next: false
 ---
 
+import PortfolioNav from '../../components/PortfolioNav.astro';
+import PortfolioFooter from '../../components/PortfolioFooter.astro';
 import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+<PortfolioNav />
+
+<div class="portfolio-page">
 
 <div className="portfolio-page-intro">
 <p className="eyebrow">ABOUT</p>
@@ -38,3 +46,7 @@ AIエージェントを活用し、企画、UI実装、バックエンド連携�
 新しいアイデアを動く形にするプロトタイピングと、公開可能な品質へ持っていくビルドの両方を重視しています。AIには判断を丸投げせず、調査、仕様化、実装、レビュー、テストの各段階で役割を分け、成果物を検証しながら進めます。
 
 <LinkCard title="GitHub" href="https://github.com/sangraal123" description="公開リポジトリと継続中の活動を見る。" />
+
+</div>
+
+<PortfolioFooter />

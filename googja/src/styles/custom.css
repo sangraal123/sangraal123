@@ -1,25 +1,63 @@
+/* ── 配色トークン ──
+   Starlightの素の :root はダーク。ライトは [data-theme='light']（JS無効時の受け皿として
+   prefers-color-scheme のブロックも置く）。ページの地・面・罫線・文字は必ずこのトークン経由で
+   参照し、固定値を直書きしない＝テーマを切り替えたときだけ色が置き換わるようにするため。
+   ヒーローと下部CTAの濃紺だけは両モード共通の意匠なので固定値のまま。 */
 :root {
 	--sl-color-accent-low: #17215f;
 	--sl-color-accent: #5754f5;
 	--sl-color-accent-high: #d9d8ff;
+
+	/* 両モード共通（濃紺の帯とその上の差し色） */
 	--portfolio-navy: #020a39;
 	--portfolio-indigo: #4540dd;
 	--portfolio-cyan: #4cdde8;
 	--portfolio-coral: #ff8b78;
-	--portfolio-paper: #f7f5ef;
-	--portfolio-ink: #121632;
+
+	/* ダーク（既定） */
+	--portfolio-paper: #17181c;      /* ページの地 */
+	--portfolio-surface: #21242b;    /* カード・面の地 */
+	--portfolio-surface-2: #2b2f37;  /* 面の中の区切り・広告枠 */
+	--portfolio-border: #363b45;     /* 罫線 */
+	--portfolio-ink: #eceef6;        /* 見出しの文字 */
+	--portfolio-muted: #b9bcc7;      /* 補足の文字 */
+	--portfolio-accent-text: #9f9bff; /* 地の上に置くアクセント文字 */
 }
 
 :root[data-theme='light'] {
+	--portfolio-paper: #f7f5ef;
+	--portfolio-surface: #ffffff;
+	--portfolio-surface-2: #e6e5df;
+	--portfolio-border: #deddd7;
+	--portfolio-ink: #121632;
+	--portfolio-muted: #5e6172;
+	--portfolio-accent-text: #4540dd;
+
 	--sl-color-bg: var(--portfolio-paper);
 	--sl-color-bg-nav: rgba(247, 245, 239, 0.92);
 	--sl-color-bg-sidebar: #f0eee8;
 	--sl-color-text: var(--portfolio-ink);
 }
 
+@media (prefers-color-scheme: light) {
+	:root:not([data-theme='dark']) {
+		--portfolio-paper: #f7f5ef;
+		--portfolio-surface: #ffffff;
+		--portfolio-surface-2: #e6e5df;
+		--portfolio-border: #deddd7;
+		--portfolio-ink: #121632;
+		--portfolio-muted: #5e6172;
+		--portfolio-accent-text: #4540dd;
+	}
+}
+
 .sl-container:has(.portfolio-nav) { max-width: 100%; }
 .sl-markdown-content:has(.portfolio-nav) { margin: 0; }
 .sl-markdown-content:has(.portfolio-nav) > * { margin-block: 0; }
+
+/* ヘッダー・フッターを全幅に出したページの、本文だけを元の幅に戻す枠 */
+.portfolio-page { max-width: 1180px; margin: 0 auto; padding: 3.5rem 1.5rem 6rem; }
+.portfolio-page > :first-child { margin-top: 0; }
 
 .portfolio-nav {
 	display: flex;
@@ -57,7 +95,7 @@
 	pointer-events: none;
 }
 .portfolio-hero__copy, .portfolio-hero__visual { position: relative; z-index: 1; }
-.eyebrow { color: var(--portfolio-indigo); font-size: .76rem; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; }
+.eyebrow { color: var(--portfolio-accent-text); font-size: .76rem; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; }
 .portfolio-hero .eyebrow { color: var(--portfolio-cyan); }
 .portfolio-hero h1 { margin: .9rem 0 1.4rem; color: #fff; font-size: clamp(3rem, 6.2vw, 5.8rem); line-height: .98; letter-spacing: -.065em; }
 .portfolio-hero h1 span { background: linear-gradient(100deg, var(--portfolio-cyan), #9e8cff 55%, var(--portfolio-coral)); -webkit-background-clip: text; color: transparent; }
@@ -76,45 +114,45 @@
 .orbit--one { width: 420px; height: 420px; }
 .orbit--two { width: 520px; height: 280px; transform: rotate(28deg); }
 
-.capability-strip { display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem 2.2rem; padding: 1.2rem 1.5rem; background: #fff; color: #64677c; border-bottom: 1px solid #deddd7; font-size: .76rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+.capability-strip { display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem 2.2rem; padding: 1.2rem 1.5rem; background: var(--portfolio-surface); color: var(--portfolio-muted); border-bottom: 1px solid var(--portfolio-border); font-size: .76rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
 .portfolio-section { max-width: 1180px; margin: 0 auto !important; padding: 7rem 1.5rem; }
 .section-heading { margin-bottom: 2.2rem; }
 .section-heading h2, .about-preview h2, .guide-callout h2 { margin: .65rem 0 0; color: var(--portfolio-ink); font-size: clamp(2.1rem, 4vw, 3.7rem); line-height: 1.08; letter-spacing: -.045em; }
 .section-heading--split { display: flex; align-items: end; justify-content: space-between; gap: 2rem; }
 .section-heading--split > a, .about-preview a { font-weight: 800; text-decoration: none; white-space: nowrap; }
-.feature-card { display: grid; grid-template-columns: 1.45fr .55fr; gap: 2rem; padding: clamp(1.6rem, 4vw, 3.8rem); border-radius: 30px; background: #fff; box-shadow: 0 22px 65px rgba(20,24,55,.08); }
-.status-line { display: flex; align-items: center; gap: .55rem; color: #696c7d; font-size: .8rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; }
+.feature-card { display: grid; grid-template-columns: 1.45fr .55fr; gap: 2rem; padding: clamp(1.6rem, 4vw, 3.8rem); border-radius: 30px; background: var(--portfolio-surface); box-shadow: 0 22px 65px rgba(20,24,55,.08); }
+.status-line { display: flex; align-items: center; gap: .55rem; color: var(--portfolio-muted); font-size: .8rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; }
 .status-dot { width: 8px; height: 8px; border-radius: 50%; background: #35be77; box-shadow: 0 0 0 5px rgba(53,190,119,.13); }
 .feature-card h3 { margin: .9rem 0; color: var(--portfolio-ink); font-size: clamp(2.3rem, 5vw, 4.5rem); letter-spacing: -.055em; }
-.feature-card p { max-width: 680px; color: #5a5d70; line-height: 1.8; }
+.feature-card p { max-width: 680px; color: var(--portfolio-muted); line-height: 1.8; }
 .feature-list { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: .7rem 1.2rem; margin: 1.5rem 0; padding: 0; list-style: none; font-size: .9rem; }
-.feature-list li::before { content: '↗'; margin-right: .55rem; color: var(--portfolio-indigo); font-weight: 900; }
+.feature-list li::before { content: '↗'; margin-right: .55rem; color: var(--portfolio-accent-text); font-weight: 900; }
 .text-links { display: flex; flex-wrap: wrap; gap: 1.4rem; margin-top: 1.7rem; }
 .text-links a { font-weight: 800; text-decoration: none; }
-.feature-card__metric { display: grid; align-content: center; gap: 1px; overflow: hidden; border-radius: 20px; background: #e6e5df; }
+.feature-card__metric { display: grid; align-content: center; gap: 1px; overflow: hidden; border-radius: 20px; background: var(--portfolio-surface-2); }
 .feature-card__metric div { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; padding: 1.3rem; background: var(--portfolio-paper); }
-.feature-card__metric strong { color: var(--portfolio-indigo); font-size: 2.5rem; }
-.feature-card__metric span { color: #76798a; font-size: .75rem; text-align: right; text-transform: uppercase; }
+.feature-card__metric strong { color: var(--portfolio-accent-text); font-size: 2.5rem; }
+.feature-card__metric span { color: var(--portfolio-muted); font-size: .75rem; text-align: right; text-transform: uppercase; }
 .work-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(min(260px,100%),1fr)); gap: 1rem; }
-.work-card { min-height: 260px; padding: 1.6rem; border: 1px solid #deddd7; border-radius: 22px; background: rgba(255,255,255,.52); color: inherit !important; text-decoration: none !important; transition: transform .2s ease, box-shadow .2s ease; }
+.work-card { min-height: 260px; padding: 1.6rem; border: 1px solid var(--portfolio-border); border-radius: 22px; background: var(--portfolio-surface); color: inherit !important; text-decoration: none !important; transition: transform .2s ease, box-shadow .2s ease; }
 .work-card:hover { transform: translateY(-5px); box-shadow: 0 18px 45px rgba(20,24,55,.09); }
-.work-card > span { color: var(--portfolio-indigo); font-size: .72rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+.work-card > span { color: var(--portfolio-accent-text); font-size: .72rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
 .work-card h3 { margin: 4rem 0 .7rem; color: var(--portfolio-ink); font-size: 1.6rem; }
-.work-card p { color: #66697b; font-size: .9rem; line-height: 1.65; }
+.work-card p { color: var(--portfolio-muted); font-size: .9rem; line-height: 1.65; }
 .work-card--guide { background: var(--portfolio-navy); border-color: var(--portfolio-navy); }
 .work-card--guide h3 { color: #fff; }
 .work-card--guide p { color: rgba(255,255,255,.7); }
 .work-card--guide > span { color: var(--portfolio-cyan); }
-.about-preview { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; border-top: 1px solid #deddd7; }
+.about-preview { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; border-top: 1px solid var(--portfolio-border); }
 .about-preview > div:last-child { align-self: end; }
-.about-preview p { color: #5e6172; font-size: 1.05rem; line-height: 1.9; }
+.about-preview p { color: var(--portfolio-muted); font-size: 1.05rem; line-height: 1.9; }
 .guide-callout { max-width: 1120px; display: flex; align-items: end; justify-content: space-between; gap: 3rem; margin-bottom: 5rem !important; padding: 3rem; border-radius: 28px; background: linear-gradient(125deg, #11194f, var(--portfolio-navy)); color: #fff; }
 .guide-callout .eyebrow { color: var(--portfolio-cyan); }
 .guide-callout h2 { color: #fff; }
 .guide-callout p { max-width: 760px; color: rgba(255,255,255,.7); line-height: 1.8; }
 .fixed-ad { width: 750px; max-width: calc(100vw - 3rem); min-height: 300px; margin: 0 auto 7rem !important; }
-.fixed-ad__label { margin: 0 0 .35rem; color: #858797; font-size: .62rem; text-align: center; text-transform: uppercase; letter-spacing: .12em; }
-.fixed-ad__slot { width: 750px; height: 300px; overflow: hidden; background: #ecebe6; }
+.fixed-ad__label { margin: 0 0 .35rem; color: var(--sl-color-gray-3); font-size: .62rem; text-align: center; text-transform: uppercase; letter-spacing: .12em; }
+.fixed-ad__slot { width: 750px; height: 300px; overflow: hidden; background: var(--portfolio-surface-2); }
 .portfolio-footer { display: flex; justify-content: space-between; gap: 2rem; padding: 2rem max(1.5rem, calc((100vw - 1180px) / 2)); background: var(--portfolio-navy); color: rgba(255,255,255,.64); font-size: .8rem; }
 .portfolio-footer p { margin: 0; }
 .portfolio-footer div { display: flex; gap: 1.2rem; }
@@ -158,10 +196,11 @@
    naoshi の自動処方を下敷きに、役割の判断で手直しした版。
    元の規則と同じセレクタ・同じ media で後から上書きする。:root の変数は触らない。
 
-   ★ 全規則を body:has(.portfolio-hero) でトップページに限定している。
+   ★ 全規則を body:has(.portfolio-nav) でトップページに限定している。
      理由: 再巡回（全27ページ）で、Starlightの共有部品（ヘッダーの見出し色・検索ボタンの罫線・⌘Kチップの角丸）を
      素で上書きすると記事ページ23枚の散らかり度が上がったため（例 /coding/02 18→26）。
-     .portfolio-hero はトップにしか無いので、これで他ページへの染み出しが止まる。
+     .portfolio-nav はポートフォリオ6ページ（トップ/Works/About/VibeCode/ケーススタディ/Privacy）
+     にしか無いので、これで記事ページへの染み出しが止まる。
 
    手仕事の判断:
    1. 低コントラストの寄せ先を #0000EE（既定リンク青）ではなく #5E6172 に統一
@@ -172,59 +211,59 @@
    5. 泣き別れは word-break: auto-phrase で文節折りにする（naoshi が STOP した理由の是正） */
 
 /* ── 破れ: 低コントラスト（比3.95 → 4.85）＋ 似て非なる色 #76798A → #5E6172 ── */
-body:has(.portfolio-hero) .feature-card__metric span { color: #5E6172; }
+body:has(.portfolio-nav) .feature-card__metric span { color: var(--portfolio-muted); }
 
 /* ── 破れ: 極小文字 11.5px → 12px ── */
-body:has(.portfolio-hero) .work-card > span { font-size: 12px; }
+body:has(.portfolio-nav) .work-card > span { font-size: 12px; }
 
 /* ── 乱れ: 文字サイズの段数過多（役割内の割れを寄せる） ── */
-body:has(.portfolio-hero) .portfolio-nav { font-size: 16px; }
-body:has(.portfolio-hero) .portfolio-footer { font-size: 16px; }
-body:has(.portfolio-hero) .portfolio-hero__lead { font-size: 16px; }
-body:has(.portfolio-hero) .portfolio-hero__visual > p strong { font-size: 16px; }
-body:has(.portfolio-hero) .about-preview p { font-size: 16px; }
-body:has(.portfolio-hero) .feature-list { font-size: 16px; }
-body:has(.portfolio-hero) .work-card p { font-size: 16px; }
-body:has(.portfolio-hero) .portfolio-hero__visual > p { font-size: 12.8px; }
-body:has(.portfolio-hero) .eyebrow { font-size: 12.8px; }
-body:has(.portfolio-hero) .feature-card__metric span { font-size: 12.2px; }
-body:has(.portfolio-hero) .status-line { font-size: 12.2px; }
+body:has(.portfolio-nav) .portfolio-nav { font-size: 16px; }
+body:has(.portfolio-nav) .portfolio-footer { font-size: 16px; }
+body:has(.portfolio-nav) .portfolio-hero__lead { font-size: 16px; }
+body:has(.portfolio-nav) .portfolio-hero__visual > p strong { font-size: 16px; }
+body:has(.portfolio-nav) .about-preview p { font-size: 16px; }
+body:has(.portfolio-nav) .feature-list { font-size: 16px; }
+body:has(.portfolio-nav) .work-card p { font-size: 16px; }
+body:has(.portfolio-nav) .portfolio-hero__visual > p { font-size: 12.8px; }
+body:has(.portfolio-nav) .eyebrow { font-size: 12.8px; }
+body:has(.portfolio-nav) .feature-card__metric span { font-size: 12.2px; }
+body:has(.portfolio-nav) .status-line { font-size: 12.2px; }
 @media (min-width: 50rem) {
   body:has(.portfolio-hero) button:where(.astro-v37mnknz)[data-open-modal] { font-size: 16px; }
 }
 
 /* ── 乱れ: 角丸 7種 → 3種（999 / 22 / 8。主役の76.5pxだけ例外で残す） ── */
 body:has(.portfolio-hero) button:where(.astro-v37mnknz) > kbd:where(.astro-v37mnknz) { border-radius: 8px; }
-body:has(.portfolio-hero) .status-dot { border-radius: 8px; }
-body:has(.portfolio-hero) .feature-card__metric { border-radius: 22px; }
-body:has(.portfolio-hero) .guide-callout { border-radius: 22px; }
-body:has(.portfolio-hero) .feature-card { border-radius: 22px; }
+body:has(.portfolio-nav) .status-dot { border-radius: 8px; }
+body:has(.portfolio-nav) .feature-card__metric { border-radius: 22px; }
+body:has(.portfolio-nav) .guide-callout { border-radius: 22px; }
+body:has(.portfolio-nav) .feature-card { border-radius: 22px; }
 
 /* ── 乱れ: 似て非なる色（地色2種は残す・文字色とアクセントだけ寄せる） ── */
-body:has(.portfolio-hero) .feature-card p { color: #5E6172; }
-body:has(.portfolio-hero) .status-line { color: #5E6172; }
-body:has(.portfolio-hero) .capability-strip { color: #5E6172; }
-body:has(.portfolio-hero) .portfolio-nav__brand span { color: #5E6172; }
+body:has(.portfolio-nav) .feature-card p { color: var(--portfolio-muted); }
+body:has(.portfolio-nav) .status-line { color: var(--portfolio-muted); }
+body:has(.portfolio-nav) .capability-strip { color: var(--portfolio-muted); }
+body:has(.portfolio-hero) .portfolio-nav__brand span { color: var(--portfolio-muted); }
 /* 暗いカード（work-card--guide）は白文字なので除外＝床を割らせない */
-body:has(.portfolio-hero) .work-card:not(.work-card--guide) p { color: #5E6172; }
-body:has(.portfolio-hero) .site-title:where(.astro-m46x6ez3) { color: #4540DD; }
-body:has(.portfolio-hero) a:where(.astro-wy4te6ga) { color: #4540DD; }
-body:has(.portfolio-hero) svg:where(.astro-c6vsoqas) { color: #4540DD; }
-body:has(.portfolio-hero) div.feature-card__content div.text-links a:nth-child(1) { color: #4540DD; }
-body:has(.portfolio-hero) div.feature-card__content div.text-links a:nth-child(2) { color: #4540DD; }
-body:has(.portfolio-hero) section.portfolio-section div.section-heading a { color: #4540DD; }
+body:has(.portfolio-nav) .work-card:not(.work-card--guide) p { color: var(--portfolio-muted); }
+body:has(.portfolio-hero) .site-title:where(.astro-m46x6ez3) { color: var(--portfolio-accent-text); }
+body:has(.portfolio-hero) a:where(.astro-wy4te6ga) { color: var(--portfolio-accent-text); }
+body:has(.portfolio-hero) svg:where(.astro-c6vsoqas) { color: var(--portfolio-accent-text); }
+body:has(.portfolio-nav) div.feature-card__content div.text-links a:nth-child(1) { color: var(--portfolio-accent-text); }
+body:has(.portfolio-nav) div.feature-card__content div.text-links a:nth-child(2) { color: var(--portfolio-accent-text); }
+body:has(.portfolio-nav) section.portfolio-section div.section-heading a { color: var(--portfolio-accent-text); }
 /* 罫線の灰2種を1本へ（currentcolor を固定色にするのは手の判断） */
 body:has(.portfolio-hero) button:where(.astro-v37mnknz),
-body:has(.portfolio-hero) a:where(.astro-u2l5gyhi) { border-color: #DEDDD7; }
+body:has(.portfolio-hero) a:where(.astro-u2l5gyhi) { border-color: var(--portfolio-border); }
 /* 節の中の文中リンク。ボタン（白文字＋濃い地）は除外して床を守る */
-body:has(.portfolio-hero) section.portfolio-section > div > a:not(.button) { color: #4540DD; }
+body:has(.portfolio-nav) section.portfolio-section > div > a:not(.button) { color: var(--portfolio-accent-text); }
 @media (min-width: 768px) {
-  body:has(.portfolio-hero) div.sl-markdown-content section.portfolio-section a { color: #4540DD; }
+  body:has(.portfolio-nav) div.sl-markdown-content section.portfolio-section a { color: var(--portfolio-accent-text); }
 }
 
 /* ── ずれ: 言葉の泣き別れ（カタカナ語が行の途中で割れる）を文節折りにする ── */
-body:has(.portfolio-hero) .portfolio-hero__lead,
-body:has(.portfolio-hero) .feature-card__content p,
-body:has(.portfolio-hero) .work-card p,
-body:has(.portfolio-hero) .about-preview p,
-body:has(.portfolio-hero) .guide-callout p { word-break: auto-phrase; }
+body:has(.portfolio-nav) .portfolio-hero__lead,
+body:has(.portfolio-nav) .feature-card__content p,
+body:has(.portfolio-nav) .work-card p,
+body:has(.portfolio-nav) .about-preview p,
+body:has(.portfolio-nav) .guide-callout p { word-break: auto-phrase; }

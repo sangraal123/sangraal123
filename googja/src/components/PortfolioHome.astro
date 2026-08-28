@@ -1,12 +1,9 @@
-<nav class="portfolio-nav" aria-label="ポートフォリオ">
-	<a class="portfolio-nav__brand" href="/">sangraal <span>/ googja.dev</span></a>
-	<div class="portfolio-nav__links">
-		<a href="/works/">Works</a>
-		<a href="/about/">About</a>
-		<a href="/vibecode-mobile/">VibeCode Mobile</a>
-		<a href="https://github.com/sangraal123" rel="me">GitHub</a>
-	</div>
-</nav>
+---
+import PortfolioNav from './PortfolioNav.astro';
+import PortfolioFooter from './PortfolioFooter.astro';
+---
+
+<PortfolioNav />
 
 <section class="portfolio-hero">
 	<div class="portfolio-hero__copy">
@@ -100,7 +97,4 @@
 	<a class="button button--primary" href="/vibecode-mobile/">学習ロードマップへ</a>
 </section>
 
-<footer class="portfolio-footer">
-	<p>© sangraal / googja.dev</p>
-	<div><a href="/privacy/">Privacy</a><a href="https://github.com/sangraal123">GitHub</a></div>
-</footer>
+<PortfolioFooter />

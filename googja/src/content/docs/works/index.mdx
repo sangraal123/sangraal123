@@ -2,9 +2,17 @@
 title: Works
 description: sangraalが開発・参加しているプロダクト、ガイド、オープンソース活動。
 template: splash
+prev: false
+next: false
 ---
 
+import PortfolioNav from '../../../components/PortfolioNav.astro';
+import PortfolioFooter from '../../../components/PortfolioFooter.astro';
 import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+<PortfolioNav />
+
+<div class="portfolio-page">
 
 <div className="portfolio-page-intro">
 <p className="eyebrow">WORKS</p>
@@ -43,3 +51,7 @@ import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
 </CardGrid>
 
 <LinkCard title="GitHubで公開リポジトリを見る" href="https://github.com/sangraal123?tab=repositories" description="試作、学習成果、過去プロジェクトを含む一覧。" />
+
+</div>
+
+<PortfolioFooter />
