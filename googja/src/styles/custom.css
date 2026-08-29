@@ -1,269 +1,156 @@
-/* ── 配色トークン ──
-   Starlightの素の :root はダーク。ライトは [data-theme='light']（JS無効時の受け皿として
-   prefers-color-scheme のブロックも置く）。ページの地・面・罫線・文字は必ずこのトークン経由で
-   参照し、固定値を直書きしない＝テーマを切り替えたときだけ色が置き換わるようにするため。
-   ヒーローと下部CTAの濃紺だけは両モード共通の意匠なので固定値のまま。 */
-:root {
-	--sl-color-accent-low: #17215f;
-	--sl-color-accent: #5754f5;
-	--sl-color-accent-high: #d9d8ff;
+/* ══════════════════════════════════════════════════════════════════
+   Starlight（/vibecode-mobile/ 以下のガイド）の見た目を、
+   ポートフォリオ（src/styles/site.css）と同じ紙・墨・朱に合わせる。
 
-	/* 両モード共通（濃紺の帯とその上の差し色） */
-	--portfolio-navy: #020a39;
-	--portfolio-indigo: #4540dd;
-	--portfolio-cyan: #4cdde8;
-	--portfolio-coral: #ff8b78;
+   方針：個別のセレクタを叩かず、Starlight のトークンを置き換える。
+   Starlight は :root がダーク、:root[data-theme='light'] がライト。
+   どちらの分岐にも同じ役割の色を入れ、片方だけ直すことが起きないようにする。
+   ══════════════════════════════════════════════════════════════════ */
 
-	/* ダーク（既定） */
-	--portfolio-paper: #17181c;      /* ページの地 */
-	--portfolio-surface: #21242b;    /* カード・面の地 */
-	--portfolio-surface-2: #2b2f37;  /* 面の中の区切り・広告枠 */
-	--portfolio-border: #363b45;     /* 罫線 */
-	--portfolio-ink: #eceef6;        /* 見出しの文字 */
-	--portfolio-muted: #b9bcc7;      /* 補足の文字 */
-	--portfolio-accent-text: #9f9bff; /* 地の上に置くアクセント文字 */
+/* ── ダーク（Starlight の既定）───────────────────────────── */
+:root,
+::backdrop {
+	--sl-color-white: #f5f3ee;
+	--sl-color-gray-1: #e4e1db;
+	--sl-color-gray-2: #c8c5be; /* 本文（比 11.35） */
+	--sl-color-gray-3: #96948e; /* 補足（比 6.45） */
+	--sl-color-gray-4: #55545a;
+	--sl-color-gray-5: #26262a;
+	--sl-color-gray-6: #141416;
+	--sl-color-black: #0c0c0d;
+
+	--sl-color-accent-low: #3d160c;
+	--sl-color-accent: #ff5c36;
+	--sl-color-accent-high: #ffa88f;
+
+	--sl-color-hairline: #1c1c1f;
+	--sl-color-hairline-light: #26262a;
+	--sl-color-hairline-shade: #0c0c0d;
+
+	--sl-font: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Helvetica Neue',
+		'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Noto Sans JP', 'Yu Gothic', Meiryo, sans-serif;
+	--sl-font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono',
+		monospace;
+
+	--sl-shadow-sm: none;
+	--sl-shadow-md: none;
+	--sl-shadow-lg: none;
 }
 
-:root[data-theme='light'] {
-	--portfolio-paper: #f7f5ef;
-	--portfolio-surface: #ffffff;
-	--portfolio-surface-2: #e6e5df;
-	--portfolio-border: #deddd7;
-	--portfolio-ink: #121632;
-	--portfolio-muted: #5e6172;
-	--portfolio-accent-text: #4540dd;
+/* ── ライト ───────────────────────────────────────────────── */
+:root[data-theme='light'],
+[data-theme='light'] ::backdrop {
+	--sl-color-white: #131313;
+	--sl-color-gray-1: #222220;
+	--sl-color-gray-2: #3a3a37; /* 本文（比 10.01） */
+	--sl-color-gray-3: #5a5a55; /* 補足（比 6.08） */
+	--sl-color-gray-4: #a9a49a;
+	--sl-color-gray-5: #d5d1c7;
+	--sl-color-gray-6: #e2dfd6;
+	--sl-color-gray-7: #e9e6de;
+	--sl-color-black: #f2f0ea;
 
-	--sl-color-bg: var(--portfolio-paper);
-	--sl-color-bg-nav: rgba(247, 245, 239, 0.92);
-	--sl-color-bg-sidebar: #f0eee8;
-	--sl-color-text: var(--portfolio-ink);
+	--sl-color-accent-low: #f4ded8;
+	--sl-color-accent: #bd3117; /* 地 #f2f0ea に対して比 5.10 */
+	--sl-color-accent-high: #93250f;
+
+	--sl-color-hairline: #e2dfd6;
+	--sl-color-hairline-light: #ded9cf;
+	--sl-color-hairline-shade: #e2dfd6;
 }
 
+/* JS が無い環境では data-theme が付かないので、OS 設定でライトに寄せる */
 @media (prefers-color-scheme: light) {
 	:root:not([data-theme='dark']) {
-		--portfolio-paper: #f7f5ef;
-		--portfolio-surface: #ffffff;
-		--portfolio-surface-2: #e6e5df;
-		--portfolio-border: #deddd7;
-		--portfolio-ink: #121632;
-		--portfolio-muted: #5e6172;
-		--portfolio-accent-text: #4540dd;
+		--sl-color-white: #131313;
+		--sl-color-gray-1: #222220;
+		--sl-color-gray-2: #3a3a37;
+		--sl-color-gray-3: #5a5a55;
+		--sl-color-gray-4: #a9a49a;
+		--sl-color-gray-5: #d5d1c7;
+		--sl-color-gray-6: #e2dfd6;
+		--sl-color-gray-7: #e9e6de;
+		--sl-color-black: #f2f0ea;
+		--sl-color-accent-low: #f4ded8;
+		--sl-color-accent: #bd3117;
+		--sl-color-accent-high: #93250f;
+		--sl-color-hairline: #e2dfd6;
+		--sl-color-hairline-light: #ded9cf;
+		--sl-color-hairline-shade: #e2dfd6;
 	}
 }
 
-.sl-container:has(.portfolio-nav) { max-width: 100%; }
-.sl-markdown-content:has(.portfolio-nav) { margin: 0; }
-.sl-markdown-content:has(.portfolio-nav) > * { margin-block: 0; }
-
-/* ヘッダー・フッターを全幅に出したページの、本文だけを元の幅に戻す枠 */
-.portfolio-page { max-width: 1180px; margin: 0 auto; padding: 3.5rem 1.5rem 6rem; }
-.portfolio-page > :first-child { margin-top: 0; }
-
-.portfolio-nav {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	gap: 2rem;
-	max-width: 1180px;
-	margin: 0 auto !important;
-	padding: 1.25rem 1.5rem;
-	font-size: .9rem;
+/* ── 版面 ─────────────────────────────────────────────────── */
+:root {
+	--sl-text-h1: clamp(2rem, 4.5vw, 3rem);
+	--sl-line-height: 1.9;
+	--sl-line-height-headings: 1.25;
 }
-.portfolio-nav a { color: inherit; text-decoration: none; }
-.portfolio-nav__brand { font-weight: 800; letter-spacing: -.02em; }
-.portfolio-nav__brand span { color: var(--sl-color-gray-3); font-weight: 500; }
-.portfolio-nav__links { display: flex; gap: 1.4rem; }
-.portfolio-nav__links a:hover { color: var(--sl-color-accent); }
 
-.portfolio-hero {
-	position: relative;
-	display: grid;
-	grid-template-columns: minmax(0, 1.15fr) minmax(300px, .85fr);
-	align-items: center;
-	gap: 3rem;
-	min-height: 680px;
-	padding: 5rem max(1.5rem, calc((100vw - 1180px) / 2));
+body { font-feature-settings: 'palt' 1; }
+
+/* 見出しは本文より締める（ポートフォリオ側と同じ字間） */
+.sl-markdown-content :is(h1, h2, h3, h4) { letter-spacing: -.03em; }
+header.header { border-bottom: 1px solid var(--sl-color-hairline); }
+.sidebar-pane { border-inline-end: 1px solid var(--sl-color-hairline); }
+
+/* 日本語の泣き別れ（語の途中で改行）を文節折りにする */
+.sl-markdown-content :is(p, li, td, th, figcaption, blockquote),
+.sl-markdown-content :is(h1, h2, h3, h4),
+.hero .tagline,
+.card .body { word-break: auto-phrase; line-break: strict; }
+
+/* サイドバー：グループ見出しを等幅の小見出しに
+   （.sidebar-content と ul.top-level のあいだに <sl-sidebar-state-persist> が挟まる） */
+.sidebar-content ul.top-level > li > details > summary > .group-label > span.large,
+.sidebar-content ul.top-level > li > span.large {
+	font-family: var(--sl-font-mono);
+	font-size: .8125rem;   /* 日本語のグループ名が入るので 11px まで落とさない */
+	font-weight: 500;
+	letter-spacing: .06em;
+	color: var(--sl-color-gray-3);
+}
+
+/* サイドバー先頭の「googja.dev へ戻る」だけ矢印を付ける */
+.sidebar-content a[data-back-to-site]::before { content: '← '; }
+
+/* ── 広告枠（VibeCode Mobile のトップにだけ出る）─────────── */
+.fixed-ad {
+	width: 750px;
+	max-width: calc(100vw - 3rem);
+	min-height: 300px;
+	margin: 4rem auto 2rem !important;
+}
+.fixed-ad__label {
+	margin: 0 0 .35rem;
+	color: var(--sl-color-gray-3);
+	font-family: var(--sl-font-mono);
+	font-size: .75rem;
+	text-align: center;
+	text-transform: uppercase;
+	letter-spacing: .12em;
+}
+.fixed-ad__slot {
+	width: 750px;
+	height: 300px;
 	overflow: hidden;
-	background: var(--portfolio-navy);
-	color: #fff;
+	/* 罫線は outline で引く。border だと box-sizing:border-box で内寸が 748px になり、
+	   750px のクリエイティブが左右2px削られる。 */
+	outline: 1px solid var(--sl-color-hairline);
+	background: var(--sl-color-gray-6);
 }
-.portfolio-hero::before {
-	content: '';
-	position: absolute;
-	inset: 0;
-	background: radial-gradient(circle at 75% 25%, rgba(76,221,232,.16), transparent 30%), radial-gradient(circle at 20% 85%, rgba(87,84,245,.22), transparent 34%);
-	pointer-events: none;
+
+/* Starlight の本文スタイル（@layer starlight.content）は
+   `.sl-markdown-content :is(img, …, iframe)` に height:auto を当てる。
+   iframe は固有の大きさを持たない置換要素なので、これを食うと既定の 300×150 に落ちて
+   750×300 の広告が「上半分だけ」になる。枠の .not-content で対象外にしたうえで寸法も明示する。 */
+.fixed-ad__slot iframe {
+	display: block;
+	width: 750px;
+	height: 300px;
+	max-width: none;
 }
-.portfolio-hero__copy, .portfolio-hero__visual { position: relative; z-index: 1; }
-.eyebrow { color: var(--portfolio-accent-text); font-size: .76rem; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; }
-.portfolio-hero .eyebrow { color: var(--portfolio-cyan); }
-.portfolio-hero h1 { margin: .9rem 0 1.4rem; color: #fff; font-size: clamp(3rem, 6.2vw, 5.8rem); line-height: .98; letter-spacing: -.065em; }
-.portfolio-hero h1 span { background: linear-gradient(100deg, var(--portfolio-cyan), #9e8cff 55%, var(--portfolio-coral)); -webkit-background-clip: text; color: transparent; }
-.portfolio-hero__lead { max-width: 640px; color: rgba(255,255,255,.75); font-size: 1.1rem; line-height: 1.8; }
-.button-row { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 2rem; }
-.button { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: .75rem 1.25rem; border-radius: 999px; font-weight: 800; text-decoration: none !important; }
-.button--primary { background: var(--portfolio-indigo); color: #fff !important; box-shadow: 0 12px 30px rgba(69,64,221,.3); }
-.button--secondary { border: 1px solid rgba(255,255,255,.28); color: #fff !important; }
-.portfolio-hero__visual { display: grid; place-items: center; min-height: 460px; }
-.portfolio-hero__visual::before { content: ''; position: absolute; width: 390px; height: 390px; border-radius: 50%; background: linear-gradient(135deg, rgba(76,221,232,.18), rgba(255,139,120,.15)); filter: blur(12px); }
-.product-mark { position: relative; z-index: 2; width: min(260px, 64vw); aspect-ratio: 1; border-radius: 28%; overflow: hidden; box-shadow: 0 35px 80px rgba(0,0,0,.45); transform: rotate(-3deg); }
-.product-mark img { display: block; width: 100%; height: 100%; object-fit: cover; }
-.portfolio-hero__visual > p { position: absolute; z-index: 3; right: 0; bottom: 2rem; margin: 0; color: rgba(255,255,255,.62); font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; }
-.portfolio-hero__visual > p strong { color: #fff; font-size: 1.05rem; }
-.orbit { position: absolute; border: 1px solid rgba(255,255,255,.13); border-radius: 50%; }
-.orbit--one { width: 420px; height: 420px; }
-.orbit--two { width: 520px; height: 280px; transform: rotate(28deg); }
 
-.capability-strip { display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem 2.2rem; padding: 1.2rem 1.5rem; background: var(--portfolio-surface); color: var(--portfolio-muted); border-bottom: 1px solid var(--portfolio-border); font-size: .76rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
-.portfolio-section { max-width: 1180px; margin: 0 auto !important; padding: 7rem 1.5rem; }
-.section-heading { margin-bottom: 2.2rem; }
-.section-heading h2, .about-preview h2, .guide-callout h2 { margin: .65rem 0 0; color: var(--portfolio-ink); font-size: clamp(2.1rem, 4vw, 3.7rem); line-height: 1.08; letter-spacing: -.045em; }
-.section-heading--split { display: flex; align-items: end; justify-content: space-between; gap: 2rem; }
-.section-heading--split > a, .about-preview a { font-weight: 800; text-decoration: none; white-space: nowrap; }
-.feature-card { display: grid; grid-template-columns: 1.45fr .55fr; gap: 2rem; padding: clamp(1.6rem, 4vw, 3.8rem); border-radius: 30px; background: var(--portfolio-surface); box-shadow: 0 22px 65px rgba(20,24,55,.08); }
-.status-line { display: flex; align-items: center; gap: .55rem; color: var(--portfolio-muted); font-size: .8rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; }
-.status-dot { width: 8px; height: 8px; border-radius: 50%; background: #35be77; box-shadow: 0 0 0 5px rgba(53,190,119,.13); }
-.feature-card h3 { margin: .9rem 0; color: var(--portfolio-ink); font-size: clamp(2.3rem, 5vw, 4.5rem); letter-spacing: -.055em; }
-.feature-card p { max-width: 680px; color: var(--portfolio-muted); line-height: 1.8; }
-.feature-list { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: .7rem 1.2rem; margin: 1.5rem 0; padding: 0; list-style: none; font-size: .9rem; }
-.feature-list li::before { content: '↗'; margin-right: .55rem; color: var(--portfolio-accent-text); font-weight: 900; }
-.text-links { display: flex; flex-wrap: wrap; gap: 1.4rem; margin-top: 1.7rem; }
-.text-links a { font-weight: 800; text-decoration: none; }
-.feature-card__metric { display: grid; align-content: center; gap: 1px; overflow: hidden; border-radius: 20px; background: var(--portfolio-surface-2); }
-.feature-card__metric div { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; padding: 1.3rem; background: var(--portfolio-paper); }
-.feature-card__metric strong { color: var(--portfolio-accent-text); font-size: 2.5rem; }
-.feature-card__metric span { color: var(--portfolio-muted); font-size: .75rem; text-align: right; text-transform: uppercase; }
-.work-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(min(260px,100%),1fr)); gap: 1rem; }
-.work-card { min-height: 260px; padding: 1.6rem; border: 1px solid var(--portfolio-border); border-radius: 22px; background: var(--portfolio-surface); color: inherit !important; text-decoration: none !important; transition: transform .2s ease, box-shadow .2s ease; }
-.work-card:hover { transform: translateY(-5px); box-shadow: 0 18px 45px rgba(20,24,55,.09); }
-.work-card > span { color: var(--portfolio-accent-text); font-size: .72rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
-.work-card h3 { margin: 4rem 0 .7rem; color: var(--portfolio-ink); font-size: 1.6rem; }
-.work-card p { color: var(--portfolio-muted); font-size: .9rem; line-height: 1.65; }
-.work-card--guide { background: var(--portfolio-navy); border-color: var(--portfolio-navy); }
-.work-card--guide h3 { color: #fff; }
-.work-card--guide p { color: rgba(255,255,255,.7); }
-.work-card--guide > span { color: var(--portfolio-cyan); }
-.about-preview { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; border-top: 1px solid var(--portfolio-border); }
-.about-preview > div:last-child { align-self: end; }
-.about-preview p { color: var(--portfolio-muted); font-size: 1.05rem; line-height: 1.9; }
-.guide-callout { max-width: 1120px; display: flex; align-items: end; justify-content: space-between; gap: 3rem; margin-bottom: 5rem !important; padding: 3rem; border-radius: 28px; background: linear-gradient(125deg, #11194f, var(--portfolio-navy)); color: #fff; }
-.guide-callout .eyebrow { color: var(--portfolio-cyan); }
-.guide-callout h2 { color: #fff; }
-.guide-callout p { max-width: 760px; color: rgba(255,255,255,.7); line-height: 1.8; }
-.fixed-ad { width: 750px; max-width: calc(100vw - 3rem); min-height: 300px; margin: 0 auto 7rem !important; }
-.fixed-ad__label { margin: 0 0 .35rem; color: var(--sl-color-gray-3); font-size: .62rem; text-align: center; text-transform: uppercase; letter-spacing: .12em; }
-.fixed-ad__slot { width: 750px; height: 300px; overflow: hidden; background: var(--portfolio-surface-2); }
-.portfolio-footer { display: flex; justify-content: space-between; gap: 2rem; padding: 2rem max(1.5rem, calc((100vw - 1180px) / 2)); background: var(--portfolio-navy); color: rgba(255,255,255,.64); font-size: .8rem; }
-.portfolio-footer p { margin: 0; }
-.portfolio-footer div { display: flex; gap: 1.2rem; }
-.portfolio-footer a { color: #fff; text-decoration: none; }
-
-.portfolio-page-intro { max-width: 800px; margin-bottom: 3rem; }
-.portfolio-page-intro .eyebrow { margin-bottom: .6rem; }
-.portfolio-page-intro h1 { font-size: clamp(2.8rem, 6vw, 5.2rem); line-height: 1; letter-spacing: -.055em; }
-.project-meta { display: flex; flex-wrap: wrap; gap: .6rem; margin: 1.5rem 0; }
-.project-meta span { padding: .42rem .7rem; border-radius: 999px; background: var(--sl-color-gray-6); font-size: .76rem; font-weight: 700; }
-
-@media (max-width: 820px) {
-	.portfolio-nav { align-items: flex-start; }
-	.portfolio-nav__links { display: grid; grid-template-columns: repeat(2,auto); gap: .6rem 1rem; }
-	.portfolio-hero { grid-template-columns: 1fr; min-height: auto; padding-top: 4rem; }
-	.portfolio-hero__visual { min-height: 360px; }
-	.feature-card, .about-preview { grid-template-columns: 1fr; }
-	.work-grid { grid-template-columns: 1fr; }
-	.work-card { min-height: 220px; }
-	.work-card h3 { margin-top: 2.5rem; }
-	.feature-list { grid-template-columns: 1fr; }
-	.guide-callout { display: block; }
-	.guide-callout .button { margin-top: 1.5rem; }
+@media (max-width: 50rem) {
 	.fixed-ad { display: none; }
 }
-
-@media (max-width: 560px) {
-	.portfolio-nav__links { display: none; }
-	.portfolio-hero h1 { font-size: clamp(2.8rem, 14vw, 4.1rem); }
-	.portfolio-section { padding-block: 5rem; }
-	.section-heading--split { align-items: flex-start; flex-direction: column; }
-	.feature-card { border-radius: 22px; }
-	.portfolio-footer { flex-direction: column; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-	.work-card { transition: none; }
-}
-
-/* ══ 金継ぎ追補スタイル（googja.dev トップページ・2026-08-28）══
-   naoshi の自動処方を下敷きに、役割の判断で手直しした版。
-   元の規則と同じセレクタ・同じ media で後から上書きする。:root の変数は触らない。
-
-   ★ 全規則を body:has(.portfolio-nav) でトップページに限定している。
-     理由: 再巡回（全27ページ）で、Starlightの共有部品（ヘッダーの見出し色・検索ボタンの罫線・⌘Kチップの角丸）を
-     素で上書きすると記事ページ23枚の散らかり度が上がったため（例 /coding/02 18→26）。
-     .portfolio-nav はポートフォリオ6ページ（トップ/Works/About/VibeCode/ケーススタディ/Privacy）
-     にしか無いので、これで記事ページへの染み出しが止まる。
-
-   手仕事の判断:
-   1. 低コントラストの寄せ先を #0000EE（既定リンク青）ではなく #5E6172 に統一
-      （地 #E6E5DF で比4.85・地 #F7F5EF で比5.62＝どちらも床4.5を越える。役割は「補足の文字」なので青くしない）
-   2. 地色 #F7F5EF（生成り）は白へ統合しない＝ページの地とヘッダーの地が揃った節の拍。潰すと帯が消える
-   3. ⌘K チップの地 #EDEEF3 も白へ統合しない＝白い検索欄の中でチップが溶けて消える（手触りの喪失）
-   4. .product-mark の角丸76.5pxは残す＝このページにしか無い主役（アプリアイコン）の固有の形・例外1つ
-   5. 泣き別れは word-break: auto-phrase で文節折りにする（naoshi が STOP した理由の是正） */
-
-/* ── 破れ: 低コントラスト（比3.95 → 4.85）＋ 似て非なる色 #76798A → #5E6172 ── */
-body:has(.portfolio-nav) .feature-card__metric span { color: var(--portfolio-muted); }
-
-/* ── 破れ: 極小文字 11.5px → 12px ── */
-body:has(.portfolio-nav) .work-card > span { font-size: 12px; }
-
-/* ── 乱れ: 文字サイズの段数過多（役割内の割れを寄せる） ── */
-body:has(.portfolio-nav) .portfolio-nav { font-size: 16px; }
-body:has(.portfolio-nav) .portfolio-footer { font-size: 16px; }
-body:has(.portfolio-nav) .portfolio-hero__lead { font-size: 16px; }
-body:has(.portfolio-nav) .portfolio-hero__visual > p strong { font-size: 16px; }
-body:has(.portfolio-nav) .about-preview p { font-size: 16px; }
-body:has(.portfolio-nav) .feature-list { font-size: 16px; }
-body:has(.portfolio-nav) .work-card p { font-size: 16px; }
-body:has(.portfolio-nav) .portfolio-hero__visual > p { font-size: 12.8px; }
-body:has(.portfolio-nav) .eyebrow { font-size: 12.8px; }
-body:has(.portfolio-nav) .feature-card__metric span { font-size: 12.2px; }
-body:has(.portfolio-nav) .status-line { font-size: 12.2px; }
-@media (min-width: 50rem) {
-  body:has(.portfolio-hero) button:where(.astro-v37mnknz)[data-open-modal] { font-size: 16px; }
-}
-
-/* ── 乱れ: 角丸 7種 → 3種（999 / 22 / 8。主役の76.5pxだけ例外で残す） ── */
-body:has(.portfolio-hero) button:where(.astro-v37mnknz) > kbd:where(.astro-v37mnknz) { border-radius: 8px; }
-body:has(.portfolio-nav) .status-dot { border-radius: 8px; }
-body:has(.portfolio-nav) .feature-card__metric { border-radius: 22px; }
-body:has(.portfolio-nav) .guide-callout { border-radius: 22px; }
-body:has(.portfolio-nav) .feature-card { border-radius: 22px; }
-
-/* ── 乱れ: 似て非なる色（地色2種は残す・文字色とアクセントだけ寄せる） ── */
-body:has(.portfolio-nav) .feature-card p { color: var(--portfolio-muted); }
-body:has(.portfolio-nav) .status-line { color: var(--portfolio-muted); }
-body:has(.portfolio-nav) .capability-strip { color: var(--portfolio-muted); }
-body:has(.portfolio-hero) .portfolio-nav__brand span { color: var(--portfolio-muted); }
-/* 暗いカード（work-card--guide）は白文字なので除外＝床を割らせない */
-body:has(.portfolio-nav) .work-card:not(.work-card--guide) p { color: var(--portfolio-muted); }
-body:has(.portfolio-hero) .site-title:where(.astro-m46x6ez3) { color: var(--portfolio-accent-text); }
-body:has(.portfolio-hero) a:where(.astro-wy4te6ga) { color: var(--portfolio-accent-text); }
-body:has(.portfolio-hero) svg:where(.astro-c6vsoqas) { color: var(--portfolio-accent-text); }
-body:has(.portfolio-nav) div.feature-card__content div.text-links a:nth-child(1) { color: var(--portfolio-accent-text); }
-body:has(.portfolio-nav) div.feature-card__content div.text-links a:nth-child(2) { color: var(--portfolio-accent-text); }
-body:has(.portfolio-nav) section.portfolio-section div.section-heading a { color: var(--portfolio-accent-text); }
-/* 罫線の灰2種を1本へ（currentcolor を固定色にするのは手の判断） */
-body:has(.portfolio-hero) button:where(.astro-v37mnknz),
-body:has(.portfolio-hero) a:where(.astro-u2l5gyhi) { border-color: var(--portfolio-border); }
-/* 節の中の文中リンク。ボタン（白文字＋濃い地）は除外して床を守る */
-body:has(.portfolio-nav) section.portfolio-section > div > a:not(.button) { color: var(--portfolio-accent-text); }
-@media (min-width: 768px) {
-  body:has(.portfolio-nav) div.sl-markdown-content section.portfolio-section a { color: var(--portfolio-accent-text); }
-}
-
-/* ── ずれ: 言葉の泣き別れ（カタカナ語が行の途中で割れる）を文節折りにする ── */
-body:has(.portfolio-nav) .portfolio-hero__lead,
-body:has(.portfolio-nav) .feature-card__content p,
-body:has(.portfolio-nav) .work-card p,
-body:has(.portfolio-nav) .about-preview p,
-body:has(.portfolio-nav) .guide-callout p { word-break: auto-phrase; }

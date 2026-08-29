@@ -1,0 +1,102 @@
+---
+import Base from '../../layouts/Base.astro';
+import WorkList from '../../components/WorkList.astro';
+import { works } from '../../data/site';
+
+const products = works.filter((w) => w.group === 'product');
+const collabs = works.filter((w) => w.group === 'collab');
+---
+
+<Base
+	title="Works"
+	description="sangraalが開発・参加しているプロダクト、ガイド、オープンソース活動の一覧。"
+>
+	<section class="shell pagehead">
+		<p class="label"><b>Works</b> — Products, writing, collaborations</p>
+		<h1>作ったものと、<br />関わっているもの。</h1>
+		<p class="lead">
+			完成させた個人プロダクト、開発知見を公開しているガイド、チームやコミュニティでの取り組みを、担当した範囲が分かる形で並べています。
+		</p>
+	</section>
+
+	<div class="band">
+		<div class="shell section">
+			<p class="label" data-reveal><b>01</b> Products</p>
+			<div class="section__body" data-reveal style="--reveal-delay:.09s">
+				<WorkList items={products} />
+				<ul class="notes" style="margin-top: 2.5rem">
+					<li data-no="—">
+						<span
+							><b>無限脳</b>：企画、UI実装、質問データ、進捗保存、Firebase
+							Analytics、広告、CI/CD、App Store・Google
+							Play公開まで。一つのFlutterコードベースからiOS・Android・Webへ配信しています。</span
+						>
+					</li>
+					<li data-no="—">
+						<span
+							><b>VibeCode Mobile</b>：AIとExpoでアプリを作る工程を、準備・リサーチ・リデザイン・コーディング・フィードバック・公開＆マネタイズ・応用の7フェーズに分けて執筆。サイトの設計と実装も自分で行っています。</span
+						>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="band">
+		<div class="shell section">
+			<p class="label" data-reveal><b>02</b> Team &amp; Open source</p>
+			<div class="section__body" data-reveal style="--reveal-delay:.09s">
+				<WorkList items={collabs} />
+				<ul class="notes" style="margin-top: 2.5rem">
+					<li data-no="—">
+						<span
+							><b>HENKAKU Initiation</b>：ウォレット準備からInitiation、チェックイン、申請までを案内するNext.jsアプリの検証・開発に参加。</span
+						>
+					</li>
+					<li data-no="—">
+						<span
+							><b>Board Game Proof</b>：アナログゲームのプレイ履歴をWeb3技術で証明するチームプロジェクト。Expo、Firebase、ウォレット接続まわりを検証しました。</span
+						>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="band">
+		<div class="shell section">
+			<p class="label" data-reveal><b>03</b> Elsewhere</p>
+			<div class="section__body" data-reveal style="--reveal-delay:.09s">
+				<ul class="links">
+					<li>
+						<a href="https://github.com/sangraal123?tab=repositories" rel="noopener">
+							<b>GitHub Repositories ↗</b>
+							<span>試作、学習成果、過去プロジェクトを含む公開リポジトリの一覧。</span>
+						</a>
+					</li>
+					<li>
+						<a href="https://braininfinity.googja.dev/" rel="noopener">
+							<b>無限脳 Web版 ↗</b>
+							<span>ブラウザからそのままプレイできるWeb版。</span>
+						</a>
+					</li>
+					<li>
+						<a href="https://apps.apple.com/jp/app/id6755319401" rel="noopener">
+							<b>App Store ↗</b>
+							<span>iPhone・iPad版の無限脳。</span>
+						</a>
+					</li>
+					<li>
+						<a
+							href="https://play.google.com/store/apps/details?id=com.sangraal.androidfirst&hl=ja"
+							rel="noopener"
+						>
+							<b>Google Play ↗</b>
+							<span>Android版の無限脳。</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</Base>

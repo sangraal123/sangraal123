@@ -1,0 +1,34 @@
+---
+import type { Work } from '../data/site';
+
+interface Props {
+	items: Work[];
+}
+const { items } = Astro.props;
+---
+
+<ul class="works">
+	{
+		items.map((w) => (
+			<li>
+				<a
+					class="work"
+					href={w.href}
+					rel={w.external ? 'noopener' : undefined}
+					target={w.external ? '_blank' : undefined}
+				>
+					<span class="work__no">{w.no}</span>
+					<span class="work__name">
+						{w.name}
+						<span class="work__note">{w.note}</span>
+					</span>
+					<span class="work__stack">{w.stack}</span>
+					<span class="work__status">{w.status}</span>
+					<span class="work__go" aria-hidden="true">
+						{w.external ? '↗' : '→'}
+					</span>
+				</a>
+			</li>
+		))
+	}
+</ul>

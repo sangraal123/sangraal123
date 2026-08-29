@@ -1,0 +1,207 @@
+---
+import Base from '../layouts/Base.astro';
+import WorkList from '../components/WorkList.astro';
+import { works, phases, shots } from '../data/site';
+---
+
+<Base
+	bare
+	title="sangraal — Cross-platform Product Engineer"
+	description="AIエージェントを活用し、モバイルプロダクトを企画からストア公開まで一貫して開発するsangraalのポートフォリオ。"
+>
+	<section class="hero">
+		<div class="shell hero__stage">
+			<p class="label hero__eyebrow"><b>sangraal</b> — Cross-platform Product Engineer</p>
+			<h1 class="hero__display">
+				<span class="line"><span>企画から</span></span>
+				<span class="line"><span>ストア公開まで、</span></span>
+				<span class="line"><span><i>つくり切る。</i></span></span>
+			</h1>
+		</div>
+
+		{/* 帯は流れたまま、中身を技術名から実物に入れ替える。
+		    最初の画面のすぐ下で、作ったものが動いているところが横に流れていく。
+		    2組並べて translateX(-50%) で継ぎ目なく回す。2組目は読み上げ対象から外す。 */}
+		<div class="proof">
+			<div class="shell proof__head">
+				<p class="label"><b>無限脳</b> — 実際の画面</p>
+				<a class="ulink" href="/works/brain-infinity/"
+					>ケーススタディへ<span aria-hidden="true">→</span></a
+				>
+			</div>
+			<div class="proof__rail">
+				<div class="proof__track">
+					{
+						[0, 1].map((group) => (
+							<ul class="proof__group" aria-hidden={group === 1 ? 'true' : undefined}>
+								{shots.map((s) => (
+									<li>
+										<figure>
+											<img
+												src={s.src}
+												width="720"
+												height="1565"
+												alt={group === 1 ? '' : s.alt}
+												loading={group === 1 ? 'lazy' : 'eager'}
+												decoding="async"
+											/>
+											<figcaption>
+												<span>{s.no}</span>
+												{s.caption}
+											</figcaption>
+										</figure>
+									</li>
+								))}
+							</ul>
+						))
+					}
+				</div>
+			</div>
+		</div>
+
+		<div class="shell hero__grid">
+			<div>
+				<p class="lead">
+					FlutterとExpoを軸に、UI実装、Firebase連携、CI/CD、ストア審査、公開後の改善までを一つの工程として扱います。
+				</p>
+				<p class="lead">
+					AIエージェントは判断を任せる相手ではなく、調査・仕様化・実装・レビューで役割を分ける道具として使っています。
+				</p>
+				<div class="actions">
+					<a class="btn" href="/works/">Works を見る<span aria-hidden="true">→</span></a>
+					<a class="ulink" href="/vibecode-mobile/"
+						>VibeCode Mobile を読む<span aria-hidden="true">→</span></a
+					>
+				</div>
+			</div>
+
+			<dl class="spec">
+				<dt>Role</dt>
+				<dd>Product Engineer</dd>
+				<dt>Build</dt>
+				<dd>Flutter / Expo / React Native</dd>
+				<dt>Backend</dt>
+				<dd>Firebase / Google Cloud</dd>
+				<dt>Ship</dt>
+				<dd>App Store / Google Play / Web</dd>
+				<dt>Writing</dt>
+				<dd><a href="/vibecode-mobile/">VibeCode Mobile</a></dd>
+				<dt>Code</dt>
+				<dd><a href="https://github.com/sangraal123" rel="me noopener">github.com/sangraal123</a></dd>
+			</dl>
+		</div>
+	</section>
+
+	<div class="band" id="featured">
+		<div class="shell section">
+			<p class="label" data-reveal><b>01</b> Featured</p>
+			<div class="section__body feature" data-reveal style="--reveal-delay:.09s">
+				<div>
+					<p class="status">Released — iOS / Android / Web</p>
+					<h2 class="feature__name">無限脳</h2>
+					<p class="lead">
+						Math、Logic、Memory、Attention、Languageの5領域を、1問30秒のクイズで継続的に鍛えるクロスプラットフォームの脳トレゲーム。
+					</p>
+					<p class="lead">
+						企画、UI実装、質問データ、Firebase
+						Analytics、広告、CI/CD、ストア公開までを担当しています。
+					</p>
+					<ul class="figures">
+						<li><b>5</b><span>Categories</span></li>
+						<li><b>2</b><span>Languages</span></li>
+						<li><b>3</b><span>Platforms</span></li>
+						<li><b>1</b><span>Codebase</span></li>
+					</ul>
+					<div class="actions">
+						<a class="ulink" href="/works/brain-infinity/"
+							>ケーススタディを読む<span aria-hidden="true">→</span></a
+						>
+						<a class="ulink" href="https://braininfinity.googja.dev/" rel="noopener"
+							>Web版を試す<span aria-hidden="true">↗</span></a
+						>
+					</div>
+				</div>
+
+				<figure class="plate">
+					<img
+						src="/Icon-512.png"
+						width="512"
+						height="512"
+						alt="無限脳のアプリアイコン"
+						loading="lazy"
+					/>
+					<figcaption><span>無限脳</span><span>Flutter</span></figcaption>
+				</figure>
+			</div>
+		</div>
+	</div>
+
+	<div class="band" id="work">
+		<div class="shell section">
+			<p class="label" data-reveal><b>02</b> Selected work</p>
+			<div class="section__body" data-reveal style="--reveal-delay:.09s">
+				<h2 class="h2">プロダクト、ガイド、共同開発。</h2>
+				<div style="margin-top: clamp(2rem, 4vw, 3rem)">
+					<WorkList items={works} />
+				</div>
+				<div class="actions">
+					<a class="ulink" href="/works/">担当範囲つきの一覧を見る<span aria-hidden="true">→</span></a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="band" id="about">
+		<div class="shell section">
+			<p class="label" data-reveal><b>03</b> About</p>
+			<div class="section__body" data-reveal style="--reveal-delay:.09s">
+				<h2 class="h2">コードだけでなく、<br />プロダクトの一生を扱う。</h2>
+				<p class="lead" style="margin-top: 1.75rem">
+					個人開発ではFlutter、チーム開発ではExpoを中心に使用しています。
+				</p>
+				<p class="lead">
+					画面を実装して終わりにせず、Firebaseによるバックエンドと分析基盤、ストアへの提出、公開後の数字の確認と改善までを続けます。
+				</p>
+				<p class="lead">
+					新しいアイデアを素早く動かすプロトタイピングと、公開できる品質へ持っていくビルドの、両方を仕事にしています。
+				</p>
+				<div class="actions">
+					<a class="ulink" href="/about/">プロフィールを読む<span aria-hidden="true">→</span></a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="band band--sunk" id="guide">
+		<div class="shell section">
+			<p class="label" data-reveal><b>04</b> VibeCode Mobile</p>
+			<div class="section__body" data-reveal style="--reveal-delay:.09s">
+				<h2 class="h2">作り方も、公開しています。</h2>
+				<p class="lead" style="margin-top: 1.75rem">
+					AIに指示しながらExpoアプリを企画・実装・公開・収益化する工程を、7つのフェーズに分けた実践ドキュメントにまとめています。
+				</p>
+				<p class="lead">
+					プロンプト、仕様書テンプレート、実装チュートリアル、公開前チェックリストまで。
+				</p>
+				<ul class="phases">
+					{
+						phases.map((p) => (
+							<li>
+								<a href={p.href}>
+									<span>{p.no}</span>
+									<span class="phases__label">
+										{p.label}
+										{p.wip && <em>執筆中</em>}
+									</span>
+								</a>
+							</li>
+						))
+					}
+				</ul>
+				<div class="actions">
+					<a class="btn" href="/vibecode-mobile/">学習ロードマップへ<span aria-hidden="true">→</span></a>
+				</div>
+			</div>
+		</div>
+	</div>
+</Base>

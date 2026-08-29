@@ -1,0 +1,85 @@
+---
+/*
+ * Starlight 既定の SiteTitle は必ずサイトのルート（= ポートフォリオのトップ）へリンクする。
+ * ガイドの見出しを押してポートフォリオに出るのは筋が通らないので、
+ * 「googja.dev / VibeCode Mobile」のパンくず形にして、行き先を分ける。
+ *   googja.dev      → ポートフォリオ（/）
+ *   VibeCode Mobile → ガイドの入口（/vibecode-mobile/）
+ * 狭い画面では前半を「←」だけに畳む。
+ */
+const { siteTitle } = Astro.locals.starlightRoute;
+---
+
+<div class="guide-title">
+	<a class="guide-title__up" href="/">
+		<span class="guide-title__up-full">googja.dev</span>
+		<span class="guide-title__up-short" aria-hidden="true">←</span>
+		<span class="sr-only">googja.dev のトップへ</span>
+	</a>
+	<span class="guide-title__sep" aria-hidden="true">/</span>
+	<a href="/vibecode-mobile/" class="site-title" translate="no">{siteTitle}</a>
+</div>
+
+<style>
+	.guide-title {
+		display: flex;
+		align-items: baseline;
+		gap: 0.5rem;
+		min-width: 0;
+	}
+	.guide-title__up {
+		flex: none;
+		font-family: var(--sl-font-mono);
+		font-size: 0.75rem;
+		font-weight: 500;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--sl-color-gray-3);
+		text-decoration: none;
+		white-space: nowrap;
+	}
+	.guide-title__up:hover {
+		color: var(--sl-color-text-accent);
+	}
+	.guide-title__up-short {
+		display: none;
+	}
+	.guide-title__sep {
+		flex: none;
+		color: var(--sl-color-gray-4);
+	}
+	.site-title {
+		overflow: hidden;
+		min-width: 0;
+		font-size: var(--sl-text-h4);
+		font-weight: 700;
+		letter-spacing: -0.03em;
+		color: var(--sl-color-text-accent);
+		text-decoration: none;
+		white-space: nowrap;
+	}
+	.sr-only {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip-path: inset(50%);
+		white-space: nowrap;
+		border: 0;
+	}
+
+	@media (max-width: 50rem) {
+		.guide-title__up-full {
+			display: none;
+		}
+		.guide-title__up-short {
+			display: inline;
+			font-size: 1rem;
+		}
+		.guide-title__sep {
+			display: none;
+		}
+	}
+</style>

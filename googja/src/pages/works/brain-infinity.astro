@@ -1,0 +1,194 @@
+---
+import Base from '../../layouts/Base.astro';
+import { shots } from '../../data/site';
+---
+
+<Base
+	title="無限脳"
+	description="FlutterでiOS・Android・Webへ公開した、日英対応の脳トレゲーム「無限脳」（英語版 Brain Infinity）のケーススタディ。"
+>
+	<section class="shell pagehead">
+		<p class="label"><b>Case study</b> — Product</p>
+		<div class="feature" style="margin-top: 1.25rem">
+			<div>
+				<h1>無限脳</h1>
+				<p class="lead">
+					Math、Logic、Memory、Attention、Languageの5領域を、短時間のクイズで継続的にトレーニングするクロスプラットフォームアプリ。
+				</p>
+				<p class="lead">
+					一つのFlutterコードベースからiOS・Android・Webへ配信しています。
+				</p>
+				<ul class="tags" style="margin-top: 2rem">
+					<li>Released</li>
+					<li>Flutter</li>
+					<li>iOS</li>
+					<li>Android</li>
+					<li>Web</li>
+					<li>日本語 / English（Brain Infinity）</li>
+				</ul>
+				<div class="actions">
+					<a class="btn" href="https://braininfinity.googja.dev/" rel="noopener"
+						>Web版を試す<span aria-hidden="true">↗</span></a
+					>
+					<a class="ulink" href="/works/">Works へ戻る<span aria-hidden="true">→</span></a>
+				</div>
+			</div>
+			<figure class="plate">
+				<img src="/Icon-512.png" width="512" height="512" alt="無限脳のアプリアイコン" />
+				<figcaption><span>無限脳</span><span>App icon</span></figcaption>
+			</figure>
+		</div>
+	</section>
+
+	<div class="band">
+		<div class="shell section">
+			<p class="label" data-reveal><b>01</b> Screens</p>
+			<div class="section__body" data-reveal style="--reveal-delay:.09s">
+				<h2 class="h2">画面</h2>
+				<p class="lead" style="margin-top: 1.5rem">
+					公開中のWeb版から撮影した実際の画面です。
+				</p>
+				<ul class="screens">
+					{
+						shots.map((s) => (
+							<li>
+								<figure>
+									<img src={s.src} width="720" height="1565" alt={s.alt} loading="lazy" decoding="async" />
+									<figcaption>
+										<span>{s.no}</span>
+										{s.caption}
+									</figcaption>
+								</figure>
+							</li>
+						))
+					}
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="band">
+		<div class="shell section">
+			<p class="label" data-reveal><b>02</b> Scope</p>
+			<div class="section__body" data-reveal style="--reveal-delay:.09s">
+				<h2 class="h2">担当範囲</h2>
+				<p class="lead" style="margin-top: 1.5rem">
+					企画からUI実装、質問データ、進捗保存、Firebase Analytics、広告、CI/CD、App Store・Google
+					Play公開まで、一連のプロダクトライフサイクルを担当しています。
+				</p>
+				<table class="table" style="margin-top: 2.5rem">
+					<tbody>
+						<tr>
+							<th scope="row">Training</th>
+							<td>5カテゴリ × 3レベル。1セッション10問、1問30秒で構成しています。</td>
+						</tr>
+						<tr>
+							<th scope="row">Progress</th>
+							<td>
+								日次ストリーク、プレイカレンダー、カテゴリ別スコア、脳力プロフィールを端末内に保存します。
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">Accessibility</th>
+							<td>
+								高コントラスト、モーション低減、文字拡大、効果音キャプション、色だけに依存しない表示を用意しています。
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">Release</th>
+							<td>
+								一つのFlutterコードベースからiOS・Android・Webへビルドし、ストア用素材もテストから生成します。
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<div class="band">
+		<div class="shell section">
+			<p class="label" data-reveal><b>03</b> Stack</p>
+			<div class="section__body" data-reveal style="--reveal-delay:.09s">
+				<h2 class="h2">技術構成</h2>
+				<table class="table" style="margin-top: 2.5rem">
+					<tbody>
+						<tr><th scope="row">UI / App</th><td>Flutter、Material 3、GoRouter</td></tr>
+						<tr><th scope="row">State</th><td>Provider、Flutter Bloc</td></tr>
+						<tr><th scope="row">Data</th><td>SharedPreferences、JSON question sets</td></tr>
+						<tr>
+							<th scope="row">Analytics / Ads</th><td>Firebase Analytics、Google Mobile Ads</td>
+						</tr>
+						<tr>
+							<th scope="row">Quality</th><td>flutter_test、Mockito、レスポンシブ回帰テスト</td>
+						</tr>
+						<tr>
+							<th scope="row">Delivery</th>
+							<td>GitHub Actions、App Store Connect、Google Play Console</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<div class="band">
+		<div class="shell section">
+			<p class="label" data-reveal><b>04</b> Decisions</p>
+			<div class="section__body" data-reveal style="--reveal-delay:.09s">
+				<h2 class="h2">設計上の判断</h2>
+				<ul class="notes" style="margin-top: 2.5rem">
+					<li data-no="01">
+						<span
+							>スマートフォンだけでなく、タブレットの縦横やデスクトップでも画面幅と向きを見てレイアウトを切り替えています。</span
+						>
+					</li>
+					<li data-no="02">
+						<span
+							>年齢確認が完了する前に分析・広告リクエストを開始しない構成にし、子ども向け設定を最初のリクエストから適用しています。</span
+						>
+					</li>
+					<li data-no="03">
+						<span
+							>Webデモではゲーム体験を優先し、ディスプレイ広告をアプリ画面の外へ移しました。</span
+						>
+					</li>
+					<li data-no="04">
+						<span
+							>日本語・英語、テーマ、文字倍率、ストア指定サイズを組み合わせたスクリーンショットを、テストから自動生成しています。</span
+						>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="band">
+		<div class="shell section">
+			<p class="label" data-reveal><b>05</b> Where to play</p>
+			<div class="section__body" data-reveal style="--reveal-delay:.09s">
+				<h2 class="h2">公開先</h2>
+				<ul class="links" style="margin-top: 2.5rem">
+					<li>
+						<a href="https://braininfinity.googja.dev/" rel="noopener">
+							<b>Web ↗</b><span>ブラウザからそのままプレイできます。</span>
+						</a>
+					</li>
+					<li>
+						<a href="https://apps.apple.com/jp/app/id6755319401" rel="noopener">
+							<b>App Store ↗</b><span>iPhone・iPad版。</span>
+						</a>
+					</li>
+					<li>
+						<a
+							href="https://play.google.com/store/apps/details?id=com.sangraal.androidfirst&hl=ja"
+							rel="noopener"
+						>
+							<b>Google Play ↗</b><span>Android版。</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</Base>
