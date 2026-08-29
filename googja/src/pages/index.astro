@@ -21,7 +21,11 @@ import { works, phases, shots } from '../data/site';
 
 		{/* 帯は流れたまま、中身を技術名から実物に入れ替える。
 		    最初の画面のすぐ下で、作ったものが動いているところが横に流れていく。
-		    2組並べて translateX(-50%) で継ぎ目なく回す。2組目は読み上げ対象から外す。 */}
+
+		    継ぎ目を消す条件: 1組ぶん送ったあとも画面が埋まっていること＝(組数-1)×1組の幅 ≥ 画面幅。
+		    1組は最大でも約810px（184px×4＋間隔）なので、6組あれば 4K 幅まで空きが出ない。
+		    画像の実体は4枚だけで、残りはブラウザのキャッシュから出る。
+		    2組目以降は読み上げ対象から外す。 */}
 		<div class="proof">
 			<div class="shell proof__head">
 				<p class="label"><b>無限脳</b> — 実際の画面</p>
@@ -32,8 +36,8 @@ import { works, phases, shots } from '../data/site';
 			<div class="proof__rail">
 				<div class="proof__track">
 					{
-						[0, 1].map((group) => (
-							<ul class="proof__group" aria-hidden={group === 1 ? 'true' : undefined}>
+						Array.from({ length: 6 }, (_, group) => (
+							<ul class="proof__group" aria-hidden={group > 0 ? 'true' : undefined}>
 								{shots.map((s) => (
 									<li>
 										<figure>
@@ -41,8 +45,10 @@ import { works, phases, shots } from '../data/site';
 												src={s.src}
 												width="720"
 												height="1565"
-												alt={group === 1 ? '' : s.alt}
-												loading={group === 1 ? 'lazy' : 'eager'}
+												alt={group > 0 ? '' : s.alt}
+												{/* 横に流れる帯なので lazy は効かない（画面外の分が読み込まれず
+												    流れてきた瞬間に空く）。実体は4枚だけで残りはキャッシュから出る。 */}
+												loading="eager"
 												decoding="async"
 											/>
 											<figcaption>

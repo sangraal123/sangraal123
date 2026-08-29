@@ -332,8 +332,11 @@ p, h1, h2, h3, li, dd, dt, figcaption { word-break: auto-phrase; line-break: str
 
 /* ── 実画面の流れる帯（ヒーロー直下）────────────────────────
    もとは技術名を流すマーキーだった場所。動きは残し、中身をヒーロー右の仕様表と
-   重複しない「実物」に入れ替えている。2組を並べて translateX(-50%) で継ぎ目なく回す
-   （＝1組の幅ぶんだけ動かすので、末尾の余白 padding-right を組の中に含める）。 */
+   重複しない「実物」に入れ替えている。
+
+   同じ組を --groups 個並べ、1組ぶん（= -100% / --groups）だけ動かして頭へ戻す。
+   組の末尾の余白は padding-right で組の中に含める＝送り幅と間隔が揃う。
+   組数は「1組ぶん送っても画面が埋まる」ように多めに取る（markup 側の注記参照）。 */
 .proof {
 	--proof-gap: clamp(.7rem, 1.6vw, 1.15rem);
 	border-block: 1px solid var(--line);
@@ -346,7 +349,7 @@ p, h1, h2, h3, li, dd, dt, figcaption { word-break: auto-phrase; line-break: str
 	margin-bottom: clamp(1.1rem, 2.4vw, 1.6rem);
 }
 .proof__rail { overflow: hidden; }
-.proof__track { display: flex; width: max-content; animation: proof-scroll 55s linear infinite; }
+.proof__track { --groups: 6; display: flex; width: max-content; animation: proof-scroll 26s linear infinite; }
 /* 読みたいときに止められるように（WCAG 2.2.2 の逃げ道。keyboard も止まる） */
 .proof__rail:hover .proof__track,
 .proof__rail:focus-within .proof__track { animation-play-state: paused; }
@@ -368,7 +371,7 @@ p, h1, h2, h3, li, dd, dt, figcaption { word-break: auto-phrase; line-break: str
 	color: var(--muted);
 }
 .proof__group figcaption span { color: var(--accent); }
-@keyframes proof-scroll { to { transform: translateX(-50%); } }
+@keyframes proof-scroll { to { transform: translateX(calc(-100% / var(--groups))); } }
 .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; margin-top: 2rem; }
 
 /* 仕様表（等幅の定義リスト） */
