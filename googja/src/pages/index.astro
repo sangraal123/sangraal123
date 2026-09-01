@@ -23,7 +23,7 @@ import { works, phases, shots } from '../data/site';
 		    最初の画面のすぐ下で、作ったものが動いているところが横に流れていく。
 
 		    継ぎ目を消す条件: 1組ぶん送ったあとも画面が埋まっていること＝(組数-1)×1組の幅 ≥ 画面幅。
-		    1組は最大でも約1010px（184px×5＋間隔）なので、5組あれば 4K 幅まで空きが出ない。
+		    1組は最大でも約1820px（184px×9＋間隔）なので、4組あれば 4K 幅まで空きが出ない。
 		    画像の実体は4枚だけで、残りはブラウザのキャッシュから出る。
 		    2組目以降は読み上げ対象から外す。 */}
 		<div class="proof">
@@ -36,7 +36,7 @@ import { works, phases, shots } from '../data/site';
 			<div class="proof__rail">
 				<div class="proof__track">
 					{
-						Array.from({ length: 5 }, (_, group) => (
+						Array.from({ length: 4 }, (_, group) => (
 							<ul class="proof__group" aria-hidden={group > 0 ? 'true' : undefined}>
 								{shots.map((s) => (
 									<li>
