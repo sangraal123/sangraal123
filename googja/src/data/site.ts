@@ -78,31 +78,37 @@ export interface Shot {
 	alt: string;
 }
 
-/** 無限脳 の実画面（Web版から撮影・端末幅402pxで撮ったもの）。
+/** 無限脳 の実画面（公開中のWeb版から撮影・端末幅402px・他社広告は遮断）。
     技術名を流す帯の代わりに、ヒーロー直下で実物を見せる。 */
 export const shots: Shot[] = [
 	{
 		no: '01',
 		src: '/works/brain-infinity/01-home.webp',
 		caption: 'カテゴリとレベルを選ぶ',
-		alt: '無限脳のホーム画面。数学・論理・記憶・注意・言語の5カテゴリと、レベル1〜3の選択が並んでいる。',
+		alt: '無限脳のホーム画面。数学・論理・記憶・注意・言語の5カテゴリと、レベル1〜6の選択が並んでいる。',
 	},
 	{
 		no: '02',
 		src: '/works/brain-infinity/02-quiz.webp',
 		caption: '1問30秒・1セッション10問',
-		alt: '無限脳の出題画面。残り時間と1/10の進捗、問題文、4つの選択肢が表示されている。',
+		alt: '無限脳の出題画面。残り時間と1/10の進捗、数列の問題、4つの選択肢が表示されている。',
 	},
 	{
 		no: '03',
-		src: '/works/brain-infinity/03-streak.webp',
-		caption: 'プレイカレンダーと連続記録',
-		alt: '無限脳のプレイカレンダー画面。連続記録とプレイ日数、月別カレンダーが表示されている。',
+		src: '/works/brain-infinity/03-frontier.webp',
+		caption: 'ニューラル・フロンティア',
+		alt: '無限脳のニューラル・フロンティア画面。カテゴリを惑星として航路で結び、到達レベルと航路シグナルの点灯数を表示している。',
 	},
 	{
 		no: '04',
-		src: '/works/brain-infinity/04-score.webp',
-		caption: '脳力プロフィール（カテゴリ別の習熟）',
-		alt: '無限脳の脳力プロフィール画面。メダル獲得数と、5カテゴリの習熟バランスをレーダーチャートで表示している。',
+		src: '/works/brain-infinity/04-mission.webp',
+		caption: 'ミッションと成長ログ',
+		alt: '無限脳のミッション画面。コアのおすすめ、今日のオービット、成長ログが並んでいる。',
+	},
+	{
+		no: '05',
+		src: '/works/brain-infinity/05-lab.webp',
+		caption: '研究ラボ（ブレインコアと能力バランス）',
+		alt: '無限脳の研究ラボ画面。ブレインコアのレベルとXP、適応トレーニングの内訳、NEURAL INDEX が表示されている。',
 	},
 ];

@@ -349,7 +349,7 @@ p, h1, h2, h3, li, dd, dt, figcaption { word-break: auto-phrase; line-break: str
 	margin-bottom: clamp(1.1rem, 2.4vw, 1.6rem);
 }
 .proof__rail { overflow: hidden; }
-.proof__track { --groups: 6; display: flex; width: max-content; animation: proof-scroll 26s linear infinite; }
+.proof__track { --groups: 5; display: flex; width: max-content; animation: proof-scroll 33s linear infinite; }
 /* 読みたいときに止められるように（WCAG 2.2.2 の逃げ道。keyboard も止まる） */
 .proof__rail:hover .proof__track,
 .proof__rail:focus-within .proof__track { animation-play-state: paused; }
