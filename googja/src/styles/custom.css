@@ -154,3 +154,34 @@ header.header { border-bottom: 1px solid var(--sl-color-hairline); }
 @media (max-width: 50rem) {
 	.fixed-ad { display: none; }
 }
+
+/* ══════════════════════════════════════════════════════════════════
+   mermaid の図
+   remark-mermaid.mjs が <pre class="mermaid"> に落としたものを、
+   head の mermaid.js が SVG に差し替える。
+   描画が終わるまではソースが見えるので、その間も本文として崩れない形にしておく。
+   ══════════════════════════════════════════════════════════════════ */
+.sl-markdown-content pre.mermaid {
+	margin: 1.5rem 0;
+	padding: 1rem;
+	overflow-x: auto;
+	border: 1px solid var(--sl-color-hairline);
+	background: var(--sl-color-gray-6);
+	font-family: var(--sl-font-mono);
+	font-size: 0.8125rem;
+	line-height: 1.6;
+	color: var(--sl-color-gray-3);
+	text-align: left;
+}
+
+/* SVG に差し替わったら、枠と等幅を外して図として中央に置く。 */
+.sl-markdown-content pre.mermaid[data-processed] {
+	padding: 0.5rem 1rem;
+	background: transparent;
+	text-align: center;
+}
+
+.sl-markdown-content pre.mermaid svg {
+	max-width: 100%;
+	height: auto;
+}
