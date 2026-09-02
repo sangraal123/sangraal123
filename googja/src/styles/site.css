@@ -671,6 +671,10 @@ p, h1, h2, h3, li, dd, dt, figcaption { word-break: auto-phrase; line-break: str
 }
 .notes b { color: var(--ink); font-weight: 700; }
 
+/* 本文の行中リンク（クレジットなど）。.prose a と同じ引き方に揃える */
+.notes a, .table a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line-2); }
+.notes a:hover, .table a:hover { color: var(--accent); border-color: var(--accent); }
+
 /* 404 は本文が短いので、フッターが浮かないように高さを稼ぐ */
 main:has(> .pagehead:only-child) .pagehead { min-height: 58svh; }
 

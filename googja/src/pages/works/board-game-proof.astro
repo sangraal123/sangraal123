@@ -1,0 +1,367 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const PROOF_ADDRESS = '0xA2c30b1B383BE63978Cee4FED09cD0777EE1EDDC';
+const CARD_ADDRESS = '0xa4265c257280A583A61036a0A463Ac4085cf938d';
+const etherscan = (a: string) => `https://sepolia.etherscan.io/address/${a}`;
+/** アドレスは 22rem の欄に収まらないので、頭と尻だけ見せる。全体は Etherscan で確認できる。 */
+const short = (a: string) => `${a.slice(0, 6)}…${a.slice(-4)}`;
+
+/** プレイ回数で変わるバッジの外枠（ダイナミックNFT）。1/3/5/10/20回の5段階で、
+    段位名が入るのは10回目（Master）と20回目（Legendary）だけ。
+    アプリの assets/images/frames をそのまま webp にしたもの。素材はA.J.さん作。 */
+const frames = [
+	{
+		no: '01',
+		count: '1回',
+		src: '/works/board-game-proof/frame-1.webp',
+		caption: '1回目 — 木の枠',
+		alt: 'プレイ1回目のバッジ外枠。中心が透過した木目調の茶色い輪。',
+	},
+	{
+		no: '02',
+		count: '3回',
+		src: '/works/board-game-proof/frame-3.webp',
+		caption: '3回目 — 銀の枠',
+		alt: 'プレイ3回目のバッジ外枠。中心が透過した銀色の輪。',
+	},
+	{
+		no: '03',
+		count: '5回',
+		src: '/works/board-game-proof/frame-5.webp',
+		caption: '5回目 — 月桂樹と番号',
+		alt: 'プレイ5回目のバッジ外枠。金色の月桂樹の輪の上部に丸囲みの5が入っている。',
+	},
+	{
+		no: '04',
+		count: '10回',
+		src: '/works/board-game-proof/frame-10.webp',
+		caption: '10回目 — Master',
+		alt: 'プレイ10回目のバッジ外枠。白銀の月桂樹の輪で、上部に丸囲みの10、下部の帯に Master と書かれている。',
+	},
+	{
+		no: '05',
+		count: '20回',
+		src: '/works/board-game-proof/frame-20.webp',
+		caption: '20回目 — Legendary',
+		alt: 'プレイ20回目のバッジ外枠。虹色に光る輪で、上部に 20th、下部に Legendary と書かれている。',
+	},
+];
+---
+
+<Base
+	title="ぼどぷる"
+	description="ボードゲームのプレイ履歴を写真と電子サインつきのNFTとして残すモバイルアプリ「ぼどぷる」（Board Game Proof）のケーススタディ。Expo、Solidity、Cloudflare Workersで構成し、Sepoliaで稼働しています。"
+>
+	<section class="shell pagehead">
+		<p class="label"><b>Case study</b> — Team &amp; Open source</p>
+		<div class="feature" style="margin-top: 1.25rem">
+			<div>
+				<h1>ぼどぷる</h1>
+				<p class="lead">
+					ボードゲームのプレイ履歴を、盤面の写真と電子サインを添えてNFTとして残すモバイルアプリ。英語名はBoard
+					Game Proofです。
+				</p>
+				<p class="lead">
+					2024年度にWeb3概論のチームプロジェクトとして始まったVer.1を引き継ぎ、Ver.2として実際にチェーン上で動くところまで作り込んでいます。同じタイトルを重ねるほどバッジの外枠が変わり、プレイヤー同士はQRで名刺を交換します。
+				</p>
+				<ul class="figures">
+					<li><b>5</b><span>Badge tiers</span></li>
+					<li><b>13</b><span>Game titles</span></li>
+					<li><b>2</b><span>Contracts</span></li>
+					<li><b>133</b><span>Tests</span></li>
+				</ul>
+				<ul class="tags" style="margin-top: 2rem">
+					<li>Team</li>
+					<li>Expo / React Native</li>
+					<li>Solidity</li>
+					<li>Cloudflare Workers</li>
+					<li>Sepolia</li>
+				</ul>
+				<div class="actions">
+					<a class="btn" href={etherscan(PROOF_ADDRESS)} rel="noopener"
+						>コントラクトを見る<span aria-hidden="true">↗</span></a
+					>
+					<a class="ulink" href="/works/">Works へ戻る<span aria-hidden="true">→</span></a>
+				</div>
+			</div>
+
+			<dl class="spec">
+				<dt>Status</dt>
+				<dd>Sepolia テストネットで稼働中</dd>
+				<dt>Proof</dt>
+				<dd>
+					<a href={etherscan(PROOF_ADDRESS)} rel="noopener">{short(PROOF_ADDRESS)}</a>
+				</dd>
+				<dt>Card</dt>
+				<dd>
+					<a href={etherscan(CARD_ADDRESS)} rel="noopener">{short(CARD_ADDRESS)}</a>
+				</dd>
+				<dt>App</dt>
+				<dd>Expo（iOS / Android）</dd>
+				<dt>API</dt>
+				<dd>Cloudflare Workers + D1</dd>
+				<dt>配布</dt>
+				<dd>Firebase App Distribution（コミュニティ内）</dd>
+			</dl>
+		</div>
+	</section>
+
+	<div class="band">
+		<div class="shell section">
+			<p class="label" data-reveal><b>01</b> How it works</p>
+			<div class="section__body" data-reveal style="--reveal-delay:.09s">
+				<h2 class="h2">使い方</h2>
+				<p class="lead" style="margin-top: 1.5rem">
+					遊び終わったその場で証明を発行し、名刺を交換するところまでを1つのアプリで完結させています。
+				</p>
+				<table class="table" style="margin-top: 2.5rem">
+					<tbody>
+						<tr>
+							<th scope="row">1. 撮る</th>
+							<td>
+								盤面を撮影し、その上に指で電子サインを書きます。サインは透過PNGとして写真に重ねます。
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">2. 発行する</th>
+							<td>
+								ゲームタイトル、プレイ日、参加者、自由記述を添えて発行します。画像はIPFSにピン留めし、失敗したら発行を中断します。
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">3. 重ねる</th>
+							<td>
+								ホームではタイトルごとにまとめてバッジで表示します。同じタイトルを重ねるほど外枠が変わります。
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">4. 交換する</th>
+							<td>
+								自分の名刺をQRで見せ、相手のQRを読み取ります。譲渡できない名刺（SBT）なので、その人自身を指します。
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<div class="band">
+		<div class="shell section">
+			<p class="label" data-reveal><b>02</b> Badge</p>
+			<div class="section__body" data-reveal style="--reveal-delay:.09s">
+				<h2 class="h2">回数で変わるバッジ</h2>
+				<p class="lead" style="margin-top: 1.5rem">
+					発行時点での通算プレイ回数をチェーンに焼き込んでいるので、外枠はチェーンを走査せずに決まります。1回、3回、5回、10回、20回の5段階です。
+				</p>
+				<ul class="screens">
+					{
+						frames.map((f) => (
+							<li>
+								<figure>
+									<img
+										src={f.src}
+										width="512"
+										height="512"
+										alt={f.alt}
+										loading="lazy"
+										decoding="async"
+									/>
+									<figcaption>
+										<span>{f.no}</span>
+										{f.caption}
+									</figcaption>
+								</figure>
+							</li>
+						))
+					}
+				</ul>
+				<ul class="notes" style="margin-top: 2.5rem">
+					<li data-no="—">
+						<span
+							>いずれも中心が透過した輪で、ゲームアイコンの上に重ねて使います。枠の内側の穴が画像幅に占める割合を素材ごとに計測して持たせているので、アイコンが枠にぴったり収まります。段位を増やすときは表に1行足すだけです。</span
+						>
+					</li>
+					<li data-no="—">
+						<span
+							>絵の無いタイトルには、他のタイトルの絵で代用せず<b>頭文字の丸</b
+							>を出します。代用すると「ラブレター」のバッジにカタンの絵が付くことになるためです。</span
+						>
+					</li>
+					<li data-no="—">
+						<span
+							>外枠の素材は<b>A.J.さん</b>（<a href="https://x.com/JanadoNovel" rel="noopener"
+								>@JanadoNovel</a
+							>）の作です。</span
+						>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="band">
+		<div class="shell section">
+			<p class="label" data-reveal><b>03</b> Scope</p>
+			<div class="section__body" data-reveal style="--reveal-delay:.09s">
+				<h2 class="h2">担当範囲</h2>
+				<p class="lead" style="margin-top: 1.5rem">
+					チームで始まったVer.1を引き継ぎ、Ver.2としてアプリ・コントラクト・APIと、そこへ配信するまでの経路を担当しています。
+				</p>
+				<table class="table" style="margin-top: 2.5rem">
+					<tbody>
+						<tr>
+							<th scope="row">App</th>
+							<td>
+								Expoアプリの実装。ウォレット接続、証明の発行と一覧、撮影と電子サイン、名刺のQR交換。
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">Contracts</th>
+							<td>
+								証明（ERC-721）と名刺（ERC-5192）の設計・実装・テスト・Sepoliaへのデプロイ。メタデータはオンチェーンで生成しています。
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">API</th>
+							<td>
+								Cloudflare Workersの実装。Firebase IDトークンの検証、IPFSへのピン留め代行、レート制限、D1のスキーマ。
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">Delivery</th>
+							<td>
+								GitHub Actionsでの型チェック・テスト・ビルドと、Firebase App
+								Distributionへの配信。
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">Credit</th>
+							<td>
+								バッジ外枠の素材はA.J.さん（<a href="https://x.com/JanadoNovel" rel="noopener">@JanadoNovel</a>）の作です。Ver.1の企画と仕様はチームによるもので、Ver.2はその上に載せています。
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<div class="band">
+		<div class="shell section">
+			<p class="label" data-reveal><b>04</b> Stack</p>
+			<div class="section__body" data-reveal style="--reveal-delay:.09s">
+				<h2 class="h2">技術構成</h2>
+				<table class="table" style="margin-top: 2.5rem">
+					<tbody>
+						<tr>
+							<th scope="row">App</th>
+							<td>Expo SDK 54（React Native 0.81 / React 19.1）、expo-router</td>
+						</tr>
+						<tr><th scope="row">Wallet</th><td>WalletConnect、ethers v6</td></tr>
+						<tr>
+							<th scope="row">Contracts</th>
+							<td>Solidity、Hardhat（Scaffold-ETH 2）、OpenZeppelin、ERC-721 / ERC-5192</td>
+						</tr>
+						<tr><th scope="row">API</th><td>Cloudflare Workers、D1、Pinataへのプロキシ</td></tr>
+						<tr>
+							<th scope="row">Auth</th>
+							<td>Firebase Authentication（匿名）、IDトークンをJWKSで検証</td>
+						</tr>
+						<tr><th scope="row">Storage</th><td>IPFS（Pinata、複数ゲートウェイを順に試行）</td></tr>
+						<tr>
+							<th scope="row">Quality</th>
+							<td>Hardhatテスト110件、Workerテスト23件、GitHub Actionsで型チェックとバンドル</td>
+						</tr>
+						<tr>
+							<th scope="row">Delivery</th>
+							<td>eas build --local（セルフホスト）、Firebase App Distribution</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<div class="band">
+		<div class="shell section">
+			<p class="label" data-reveal><b>05</b> Principles</p>
+			<div class="section__body" data-reveal style="--reveal-delay:.09s">
+				<h2 class="h2">設計の考え方</h2>
+				<p class="lead" style="margin-top: 1.5rem">
+					残すものが記録なので、あとから直せる範囲がふつうのアプリより狭くなります。画面はいつでも作り直せますが、チェーンに書いたものは消せず、コントラクトを入れ替えれば過去の記録から切り離されます。決める順番を、直せないものから先に、という形にしています。
+				</p>
+				<ul class="notes" style="margin-top: 2.5rem">
+					<li data-no="01">
+						<span
+							><b>不可逆なものから決める。</b
+							>参加者は表示名ではなくアドレスの配列で、日付はロケールに依存しないunix秒で、通算プレイ回数は発行時点の値をそのまま焼き込んで残します。どれもいまの画面には要りませんが、あとから足すと過去の記録と繋がらなくなるものです。将来プレイヤー同士の相互評価を載せるときも、記録を作り直さずに済みます。</span
+						>
+					</li>
+					<li data-no="02">
+						<span
+							><b>信頼境界は、コードが動く場所で引く。</b
+							>モバイルアプリのバンドルは展開できるので、値を環境変数へ移しても秘密にはなりません。外部サービスの鍵は運用側が握るWorkerのsecretにだけ置き、アプリからは代理で叩きます。認証も同じで、IDトークンの検証をGoogleの公開鍵だけで完結させ、サーバーに特権を持たせていません。</span
+						>
+					</li>
+					<li data-no="03">
+						<span
+							><b>壊れ方を先に決める。</b
+							>公開IPFSゲートウェイは日常的に落ち、ビューアはbase64を復号したあとの文字コードを選べず（Etherscanはこれをラテン文字として読みます）、交換した相手がまだ名刺を作っていないこともあります。どれも起きる前提で、ゲートウェイは順に試す、メタデータはASCIIだけで書く、壊れた文字は発行を失敗させずに置き換える、名刺の一覧は未登録の相手が混ざっても壊さない、と機能ごとに決めています。逆に、画像のピン留めに失敗したときは中身の無い証明を残さないよう、発行そのものを止めます。</span
+						>
+					</li>
+					<li data-no="04">
+						<span
+							><b>摩擦は、永続する場所にだけ置く。</b
+							>証明の発行はチェーンに残すことが目的なので、ガスを払う価値があります。名刺交換はその場でQRを読むだけという手軽さが本体なので、チェーンには書かず端末に控えます。技術的に載せられることと、載せるべきことは分けて考えています。</span
+						>
+					</li>
+					<li data-no="05">
+						<span
+							><b>上限は運用ではなく仕組みで持つ。</b
+							>WAF、ユーザーごとのバースト制限、固定窓のカウンタ、トークン検証、本文サイズの上限を重ね、どれか1つに頼らない形にしています。制限の鍵に使うのは、共有されうるIPではなくuidです。いちばん外側の上限は無料枠そのもの（10万リクエスト/日）で、超えたときに起きるのは請求ではなく停止です。</span
+						>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="band">
+		<div class="shell section">
+			<p class="label" data-reveal><b>06</b> On-chain</p>
+			<div class="section__body" data-reveal style="--reveal-delay:.09s">
+				<h2 class="h2">公開されているもの</h2>
+				<p class="lead" style="margin-top: 1.5rem">
+					アプリはコミュニティ内への限定配布ですが、コントラクトはSepoliaのエクスプローラーからそのまま読めます。
+				</p>
+				<ul class="links" style="margin-top: 2.5rem">
+					<li>
+						<a href={etherscan(PROOF_ADDRESS)} rel="noopener">
+							<b>BoardGameProof ↗</b>
+							<span>プレイ履歴の証明（ERC-721）。発行された証明とメタデータを確認できます。</span>
+						</a>
+					</li>
+					<li>
+						<a href={etherscan(CARD_ADDRESS)} rel="noopener">
+							<b>BoardGameCard ↗</b>
+							<span>プレイヤー名刺（ERC-5192）。1アドレスにつき1枚で、譲渡できません。</span>
+						</a>
+					</li>
+				</ul>
+				<ul class="notes" style="margin-top: 2.5rem">
+					<li data-no="—">
+						<span
+							>アプリはFirebase App
+							Distributionでコミュニティ内に配布しています。ストアには出していません。</span
+						>
+					</li>
+					<li data-no="—">
+						<span>ソースコードはチーム内の非公開リポジトリで管理しています。</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</Base>
