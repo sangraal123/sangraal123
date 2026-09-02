@@ -64,10 +64,10 @@ export const phases: Phase[] = [
 	{ no: '01', label: '準備編', href: '/prep/01/' },
 	{ no: '02', label: 'リサーチ編', href: '/research/01/' },
 	{ no: '03', label: 'リデザイン編', href: '/redesign/01/' },
-	{ no: '04', label: 'コーディング編', href: '/coding/01/', wip: true },
-	{ no: '05', label: 'フィードバック編', href: '/feedback/01/', wip: true },
-	{ no: '06', label: '公開＆マネタイズ編', href: '/publish/01/', wip: true },
-	{ no: 'Ex', label: '応用事項編', href: '/advanced/01/', wip: true },
+	{ no: '04', label: 'コーディング編', href: '/coding/01/' },
+	{ no: '05', label: 'フィードバック編', href: '/feedback/01/' },
+	{ no: '06', label: '公開＆マネタイズ編', href: '/publish/01/' },
+	{ no: 'Ex', label: '応用事項編', href: '/advanced/01/' },
 ];
 
 export interface Shot {
