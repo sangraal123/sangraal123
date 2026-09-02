@@ -46,14 +46,14 @@ import { shots } from '../../data/site';
 			<div class="section__body" data-reveal style="--reveal-delay:.09s">
 				<h2 class="h2">画面</h2>
 				<p class="lead" style="margin-top: 1.5rem">
-					公開中のWeb版から撮影した実際の画面です。
+					ストア掲載用と同じ手順で、アプリ本体から書き出した実際の画面です。
 				</p>
 				<ul class="screens">
 					{
 						shots.map((s) => (
 							<li>
 								<figure>
-									<img src={s.src} width="720" height="1565" alt={s.alt} loading="lazy" decoding="async" />
+									<img src={s.src} width="640" height="1385" alt={s.alt} loading="lazy" decoding="async" />
 									<figcaption>
 										<span>{s.no}</span>
 										{s.caption}
