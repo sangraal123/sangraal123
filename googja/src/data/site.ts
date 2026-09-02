@@ -68,6 +68,7 @@ export const phases: Phase[] = [
 	{ no: '05', label: 'フィードバック編', href: '/feedback/01/' },
 	{ no: '06', label: '公開＆マネタイズ編', href: '/publish/01/' },
 	{ no: 'Ex', label: '応用事項編', href: '/advanced/01/' },
+	{ no: 'Sec', label: 'セキュリティ編', href: '/security/01/' },
 ];
 
 export interface Shot {
