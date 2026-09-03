@@ -83,7 +83,9 @@ import { shots } from '../../data/site';
 					<tbody>
 						<tr>
 							<th scope="row">Training</th>
-							<td>5カテゴリ × 6レベル。1セッション10問、1問30秒で構成しています。</td>
+							<td>
+								5カテゴリ × 6レベルに日本語3,000問。1セッション10問・1問30秒を、成績に合わせて毎回組み直します。
+							</td>
 						</tr>
 						<tr>
 							<th scope="row">Progress</th>
@@ -117,7 +119,59 @@ import { shots } from '../../data/site';
 
 	<div class="band">
 		<div class="shell section">
-			<p class="label" data-reveal><b>03</b> Monetization</p>
+			<p class="label" data-reveal><b>03</b> Training</p>
+			<div class="section__body" data-reveal style="--reveal-delay:.09s">
+				<h2 class="h2">出題の組み立て</h2>
+				<p class="lead" style="margin-top: 1.5rem">
+					10問はランダムに引いていません。カテゴリ×レベル×グループごとの正答率と、直近に出た問題の履歴から、始めるたびにその場で組み直しています。
+				</p>
+				<table class="table" style="margin-top: 2.5rem">
+					<tbody>
+						<tr>
+							<th scope="row">Bank</th>
+							<td>
+								5カテゴリ × 6レベル × 100問を日英それぞれに持っていて、日本語だけで3,000問。1レベルは10グループ × 10問で、このグループが成績を測る単位です。
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">Mix</th>
+							<td>
+								10問の内訳は基準7問・復習2問・挑戦1問。難易度1〜5のうち、復習は1〜2、基準は2〜4、挑戦は4〜5から取ります。
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">Order</th>
+							<td>
+								先に確保するのは復習の2問で、正答率の低いグループから順に選びます。得意な分野の問題に押し出されると、苦手なところがいつまでも出てこないためです。
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">Spread</th>
+							<td>
+								1グループにつき1問を上限に、10のグループへ散らします。同じ切り口が続けて出るのは、在庫が足りず2周目に入ったときだけです。
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">Repeat</th>
+							<td>
+								直近30問、3セッション分に出たIDは避けます。避けきれないときは重複を許すので、問題が尽きて始められなくなることはありません。
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">Memory</th>
+							<td>
+								端末に残すのは、カテゴリ×レベル×グループごとの挑戦回数と正解数だけ。問題文も答えも保存していません。
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<div class="band">
+		<div class="shell section">
+			<p class="label" data-reveal><b>04</b> Monetization</p>
 			<div class="section__body" data-reveal style="--reveal-delay:.09s">
 				<h2 class="h2">広告と課金</h2>
 				<p class="lead" style="margin-top: 1.5rem">
@@ -171,7 +225,7 @@ import { shots } from '../../data/site';
 
 	<div class="band">
 		<div class="shell section">
-			<p class="label" data-reveal><b>04</b> Stack</p>
+			<p class="label" data-reveal><b>05</b> Stack</p>
 			<div class="section__body" data-reveal style="--reveal-delay:.09s">
 				<h2 class="h2">技術構成</h2>
 				<table class="table" style="margin-top: 2.5rem">
@@ -201,7 +255,7 @@ import { shots } from '../../data/site';
 
 	<div class="band">
 		<div class="shell section">
-			<p class="label" data-reveal><b>05</b> Principles</p>
+			<p class="label" data-reveal><b>06</b> Principles</p>
 			<div class="section__body" data-reveal style="--reveal-delay:.09s">
 				<h2 class="h2">設計の考え方</h2>
 				<p class="lead" style="margin-top: 1.5rem">
@@ -216,24 +270,30 @@ import { shots } from '../../data/site';
 					</li>
 					<li data-no="02">
 						<span
+							><b>出題を決める部分に副作用を持たせない。</b
+							>10問を組む処理は、問題の束と成績と直近の履歴を受け取って10問を返すだけの関数にしています。保存も時計も内側に置いていないので、苦手なグループが先に来るか、同じ問題が続かないかを、乱数だけ固定してテストで確かめられます。</span
+						>
+					</li>
+					<li data-no="03">
+						<span
 							><b>同意が済むまで何も始めない。</b
 							>年齢確認が完了する前に分析・広告リクエストを開始しない構成にし、子ども向け設定を最初のリクエストから適用しています。あとから設定を反映するのではなく、1回目から正しい状態で出します。</span
 						>
 					</li>
-					<li data-no="03">
+					<li data-no="04">
 						<span
 							><b>解いている手は止めない。</b
 							>広告は、ハブになる4画面の上部と、結果を出す直前だけに置いています。出題と結果の画面はバナーを持つ枠の外側にあるので、1問30秒の最中に割り込む形式は構造上使えません。Web版でもディスプレイ広告はアプリ画面の外へ出しました。収益の導線であっても、遊ぶ手が止まる位置には置きません。</span
 						>
 					</li>
-					<li data-no="04">
+					<li data-no="05">
 						<span
 							><b>買った証拠を自分で持たない。</b
 							>広告除去は非消費型アイテム1つで、権利はApp Store・Google
 							Playのアカウントが持ちます。こちらに会員登録を作らないぶん、再インストールでも機種変更でも起動時の問い合わせで戻り、届かなかったときは設定の復元で拾えます。決済が繋がらなくても、ゲーム自体は止まりません。</span
 						>
 					</li>
-					<li data-no="05">
+					<li data-no="06">
 						<span
 							><b>ストアに出す絵もコードから出す。</b
 							>日本語・英語、テーマ、文字倍率、ストア指定サイズを組み合わせたスクリーンショットを、テストから自動生成しています。画面を直すたびに撮り直す手間が要らず、ストアに並ぶ絵と実物がずれません。</span
@@ -246,7 +306,7 @@ import { shots } from '../../data/site';
 
 	<div class="band">
 		<div class="shell section">
-			<p class="label" data-reveal><b>06</b> Where to play</p>
+			<p class="label" data-reveal><b>07</b> Where to play</p>
 			<div class="section__body" data-reveal style="--reveal-delay:.09s">
 				<h2 class="h2">公開先</h2>
 				<ul class="links" style="margin-top: 2.5rem">
