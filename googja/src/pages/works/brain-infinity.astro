@@ -18,6 +18,9 @@ import { shots } from '../../data/site';
 				<p class="lead">
 					一つのFlutterコードベースからiOS・Android・Webへ配信しています。
 				</p>
+				<p class="lead">
+					全30レベルを無料で遊べる状態のまま、広告と、その広告を消す買い切りで運営しています。
+				</p>
 				<ul class="tags" style="margin-top: 2rem">
 					<li>Released</li>
 					<li>Flutter</li>
@@ -73,8 +76,8 @@ import { shots } from '../../data/site';
 			<div class="section__body" data-reveal style="--reveal-delay:.09s">
 				<h2 class="h2">担当範囲</h2>
 				<p class="lead" style="margin-top: 1.5rem">
-					企画からUI実装、質問データ、進捗保存、Firebase Analytics、広告、CI/CD、App Store・Google
-					Play公開まで、一連のプロダクトライフサイクルを担当しています。
+					企画からUI実装、質問データ、進捗保存、Firebase Analytics、広告とアプリ内課金、CI/CD、App
+					Store・Google Play公開まで、一連のプロダクトライフサイクルを担当しています。
 				</p>
 				<table class="table" style="margin-top: 2.5rem">
 					<tbody>
@@ -86,6 +89,12 @@ import { shots } from '../../data/site';
 							<th scope="row">Progress</th>
 							<td>
 								到達レベルと航路シグナル、デイリーのオービット、成長ログ、ブレインコアのXPを端末内に保存します。
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">Monetization</th>
+							<td>
+								広告と、それを消す買い切りが1つ。購入は任意で、買わなくても全レベルを遊べます。
 							</td>
 						</tr>
 						<tr>
@@ -108,7 +117,61 @@ import { shots } from '../../data/site';
 
 	<div class="band">
 		<div class="shell section">
-			<p class="label" data-reveal><b>03</b> Stack</p>
+			<p class="label" data-reveal><b>03</b> Monetization</p>
+			<div class="section__body" data-reveal style="--reveal-delay:.09s">
+				<h2 class="h2">広告と課金</h2>
+				<p class="lead" style="margin-top: 1.5rem">
+					無料で全問遊べる状態は変えずに、広告と、その広告を消す買い切りの2本で組んでいます。課金は任意で、買っても買わなくても、出題数も機能も同じです。
+				</p>
+				<table class="table" style="margin-top: 2.5rem">
+					<tbody>
+						<tr>
+							<th scope="row">Banner</th>
+							<td>
+								ホーム・フロンティア・ミッション・ラボの4画面の上部に、共通のスロットを1つだけ置いています。出題と結果はこの外側の画面なので、構造上バナーが出ません。
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">Interstitial</th>
+							<td>
+								1回の挑戦につき1本、記録を保存したあと結果を出す直前に挟みます。準備できていなければ最大3秒だけ待ち、間に合わなければ広告なしで結果へ進みます。
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">Purchase</th>
+							<td>
+								「広告を非表示」の非消費型アイテムが1つ。期限も自動更新もなく、1回の支払いでバナーとインタースティシャルの両方が消えます。
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">Entitlement</th>
+							<td>
+								権利はApp Store・Google
+								Playのアカウントが持ちます。独自アカウントを作らないので、再インストールや機種変更でも起動時の問い合わせで戻り、設定の「購入を復元」が受け皿になります。
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">Measurement</th>
+							<td>
+								インタースティシャルの成否と待ち時間、広告1回ごとの推定収益をFirebase
+								Analyticsへ送り、置き場所の判断に使っています。
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">Web</th>
+							<td>
+								ブラウザ版に決済はないので、購入の行そのものを出しません。広告もアプリ画面の外側のディスプレイ広告だけです。
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<div class="band">
+		<div class="shell section">
+			<p class="label" data-reveal><b>04</b> Stack</p>
 			<div class="section__body" data-reveal style="--reveal-delay:.09s">
 				<h2 class="h2">技術構成</h2>
 				<table class="table" style="margin-top: 2.5rem">
@@ -118,6 +181,10 @@ import { shots } from '../../data/site';
 						<tr><th scope="row">Data</th><td>SharedPreferences、JSON question sets</td></tr>
 						<tr>
 							<th scope="row">Analytics / Ads</th><td>Firebase Analytics、Google Mobile Ads</td>
+						</tr>
+						<tr>
+							<th scope="row">Purchases</th>
+							<td>in_app_purchase、StoreKit、Google Play Billing</td>
 						</tr>
 						<tr>
 							<th scope="row">Quality</th><td>flutter_test、Mockito、レスポンシブ回帰テスト</td>
@@ -134,7 +201,7 @@ import { shots } from '../../data/site';
 
 	<div class="band">
 		<div class="shell section">
-			<p class="label" data-reveal><b>04</b> Principles</p>
+			<p class="label" data-reveal><b>05</b> Principles</p>
 			<div class="section__body" data-reveal style="--reveal-delay:.09s">
 				<h2 class="h2">設計の考え方</h2>
 				<p class="lead" style="margin-top: 1.5rem">
@@ -155,11 +222,18 @@ import { shots } from '../../data/site';
 					</li>
 					<li data-no="03">
 						<span
-							><b>体験を削ってまで載せない。</b
-							>Webデモではゲーム体験を優先し、ディスプレイ広告をアプリ画面の外へ移しました。収益の導線であっても、遊ぶ手が止まる位置には置きません。</span
+							><b>解いている手は止めない。</b
+							>広告は、ハブになる4画面の上部と、結果を出す直前だけに置いています。出題と結果の画面はバナーを持つ枠の外側にあるので、1問30秒の最中に割り込む形式は構造上使えません。Web版でもディスプレイ広告はアプリ画面の外へ出しました。収益の導線であっても、遊ぶ手が止まる位置には置きません。</span
 						>
 					</li>
 					<li data-no="04">
+						<span
+							><b>買った証拠を自分で持たない。</b
+							>広告除去は非消費型アイテム1つで、権利はApp Store・Google
+							Playのアカウントが持ちます。こちらに会員登録を作らないぶん、再インストールでも機種変更でも起動時の問い合わせで戻り、届かなかったときは設定の復元で拾えます。決済が繋がらなくても、ゲーム自体は止まりません。</span
+						>
+					</li>
+					<li data-no="05">
 						<span
 							><b>ストアに出す絵もコードから出す。</b
 							>日本語・英語、テーマ、文字倍率、ストア指定サイズを組み合わせたスクリーンショットを、テストから自動生成しています。画面を直すたびに撮り直す手間が要らず、ストアに並ぶ絵と実物がずれません。</span
@@ -172,7 +246,7 @@ import { shots } from '../../data/site';
 
 	<div class="band">
 		<div class="shell section">
-			<p class="label" data-reveal><b>05</b> Where to play</p>
+			<p class="label" data-reveal><b>06</b> Where to play</p>
 			<div class="section__body" data-reveal style="--reveal-delay:.09s">
 				<h2 class="h2">公開先</h2>
 				<ul class="links" style="margin-top: 2.5rem">
