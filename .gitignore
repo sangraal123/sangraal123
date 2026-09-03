@@ -1,3 +1,6 @@
 # macOS-specific files
 .DS_Store
 **/.DS_Store
+
+# Claude Code のワークツリー（リポジトリ内に別チェックアウトが作られる）
+.claude/worktrees/

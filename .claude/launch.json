@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "googja-preview",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "googja", "run", "preview"],
+      "port": 4321
+    },
+    {
+      "name": "googja-dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "googja", "run", "dev", "--", "--port", "4322"],
+      "port": 4322
+    }
+  ]
+}
