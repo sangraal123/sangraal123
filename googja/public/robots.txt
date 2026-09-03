@@ -1,0 +1,18 @@
+# googja.dev
+#
+# sitemap は Starlight が同梱する @astrojs/sitemap が生成する。出力先が
+# 慣習的な /sitemap.xml ではなく /sitemap-index.xml なので、クローラは
+# 自力では見つけられない（/sitemap.xml は 404 を返す）。ここで明示する。
+#
+# Content-Signal は Cloudflare の content signals policy に沿った意思表示。
+#   search   = 検索インデックスへの収集（AI 要約は含まない）
+#   ai-input = AI が回答を生成するときの入力に使うこと（引用・grounding）
+# この 2 つは許可する。記事を AI に引用させることがそもそもの狙いなので。
+# ai-train（モデルの学習・ファインチューニング）は意図的に未記載にしてある。
+# 未記載は「許可も制限もしない」という扱いになる。
+
+User-agent: *
+Content-Signal: search=yes, ai-input=yes
+Allow: /
+
+Sitemap: https://googja.dev/sitemap-index.xml
