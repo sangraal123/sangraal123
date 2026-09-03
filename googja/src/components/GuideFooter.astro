@@ -1,11 +1,12 @@
 ---
 /*
- * ガイドの各ページ末尾に、実物への導線を1つ置く。
+ * ガイドの各ページ末尾に、筆者が実際に公開しているアプリへの導線を置く。
  *
- * ガイドは「AIでモバイルアプリを企画から公開まで持っていく」内容で、
- * 無限脳はその手順を実際に通してストアに出した本人の成果物。読み終えた
- * 人が次に見たいのは「で、それで何ができたのか」なので、机上の話では
- * ないことを示す出口をここに置く。
+ * 注意: このガイドは Expo で進めるが、無限脳は Flutter で作っている。
+ * 「このガイドで作ったもの」と書くと嘘になるので、共通しているのは
+ * フレームワークではなく工程（企画・実装・審査・公開・収益化）の方だと
+ * 明示する。読み終えた人に対しては、書いている本人がストアまで通して
+ * いるという事実が効く。
  *
  * 41 記事に手で書き足すのではなくコンポーネントの上書きにしているのは、
  * 文面を直す場所を1つに保つため。記事を足しても自動で付いてくる。
@@ -14,11 +15,15 @@ import Default from '@astrojs/starlight/components/Footer.astro';
 ---
 
 <aside class="guide-cta" aria-labelledby="guide-cta-title">
-	<p class="guide-cta__eyebrow">このガイドの手順で作ったもの</p>
+	<p class="guide-cta__eyebrow">筆者が公開しているアプリ</p>
 	<h2 id="guide-cta-title" class="guide-cta__title">無限脳 — Brain Infinity</h2>
 	<p class="guide-cta__body">
 		計算・論理・記憶・注意・言語の5分野を、1回10問・約3分で。日本語3,000問を収録した
-		脳トレアプリを、Flutter ひとつで iOS・Android・Web に出しています。
+		脳トレアプリを、iOS・Android・Web に出しています。
+		<span class="guide-cta__note"
+			>実装は Flutter で、このガイドが扱う Expo とは別のフレームワークです。共通するのは
+			企画・審査・公開・収益化の工程の方です。</span
+		>
 	</p>
 	<div class="guide-cta__links">
 		<a class="guide-cta__primary" href="/works/brain-infinity/">ケーススタディを読む</a>
@@ -62,6 +67,11 @@ import Default from '@astrojs/starlight/components/Footer.astro';
 		font-size: var(--sl-text-sm);
 		line-height: 1.75;
 		color: var(--sl-color-gray-2);
+	}
+	.guide-cta__note {
+		display: block;
+		margin-top: 0.5rem;
+		color: var(--sl-color-gray-3);
 	}
 	.guide-cta__links {
 		display: flex;
