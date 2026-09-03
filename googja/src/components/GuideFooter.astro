@@ -1,0 +1,87 @@
+---
+/*
+ * ガイドの各ページ末尾に、実物への導線を1つ置く。
+ *
+ * ガイドは「AIでモバイルアプリを企画から公開まで持っていく」内容で、
+ * 無限脳はその手順を実際に通してストアに出した本人の成果物。読み終えた
+ * 人が次に見たいのは「で、それで何ができたのか」なので、机上の話では
+ * ないことを示す出口をここに置く。
+ *
+ * 41 記事に手で書き足すのではなくコンポーネントの上書きにしているのは、
+ * 文面を直す場所を1つに保つため。記事を足しても自動で付いてくる。
+ */
+import Default from '@astrojs/starlight/components/Footer.astro';
+---
+
+<aside class="guide-cta" aria-labelledby="guide-cta-title">
+	<p class="guide-cta__eyebrow">このガイドの手順で作ったもの</p>
+	<h2 id="guide-cta-title" class="guide-cta__title">無限脳 — Brain Infinity</h2>
+	<p class="guide-cta__body">
+		計算・論理・記憶・注意・言語の5分野を、1回10問・約3分で。日本語3,000問を収録した
+		脳トレアプリを、Flutter ひとつで iOS・Android・Web に出しています。
+	</p>
+	<div class="guide-cta__links">
+		<a class="guide-cta__primary" href="/works/brain-infinity/">ケーススタディを読む</a>
+		<a href="https://braininfinity.googja.dev/" rel="noopener">Web版を試す ↗</a>
+		<a href="https://apps.apple.com/jp/app/id6755319401" rel="noopener">App Store ↗</a>
+		<a
+			href="https://play.google.com/store/apps/details?id=com.sangraal.androidfirst&hl=ja"
+			rel="noopener">Google Play ↗</a
+		>
+	</div>
+</aside>
+
+<Default><slot /></Default>
+
+<style>
+	.guide-cta {
+		margin-top: 3rem;
+		padding: 1.25rem 1.4rem 1.4rem;
+		border: 1px solid var(--sl-color-gray-5);
+		border-radius: 0.6rem;
+		background: var(--sl-color-black);
+	}
+	.guide-cta__eyebrow {
+		margin: 0;
+		font-family: var(--sl-font-mono);
+		font-size: 0.7rem;
+		font-weight: 500;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--sl-color-gray-3);
+	}
+	.guide-cta__title {
+		margin: 0.35rem 0 0;
+		font-size: var(--sl-text-h4);
+		font-weight: 700;
+		letter-spacing: -0.02em;
+		border: 0;
+	}
+	.guide-cta__body {
+		margin: 0.6rem 0 0;
+		font-size: var(--sl-text-sm);
+		line-height: 1.75;
+		color: var(--sl-color-gray-2);
+	}
+	.guide-cta__links {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem 1.1rem;
+		align-items: center;
+		margin-top: 1rem;
+		font-size: var(--sl-text-sm);
+	}
+	.guide-cta__links a {
+		color: var(--sl-color-text-accent);
+		text-decoration: none;
+	}
+	.guide-cta__links a:hover {
+		text-decoration: underline;
+	}
+	.guide-cta__primary {
+		padding: 0.45rem 0.9rem;
+		border: 1px solid var(--sl-color-text-accent);
+		border-radius: 0.35rem;
+		font-weight: 600;
+	}
+</style>

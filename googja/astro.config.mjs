@@ -36,6 +36,9 @@ export default defineConfig({
 			components: {
 				// ヘッダーの見出しを「googja.dev / VibeCode Mobile」のパンくずに差し替える。
 				SiteTitle: './src/components/GuideTitle.astro',
+				// 既定のフッターの手前に、実物（無限脳）への導線を1枚挟む。
+				// 41 記事に書き足すのではなくここで一括して出す。
+				Footer: './src/components/GuideFooter.astro',
 			},
 			head: [
 				{
