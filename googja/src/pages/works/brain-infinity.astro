@@ -13,7 +13,7 @@ import { shots } from '../../data/site';
 			<div>
 				<h1>無限脳</h1>
 				<p class="lead">
-					数学、論理、記憶、注意、言語の5領域を、短時間のクイズで継続的にトレーニングするクロスプラットフォームアプリ。
+					数学、論理、記憶、注意、言語の5領域を、選択式の通常トレーニングと、タップや配置で解くアクションラボの2本で鍛えるクロスプラットフォームアプリ。
 				</p>
 				<p class="lead">
 					一つのFlutterコードベースからiOS・Android・Webへ配信しています。
@@ -84,7 +84,13 @@ import { shots } from '../../data/site';
 						<tr>
 							<th scope="row">Training</th>
 							<td>
-								5カテゴリ × 6レベルに日本語3,000問。1セッション10問・1問30秒を、成績に合わせて毎回組み直します。
+								通常トレーニングは5カテゴリ × 6レベルに日本語3,000問。1回10問・1問30秒を、成績に合わせて毎回組み直します。
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">Action Lab</th>
+							<td>
+								タップや配置で解く操作パズルを、1カテゴリ2形式の全10形式。通常トレーニングで貯めたポイントで挑戦します。
 							</td>
 						</tr>
 						<tr>
@@ -121,7 +127,7 @@ import { shots } from '../../data/site';
 		<div class="shell section">
 			<p class="label" data-reveal><b>03</b> Training</p>
 			<div class="section__body" data-reveal style="--reveal-delay:.09s">
-				<h2 class="h2">出題の組み立て</h2>
+				<h2 class="h2">通常トレーニングの組み立て</h2>
 				<p class="lead" style="margin-top: 1.5rem">
 					10問はランダムに引いていません。カテゴリ×レベル×グループごとの正答率と、直近に出た問題の履歴から、始めるたびにその場で組み直しています。
 				</p>
@@ -163,6 +169,18 @@ import { shots } from '../../data/site';
 								端末に残すのは、カテゴリ×レベル×グループごとの挑戦回数と正解数だけ。問題文も答えも保存していません。
 							</td>
 						</tr>
+						<tr>
+							<th scope="row">Report</th>
+							<td>
+								気になる問題は理由を選んで報告し、その場で別の問題に差し替えます。1回のチャレンジで2回まで。
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">Clock</th>
+							<td>
+								30秒の締め切りは壁時計で持っています。アプリを離れても止まらず、戻った瞬間に時間切れが確定します。一方、計測に送る回答時間からは離れていた分を引きます。
+							</td>
+						</tr>
 					</tbody>
 				</table>
 			</div>
@@ -171,7 +189,51 @@ import { shots } from '../../data/site';
 
 	<div class="band">
 		<div class="shell section">
-			<p class="label" data-reveal><b>04</b> Monetization</p>
+			<p class="label" data-reveal><b>04</b> Action Lab</p>
+			<div class="section__body" data-reveal style="--reveal-delay:.09s">
+				<h2 class="h2">操作で解くほうの遊び</h2>
+				<p class="lead" style="margin-top: 1.5rem">
+					4択だけでは測れない手つきを扱うために、タップと配置で解く形式を別立てで足しました。同じ5カテゴリを、選ぶのではなく動かして解きます。
+				</p>
+				<table class="table" style="margin-top: 2.5rem">
+					<tbody>
+						<tr>
+							<th scope="row">Formats</th>
+							<td>
+								1カテゴリにつき2形式、全10形式。数字をつないで合計を作る、天秤をつり合わせる、光った順にタップする、覚えた図形を戻す、動く対象から探す、2つの盤面の差を見つける、出来事を順に並べる、反対語を結ぶ、といったものです。
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">Run</th>
+							<td>1回は同じ形式を10問。制限時間はありません。形式ごとに途中経過とベスト記録を残します。</td>
+						</tr>
+						<tr>
+							<th scope="row">Points</th>
+							<td>
+								通常トレーニングを最後まで終えると、正解1問につき10ポイント。新しい挑戦に20ポイント消費します。中断した挑戦を再開するときは追加で取りません。
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">No shop</th>
+							<td>
+								ポイントは売っていません。買える導線を用意していないので、遊んだ量だけが原資になります。
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">Placement</th>
+							<td>
+								ホームとミッションの両方から入れます。画面はタブの枠の外側に置いているので、解いている間にバナーは出ません。
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<div class="band">
+		<div class="shell section">
+			<p class="label" data-reveal><b>05</b> Monetization</p>
 			<div class="section__body" data-reveal style="--reveal-delay:.09s">
 				<h2 class="h2">広告と課金</h2>
 				<p class="lead" style="margin-top: 1.5rem">
@@ -182,13 +244,13 @@ import { shots } from '../../data/site';
 						<tr>
 							<th scope="row">Banner</th>
 							<td>
-								ホーム・フロンティア・ミッション・ラボの4画面の上部に、共通のスロットを1つだけ置いています。出題と結果はこの外側の画面なので、構造上バナーが出ません。
+								ホーム・フロンティア・ミッション・ラボの4画面の上部に、共通のスロットを1つだけ置いています。出題も結果もアクションラボもこの外側の画面なので、構造上バナーが出ません。
 							</td>
 						</tr>
 						<tr>
 							<th scope="row">Interstitial</th>
 							<td>
-								1回の挑戦につき1本、記録を保存したあと結果を出す直前に挟みます。準備できていなければ最大3秒だけ待ち、間に合わなければ広告なしで結果へ進みます。
+								通常トレーニングを5回終えるごとに最大1本、記録を保存したあと結果を出す直前に挟みます。最初の4回には出ません。準備できていなければ最大3秒だけ待ち、間に合わなければ広告なしで結果へ進みます。
 							</td>
 						</tr>
 						<tr>
@@ -225,7 +287,7 @@ import { shots } from '../../data/site';
 
 	<div class="band">
 		<div class="shell section">
-			<p class="label" data-reveal><b>05</b> Stack</p>
+			<p class="label" data-reveal><b>06</b> Stack</p>
 			<div class="section__body" data-reveal style="--reveal-delay:.09s">
 				<h2 class="h2">技術構成</h2>
 				<table class="table" style="margin-top: 2.5rem">
@@ -255,7 +317,7 @@ import { shots } from '../../data/site';
 
 	<div class="band">
 		<div class="shell section">
-			<p class="label" data-reveal><b>06</b> Principles</p>
+			<p class="label" data-reveal><b>07</b> Principles</p>
 			<div class="section__body" data-reveal style="--reveal-delay:.09s">
 				<h2 class="h2">設計の考え方</h2>
 				<p class="lead" style="margin-top: 1.5rem">
@@ -283,7 +345,7 @@ import { shots } from '../../data/site';
 					<li data-no="04">
 						<span
 							><b>解いている手は止めない。</b
-							>広告は、ハブになる4画面の上部と、結果を出す直前だけに置いています。出題と結果の画面はバナーを持つ枠の外側にあるので、1問30秒の最中に割り込む形式は構造上使えません。Web版でもディスプレイ広告はアプリ画面の外へ出しました。収益の導線であっても、遊ぶ手が止まる位置には置きません。</span
+							>広告は、ハブになる4画面の上部と、結果を出す直前だけに置いています。出題も結果もアクションラボもバナーを持つ枠の外側にあるので、解いている最中に割り込む形式は構造上使えません。全画面広告も毎回は出さず、5回終えるごとに1本までにしています。1回ごとに挟む作りは、アンインストールの理由になるほうだからです。収益の導線であっても、遊ぶ手が止まる位置には置きません。</span
 						>
 					</li>
 					<li data-no="05">
@@ -306,7 +368,7 @@ import { shots } from '../../data/site';
 
 	<div class="band">
 		<div class="shell section">
-			<p class="label" data-reveal><b>07</b> Where to play</p>
+			<p class="label" data-reveal><b>08</b> Where to play</p>
 			<div class="section__body" data-reveal style="--reveal-delay:.09s">
 				<h2 class="h2">公開先</h2>
 				<ul class="links" style="margin-top: 2.5rem">
