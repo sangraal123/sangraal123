@@ -27,6 +27,9 @@ export default defineConfig({
 	integrations: [
 		starlight({
 			title: 'VibeCode Mobile',
+			locales: {
+				root: { label: '日本語', lang: 'ja' },
+			},
 			description: 'ExpoとAIでモバイルアプリを企画・実装・公開・収益化するための実践ガイド。',
 			favicon: '/favicon.svg',
 			// 404 はポートフォリオ側（src/pages/404.astro）で出す。
