@@ -39,8 +39,9 @@ export default defineConfig({
 			components: {
 				// ヘッダーの見出しを「googja.dev / VibeCode Mobile」のパンくずに差し替える。
 				SiteTitle: './src/components/GuideTitle.astro',
+				PageTitle: './src/components/GuidePageTitle.astro',
 				// 既定のフッターの手前に、実物（無限脳）への導線を1枚挟む。
-				// 41 記事に書き足すのではなくここで一括して出す。
+				// 各記事に書き足すのではなくここで一括して出す。
 				Footer: './src/components/GuideFooter.astro',
 			},
 			head: [
@@ -57,6 +58,20 @@ export default defineConfig({
 					attrs: {
 						rel: 'stylesheet',
 						href: 'https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap',
+					},
+				},
+				{
+					tag: 'meta',
+					attrs: {
+						property: 'og:image',
+						content: 'https://googja.dev/Icon-512.png',
+					},
+				},
+				{
+					tag: 'meta',
+					attrs: {
+						property: 'og:image:alt',
+						content: 'googja.dev のアイコン',
 					},
 				},
 				{
@@ -187,6 +202,8 @@ new MutationObserver(render).observe(document.documentElement, {
 					label: 'ガイドについて',
 					items: [
 						{ label: 'VibeCode Mobile とは', link: '/vibecode-mobile/' },
+						{ label: '目的別の学習コース', link: '/vibecode-mobile/learning-paths/' },
+						{ label: '教材の更新・検証範囲', link: '/vibecode-mobile/status/' },
 						{
 							label: 'googja.dev（ポートフォリオ）',
 							link: '/',
@@ -202,6 +219,7 @@ new MutationObserver(render).observe(document.documentElement, {
 				{ label: 'Phase06：公開＆マネタイズ編', autogenerate: { directory: 'publish' } },
 				{ label: 'PhaseEx：応用事項編', autogenerate: { directory: 'advanced' } },
 				{ label: 'PhaseSec：セキュリティ編', autogenerate: { directory: 'security' } },
+				{ label: '補講：運用・検証編', autogenerate: { directory: 'operations' } },
 			],
 		}),
 	],
