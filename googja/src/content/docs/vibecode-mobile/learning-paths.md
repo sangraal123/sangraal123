@@ -14,7 +14,7 @@ VibeCode Mobileは、全記事を順番に読む必要はありません。作�
 
 1. [01. VibeCodingでスマホアプリを作る全体像](../../prep/01/)
 2. [05. VibeCodingで使う基本プロンプト集](../../prep/05/)
-3. [01. VibeCodingでスマホアプリを作る全体像](../../research/01/)
+3. [01. Google Deep Researchでアプリのアイデアを調べる](../../research/01/)
 4. [05. アプリ企画書（SPEC.md）を作る](../../research/05/)
 5. [01. Google Stitchでアプリの画面案を作る](../../redesign/01/)
 6. [01. GitHub Spec Kitで開発環境のベースを作る](../../coding/01/)
@@ -29,10 +29,11 @@ VibeCode Mobileは、全記事を順番に読む必要はありません。作�
 2. [01. Firebaseでユーザー認証とクラウド保存を実装する](../../advanced/01/)
 3. [01. Firebase App Distributionでテスト配布する流れを知る](../../feedback/01/)
 4. [02. EAS Buildでテスター配布用ビルドを作る](../../feedback/02/)
-5. [02. Apple Developer & Google Play Consoleの準備をする](../../publish/02/)
-6. [04. ストア掲載情報とスクリーンショットをAIで作成する](../../publish/04/)
-7. [05. 広告と課金を実装し、審査を通してリリースする](../../publish/05/)
-8. [02. Firebase Emulatorで安全に検証する](../../operations/02/)
+5. [03. Apple Developer & Google Play Consoleの準備をする](../../publish/03/)
+6. [02. EAS Buildで本番リリース用ビルドを作る](../../publish/02/)
+7. [04. ストア掲載情報とスクリーンショットをAIで作成する](../../publish/04/)
+8. [05. 広告と課金を実装し、審査を通してリリースする](../../publish/05/)
+9. [02. Firebase Emulatorで安全に検証する](../../operations/02/)
 
 ## 拡張・運用コース
 
