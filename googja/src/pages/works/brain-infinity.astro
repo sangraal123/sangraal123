@@ -1,39 +1,102 @@
 ---
 import Base from '../../layouts/Base.astro';
 import { shots } from '../../data/site';
+
+const sections = [
+	{
+		no: '03', label: 'Training & Review',
+		title: '毎回の10問を、回答履歴から組み立てる。',
+		lead: '数学・論理・記憶・注意・言語の5カテゴリに、各6レベル。日本語と英語にそれぞれ3,000問を用意し、苦手な種類の復習と新しい挑戦を、一つのセッションに組み込みます。',
+		rows: [
+			['Adaptive', '1回10問を基準7問・復習2問・挑戦1問で構成。カテゴリ・レベル・グループごとの正答率を使い、復習の2問を苦手なグループから先に確保します。直近30問の重複を避け、10のグループへ出題を散らします。'],
+			['Levels', '正答率60%で銅、80%で銀、100%で金メダル。銀メダルで次のレベルを解放します。1問30秒で、問題の報告と差し替えは1セッション2回まで。表示済みの問題の時間は、アプリを離れている間も進みます。'],
+			['Review', '結果画面ではその回の問題・自分の回答・正答を読み返せます。通常問題の誤答と時間切れは復習帳にも最大200問残し、あとから1回最大10問を解き直せます。完了時のルミナとコアXPは通常の2倍で、通常問題の成績やレベル解放とは別に記録します。'],
+			['Storage', '出題調整にはグループごとの挑戦回数と正解数を保存。復習帳には問題ID・改訂番号・誤答回数などを残し、問題本文はアプリ内の問題集から読み込みます。結果直後の回答レビューと、後日の復習を分けて扱います。'],
+		],
+	},
+	{
+		no: '04', label: 'Neural Frontier',
+		title: '脳トレの積み重ねが、基地の姿になる。',
+		lead: '通常問題と操作パズルで得たルミナとブレインコアの成長を、建設・増築・遠征へつなげます。結果画面にも現在の開拓目標と不足条件を表示し、今日のプレイが次の設備にどうつながるかを見せています。',
+		rows: [
+			['Colonies', 'ORIGINからHORIZONまで7つのコロニー。それぞれ6施設、内部に36区画を持ち、施設はLv.10まで成長します。建設にはルミナを使い、開放にはコアレベルが必要。中央司令塔には、育てたブレインコアの姿が映ります。'],
+			['Restoration', '施設の外観と内部を同じ画面で見せ、区画を復旧すると設備が戻り、クルーとロボットが働き始めます。全設備の復旧で次のコロニーへ進み、基地日誌も開いていきます。吹き出しの操作ガイドと無料の遠征練習場を用意しています。'],
+			['RTS', 'Flameによるリアルタイムの拠点奪還戦。前衛・射撃・工兵の3部隊に進軍と守備を指示し、東西のジェネレーターを揚陸拠点につないで中枢の防壁を開きます。4分以内に中枢を奪還すると、目標の区画が復旧します。'],
+			['Balance', '電力で守備ドローンを配置し、部隊を回復できます。難度は区画ごとに固定し、施設の増築では味方を強くします。遠征でルミナやコアXPは増えず、脳トレで補給して開拓する循環を保ちます。'],
+		],
+	},
+	{
+		no: '05', label: 'Challenge & Ranking',
+		title: '手を動かすパズルと、記録への挑戦。',
+		lead: '短い10問を解く遊びに加え、タップや配置で考えるアクションラボと、続けられるだけ挑む2つのモードを実装しています。',
+		rows: [
+			['Action Lab', '5カテゴリに各2形式、全10形式。つなぎ算、数の天秤、光った順のタップ、図形の配置、動く対象の探索などを、同じ形式の10問で遊びます。制限時間はなく、新規挑戦も再開も無料です。'],
+			['Difficulty', '形式ごとに「やさしい・標準・難しい」を選び、途中経過とベスト記録を形式・難度ごとに保存。各形式のイラストと、タップ・配置への反応で遊び方を伝えます。'],
+			['Infinity', '5カテゴリを次々に出題し、誤答と時間切れの合計3回で終了。連続正解と速い回答でスコアが伸びます。'],
+			['Anomaly', '複合アノマリーは持ち時間45秒から開始。正解で時間が増え、誤答で減る中で、実際に回答していた生存時間を記録します。Infinityとともに、通常トレーニングのメダル・レベル解放とは別の記録です。'],
+			['Ranking', 'iOS・Android版では、Infinityの得点と複合アノマリーの生存時間をランキングで比較。今週・先週・全期間の上位100人と自分の順位を表示し、週間は毎週月曜0時の日本時間で切り替えます。'],
+			['Participation', '参加は任意で、選んだ表示名と参加後に始めたプレイの記録を公開します。Firebase匿名認証とFirestoreで管理し、通信失敗時は保存した送信待ち記録を再送。既存の自己ベストやバックアップから復元した記録は投稿しません。'],
+		],
+	},
+	{
+		no: '06', label: 'Progress & Companion',
+		title: '続けたことを、次の一歩へつなぐ。',
+		lead: '毎日の目標、成長の記録、相棒の声かけを組み合わせ、出題画面以外にも戻ってきたくなる場所を作っています。',
+		rows: [
+			['Missions', '通常問題・チャレンジ問題・遠征から毎日1つずつ、選定理由と達成条件を添えて提案。遠征は施設の内部区画が開いてから届きます。3つ達成した日は、プレイカレンダーにメインストリークのマークがつきます。'],
+			['Lab', '研究ラボでブレインコア、回答履歴から算出するゲーム内の成長指標NEURAL INDEX、成長軌道、5分野のニューラル・スペクトラムを表示。同じカテゴリ・レベルの直近5プレイの平均正答率と、今の成績に合ったおすすめも確認できます。'],
+			['Calendar', 'メダル獲得、問題セットをまたぐ連続正解、連続ミッション、チェックイン、プレイ日数を記録。カレンダーの下には、全30レベルのメダルを見渡せるマスターボードを置いています。毎日の通知は時刻変更と停止ができます。'],
+			['Companion', 'ホームと結果画面では、脳の姿をした相棒が声をかけます。タップでメッセージを再表示し、ドラッグで移動。動きの軽減や高コントラストの設定では、静止した姿で表示します。'],
+			['Backup', '進行は端末内へ保存し、設定からファイルにバックアップ・復元できます。匿名認証のIDや認証情報はバックアップに含めず、進行の復元とオンライン参加者の識別を分けています。'],
+		],
+	},
+	{
+		no: '07', label: 'Monetization & Measurement',
+		title: '遊ぶ流れを保ちながら、運営する。',
+		lead: '通常問題の全30レベルと操作パズルは無料で遊べます。モバイル版は広告と広告除去の買い切りで運営し、プレイから基地開拓までの流れを計測して、公開後の改善につなげています。',
+		rows: [
+			['Ads', 'バナーは研究ラボのスクロール末尾に配置。全画面広告は、通常問題・アクションラボ・Infinity・複合アノマリーの完了回数を共有し、5回ごとに最大1回、記録保存後・結果表示前に出します。回答中には表示しません。'],
+			['Purchase', '「広告を非表示」は期限も自動更新もない非消費型アイテムで、バナーと全画面広告を除去します。同じストアのアカウントで購入を復元でき、購入なしでもすべての問題を遊べます。Web版にはアプリ内決済を表示しません。'],
+			['Analytics', 'モバイルのFirebase AnalyticsとWebのGA4で、トレーニング、復習、報酬、基地開拓、RTS遠征、広告・購入のイベントを定義。計測仕様とBigQueryの集計を合わせて管理し、遠征の完了・中断と未確定の記録も区別します。'],
+			['Consent', '年齢確認と利用状況データの共有設定に応じて分析を開始します。共有は設定から停止でき、Webでも同じ確認を経てGA4を読み込みます。ランキングへの参加は、この分析同意とは別に選べます。'],
+		],
+	},
+];
+
+const stack = [
+	['App / Game', 'Flutter、Material 3、GoRouter、Flame'],
+	['State / Local', 'Provider、Flutter Bloc、SharedPreferences、JSON問題集・進行バックアップ'],
+	['Online', 'Firebase匿名認証、Cloud Firestore（モバイル版ランキング）'],
+	['Analytics', 'Firebase Analytics、Web GA4、BigQuery'],
+	['Ads / Purchases', 'Google Mobile Ads、in_app_purchase、StoreKit、Google Play Billing'],
+	['Quality', 'flutter_test、Mockito、レスポンシブ回帰テスト、実画面の自動撮影'],
+	['Delivery', 'GitHub Actions、Fastlane、App Store Connect、Google Play Console'],
+];
 ---
 
 <Base
 	title="無限脳"
-	description="FlutterでiOS・Android・Webへ公開した、日英対応の脳トレゲーム「無限脳」（英語版 Brain Infinity）のケーススタディ。"
+	description="脳トレの積み重ねで7つのコロニーを開拓する「無限脳」のケーススタディ。Flutter・FlameによるRTS遠征、復習帳、モバイル版ランキングを備え、iOS・Android・Webへ公開。"
 >
 	<section class="shell pagehead">
 		<p class="label"><b>Case study</b> — Product</p>
 		<div class="feature" style="margin-top: 1.25rem">
 			<div>
 				<h1>無限脳</h1>
+				<p class="lead">脳を鍛えて、宇宙の基地を育てる。</p>
 				<p class="lead">
-					数学、論理、記憶、注意、言語の5領域を、選択式の通常トレーニングと、タップや配置で解くアクションラボの2本で鍛えるクロスプラットフォームアプリ。
+					数学・論理・記憶・注意・言語のクイズと操作パズル。その積み重ねが、7つのコロニーの建設・復旧と、リアルタイムの拠点奪還戦につながるトレーニングゲームです。
 				</p>
 				<p class="lead">
-					一つのFlutterコードベースからiOS・Android・Webへ配信しています。
-				</p>
-				<p class="lead">
-					全30レベルを無料で遊べる状態のまま、広告と、その広告を消す買い切りで運営しています。
+					Infinityと複合アノマリー、復習帳、相棒のマスコット、モバイル版ランキングも用意。一つのFlutterコードベースから、日本語・英語でiOS・Android・Webへ配信しています。
 				</p>
 				<ul class="tags" style="margin-top: 2rem">
-					<li>Released</li>
-					<li>Flutter</li>
-					<li>iOS</li>
-					<li>Android</li>
-					<li>Web</li>
+					<li>Released</li><li>Flutter / Flame</li><li>iOS</li><li>Android</li><li>Web</li>
 					<li>日本語 / English（Brain Infinity）</li>
 				</ul>
 				<div class="actions">
-					<a class="btn" href="https://braininfinity.googja.dev/" rel="noopener"
-						>Web版を試す<span aria-hidden="true">↗</span></a
-					>
-					<a class="ulink" href="/works/">Works へ戻る<span aria-hidden="true">→</span></a>
+					<a class="btn" href="https://braininfinity.googja.dev/" rel="noopener">Web版を試す<span aria-hidden="true">↗</span></a>
+					<a class="ulink" href="/works/">Worksへ戻る<span aria-hidden="true">→</span></a>
 				</div>
 			</div>
 			<figure class="plate">
@@ -43,28 +106,22 @@ import { shots } from '../../data/site';
 		</div>
 	</section>
 
-	<div class="band">
+	<div class="band" id="screens">
 		<div class="shell section">
 			<p class="label" data-reveal><b>01</b> Screens</p>
 			<div class="section__body" data-reveal style="--reveal-delay:.09s">
-				<h2 class="h2">画面</h2>
+				<h2 class="h2">いまの無限脳を、12の画面で。</h2>
 				<p class="lead" style="margin-top: 1.5rem">
-					ストア掲載用と同じ手順で、アプリ本体から書き出した実際の画面です。
+					1.1.2のアプリ本体から、ストア用の撮影テストで書き出した日本語版の実画面です。進行や成績には撮影用データを使っています。
 				</p>
+				<p class="label" style="margin-top: 1rem">Screens updated — <time datetime="2026-10-07">2026.10.07</time></p>
 				<ul class="screens">
-					{
-						shots.map((s) => (
-							<li>
-								<figure>
-									<img src={s.src} width="640" height="1385" alt={s.alt} loading="lazy" decoding="async" />
-									<figcaption>
-										<span>{s.no}</span>
-										{s.caption}
-									</figcaption>
-								</figure>
-							</li>
-						))
-					}
+					{shots.map((s) => (
+						<li><figure>
+							<img src={s.src} width={s.width} height={s.height} alt={s.alt} loading="lazy" decoding="async" />
+							<figcaption><span>{s.no}</span>{s.caption}</figcaption>
+						</figure></li>
+					))}
 				</ul>
 			</div>
 		</div>
@@ -74,293 +131,46 @@ import { shots } from '../../data/site';
 		<div class="shell section">
 			<p class="label" data-reveal><b>02</b> Scope</p>
 			<div class="section__body" data-reveal style="--reveal-delay:.09s">
-				<h2 class="h2">担当範囲</h2>
+				<h2 class="h2">企画から、ゲーム開発と公開後の運営まで。</h2>
 				<p class="lead" style="margin-top: 1.5rem">
-					企画からUI実装、質問データ、進捗保存、Firebase Analytics、広告とアプリ内課金、CI/CD、App
-					Store・Google Play公開まで、一連のプロダクトライフサイクルを担当しています。
-				</p>
-				<table class="table" style="margin-top: 2.5rem">
-					<tbody>
-						<tr>
-							<th scope="row">Training</th>
-							<td>
-								通常トレーニングは5カテゴリ × 6レベルに日本語3,000問。1回10問・1問30秒を、成績に合わせて毎回組み直します。
-							</td>
-						</tr>
-						<tr>
-							<th scope="row">Action Lab</th>
-							<td>
-								タップや配置で解く操作パズルを、1カテゴリ2形式の全10形式。通常トレーニングで貯めたポイントで挑戦します。
-							</td>
-						</tr>
-						<tr>
-							<th scope="row">Progress</th>
-							<td>
-								到達レベルと航路シグナル、デイリーのオービット、成長ログ、ブレインコアのXPを端末内に保存します。
-							</td>
-						</tr>
-						<tr>
-							<th scope="row">Monetization</th>
-							<td>
-								広告と、それを消す買い切りが1つ。購入は任意で、買わなくても全レベルを遊べます。
-							</td>
-						</tr>
-						<tr>
-							<th scope="row">Accessibility</th>
-							<td>
-								高コントラスト、モーション低減、文字拡大、効果音キャプション、色だけに依存しない表示を用意しています。
-							</td>
-						</tr>
-						<tr>
-							<th scope="row">Release</th>
-							<td>
-								一つのFlutterコードベースからiOS・Android・Webへビルドし、ストア用素材もテストから生成します。
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		</div>
-	</div>
-
-	<div class="band">
-		<div class="shell section">
-			<p class="label" data-reveal><b>03</b> Training</p>
-			<div class="section__body" data-reveal style="--reveal-delay:.09s">
-				<h2 class="h2">通常トレーニングの組み立て</h2>
-				<p class="lead" style="margin-top: 1.5rem">
-					10問はランダムに引いていません。カテゴリ×レベル×グループごとの正答率と、直近に出た問題の履歴から、始めるたびにその場で組み直しています。
-				</p>
-				<table class="table" style="margin-top: 2.5rem">
-					<tbody>
-						<tr>
-							<th scope="row">Bank</th>
-							<td>
-								5カテゴリ × 6レベル × 100問を日英それぞれに持っていて、日本語だけで3,000問。1レベルは10グループ × 10問で、このグループが成績を測る単位です。
-							</td>
-						</tr>
-						<tr>
-							<th scope="row">Mix</th>
-							<td>
-								10問の内訳は基準7問・復習2問・挑戦1問。難易度1〜5のうち、復習は1〜2、基準は2〜4、挑戦は4〜5から取ります。
-							</td>
-						</tr>
-						<tr>
-							<th scope="row">Order</th>
-							<td>
-								先に確保するのは復習の2問で、正答率の低いグループから順に選びます。得意な分野の問題に押し出されると、苦手なところがいつまでも出てこないためです。
-							</td>
-						</tr>
-						<tr>
-							<th scope="row">Spread</th>
-							<td>
-								1グループにつき1問を上限に、10のグループへ散らします。同じ切り口が続けて出るのは、在庫が足りず2周目に入ったときだけです。
-							</td>
-						</tr>
-						<tr>
-							<th scope="row">Repeat</th>
-							<td>
-								直近30問、3セッション分に出たIDは避けます。避けきれないときは重複を許すので、問題が尽きて始められなくなることはありません。
-							</td>
-						</tr>
-						<tr>
-							<th scope="row">Memory</th>
-							<td>
-								端末に残すのは、カテゴリ×レベル×グループごとの挑戦回数と正解数だけ。問題文も答えも保存していません。
-							</td>
-						</tr>
-						<tr>
-							<th scope="row">Report</th>
-							<td>
-								気になる問題は理由を選んで報告し、その場で別の問題に差し替えます。1回のチャレンジで2回まで。
-							</td>
-						</tr>
-						<tr>
-							<th scope="row">Clock</th>
-							<td>
-								30秒の締め切りは壁時計で持っています。アプリを離れても止まらず、戻った瞬間に時間切れが確定します。一方、計測に送る回答時間からは離れていた分を引きます。
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		</div>
-	</div>
-
-	<div class="band">
-		<div class="shell section">
-			<p class="label" data-reveal><b>04</b> Action Lab</p>
-			<div class="section__body" data-reveal style="--reveal-delay:.09s">
-				<h2 class="h2">操作で解くほうの遊び</h2>
-				<p class="lead" style="margin-top: 1.5rem">
-					4択だけでは測れない手つきを扱うために、タップと配置で解く形式を別立てで足しました。同じ5カテゴリを、選ぶのではなく動かして解きます。
-				</p>
-				<table class="table" style="margin-top: 2.5rem">
-					<tbody>
-						<tr>
-							<th scope="row">Formats</th>
-							<td>
-								1カテゴリにつき2形式、全10形式。数字をつないで合計を作る、天秤をつり合わせる、光った順にタップする、覚えた図形を戻す、動く対象から探す、2つの盤面の差を見つける、出来事を順に並べる、反対語を結ぶ、といったものです。
-							</td>
-						</tr>
-						<tr>
-							<th scope="row">Run</th>
-							<td>1回は同じ形式を10問。制限時間はありません。形式ごとに途中経過とベスト記録を残します。</td>
-						</tr>
-						<tr>
-							<th scope="row">Points</th>
-							<td>
-								通常トレーニングを最後まで終えると、正解1問につき10ポイント。新しい挑戦に20ポイント消費します。中断した挑戦を再開するときは追加で取りません。
-							</td>
-						</tr>
-						<tr>
-							<th scope="row">No shop</th>
-							<td>
-								ポイントは売っていません。買える導線を用意していないので、遊んだ量だけが原資になります。
-							</td>
-						</tr>
-						<tr>
-							<th scope="row">Placement</th>
-							<td>
-								ホームとミッションの両方から入れます。画面はタブの枠の外側に置いているので、解いている間にバナーは出ません。
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		</div>
-	</div>
-
-	<div class="band">
-		<div class="shell section">
-			<p class="label" data-reveal><b>05</b> Monetization</p>
-			<div class="section__body" data-reveal style="--reveal-delay:.09s">
-				<h2 class="h2">広告と課金</h2>
-				<p class="lead" style="margin-top: 1.5rem">
-					無料で全問遊べる状態は変えずに、広告と、その広告を消す買い切りの2本で組んでいます。課金は任意で、買っても買わなくても、出題数も機能も同じです。
-				</p>
-				<table class="table" style="margin-top: 2.5rem">
-					<tbody>
-						<tr>
-							<th scope="row">Banner</th>
-							<td>
-								ホーム・フロンティア・ミッション・ラボの4画面の上部に、共通のスロットを1つだけ置いています。出題も結果もアクションラボもこの外側の画面なので、構造上バナーが出ません。
-							</td>
-						</tr>
-						<tr>
-							<th scope="row">Interstitial</th>
-							<td>
-								通常トレーニングを5回終えるごとに最大1本、記録を保存したあと結果を出す直前に挟みます。最初の4回には出ません。準備できていなければ最大3秒だけ待ち、間に合わなければ広告なしで結果へ進みます。
-							</td>
-						</tr>
-						<tr>
-							<th scope="row">Purchase</th>
-							<td>
-								「広告を非表示」の非消費型アイテムが1つ。期限も自動更新もなく、1回の支払いでバナーとインタースティシャルの両方が消えます。
-							</td>
-						</tr>
-						<tr>
-							<th scope="row">Entitlement</th>
-							<td>
-								権利はApp Store・Google
-								Playのアカウントが持ちます。独自アカウントを作らないので、再インストールや機種変更でも起動時の問い合わせで戻り、設定の「購入を復元」が受け皿になります。
-							</td>
-						</tr>
-						<tr>
-							<th scope="row">Measurement</th>
-							<td>
-								インタースティシャルの成否と待ち時間、広告1回ごとの推定収益をFirebase
-								Analyticsへ送り、置き場所の判断に使っています。
-							</td>
-						</tr>
-						<tr>
-							<th scope="row">Web</th>
-							<td>
-								ブラウザ版に決済はないので、購入の行そのものを出しません。広告もアプリ画面の外側のディスプレイ広告だけです。
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		</div>
-	</div>
-
-	<div class="band">
-		<div class="shell section">
-			<p class="label" data-reveal><b>06</b> Stack</p>
-			<div class="section__body" data-reveal style="--reveal-delay:.09s">
-				<h2 class="h2">技術構成</h2>
-				<table class="table" style="margin-top: 2.5rem">
-					<tbody>
-						<tr><th scope="row">UI / App</th><td>Flutter、Material 3、GoRouter</td></tr>
-						<tr><th scope="row">State</th><td>Provider、Flutter Bloc</td></tr>
-						<tr><th scope="row">Data</th><td>SharedPreferences、JSON question sets</td></tr>
-						<tr>
-							<th scope="row">Analytics / Ads</th><td>Firebase Analytics、Google Mobile Ads</td>
-						</tr>
-						<tr>
-							<th scope="row">Purchases</th>
-							<td>in_app_purchase、StoreKit、Google Play Billing</td>
-						</tr>
-						<tr>
-							<th scope="row">Quality</th><td>flutter_test、Mockito、レスポンシブ回帰テスト</td>
-						</tr>
-						<tr>
-							<th scope="row">Delivery</th>
-							<td>GitHub Actions、App Store Connect、Google Play Console</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		</div>
-	</div>
-
-	<div class="band">
-		<div class="shell section">
-			<p class="label" data-reveal><b>07</b> Principles</p>
-			<div class="section__body" data-reveal style="--reveal-delay:.09s">
-				<h2 class="h2">設計の考え方</h2>
-				<p class="lead" style="margin-top: 1.5rem">
-					一つのコードベースからiOS・Android・Webへ配っているので、画面も規約も面ごとに作り分けない前提で組んでいます。分けた瞬間に、面の数だけ直す場所が増えるためです。
+					問題データと出題ロジック、FlutterのUI、Flameの戦闘、進行の保存、Firebaseのランキング、分析と収益化、CI/CD、ストア公開を一貫して担当しています。
 				</p>
 				<ul class="notes" style="margin-top: 2.5rem">
-					<li data-no="01">
-						<span
-							><b>画面ではなく条件で組む。</b
-							>スマートフォンだけでなく、タブレットの縦横やデスクトップでも、画面幅と向きを見てレイアウトを切り替えます。端末ごとに別画面を持たないので、対応する面が増えても崩れません。</span
-						>
-					</li>
-					<li data-no="02">
-						<span
-							><b>出題を決める部分に副作用を持たせない。</b
-							>10問を組む処理は、問題の束と成績と直近の履歴を受け取って10問を返すだけの関数にしています。保存も時計も内側に置いていないので、苦手なグループが先に来るか、同じ問題が続かないかを、乱数だけ固定してテストで確かめられます。</span
-						>
-					</li>
-					<li data-no="03">
-						<span
-							><b>同意が済むまで何も始めない。</b
-							>年齢確認が完了する前に分析・広告リクエストを開始しない構成にし、子ども向け設定を最初のリクエストから適用しています。あとから設定を反映するのではなく、1回目から正しい状態で出します。</span
-						>
-					</li>
-					<li data-no="04">
-						<span
-							><b>解いている手は止めない。</b
-							>広告は、ハブになる4画面の上部と、結果を出す直前だけに置いています。出題も結果もアクションラボもバナーを持つ枠の外側にあるので、解いている最中に割り込む形式は構造上使えません。全画面広告も毎回は出さず、5回終えるごとに1本までにしています。1回ごとに挟む作りは、アンインストールの理由になるほうだからです。収益の導線であっても、遊ぶ手が止まる位置には置きません。</span
-						>
-					</li>
-					<li data-no="05">
-						<span
-							><b>買った証拠を自分で持たない。</b
-							>広告除去は非消費型アイテム1つで、権利はApp Store・Google
-							Playのアカウントが持ちます。こちらに会員登録を作らないぶん、再インストールでも機種変更でも起動時の問い合わせで戻り、届かなかったときは設定の復元で拾えます。決済が繋がらなくても、ゲーム自体は止まりません。</span
-						>
-					</li>
-					<li data-no="06">
-						<span
-							><b>ストアに出す絵もコードから出す。</b
-							>日本語・英語、テーマ、文字倍率、ストア指定サイズを組み合わせたスクリーンショットを、テストから自動生成しています。画面を直すたびに撮り直す手間が要らず、ストアに並ぶ絵と実物がずれません。</span
-						>
-					</li>
+					<li data-no="01"><span><b>学習とゲーム進行をつなぐ。</b>回答の報酬をコアの成長と基地開拓へ結び、結果から次の施設へ進める流れを設計しています。</span></li>
+					<li data-no="02"><span><b>複数の端末と遊び方に対応する。</b>スマートフォン、タブレット、ブラウザの幅や向きに合わせて配置を切り替え、高コントラスト、文字拡大、動きの軽減、形状とラベル、効果音の字幕を用意しています。</span></li>
+					<li data-no="03"><span><b>配信する素材も軽くする。</b>1.1.2では相棒とランキングの追加に加え、画像のWebP化でアプリ容量を約110MB削減しました。</span></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	{sections.map((section) => (
+		<div class="band">
+			<div class="shell section">
+				<p class="label" data-reveal><b>{section.no}</b> {section.label}</p>
+				<div class="section__body" data-reveal style="--reveal-delay:.09s">
+					<h2 class="h2">{section.title}</h2>
+					<p class="lead" style="margin-top: 1.5rem">{section.lead}</p>
+					<table class="table" style="margin-top: 2.5rem"><tbody>
+						{section.rows.map(([label, text]) => <tr><th scope="row">{label}</th><td>{text}</td></tr>)}
+					</tbody></table>
+				</div>
+			</div>
+		</div>
+	))}
+
+	<div class="band">
+		<div class="shell section">
+			<p class="label" data-reveal><b>08</b> Stack &amp; Principles</p>
+			<div class="section__body" data-reveal style="--reveal-delay:.09s">
+				<h2 class="h2">一つの実装を、配信と運営まで育てる。</h2>
+				<table class="table" style="margin-top: 2.5rem"><tbody>
+					{stack.map(([label, text]) => <tr><th scope="row">{label}</th><td>{text}</td></tr>)}
+				</tbody></table>
+				<ul class="notes" style="margin-top: 2.5rem">
+					<li data-no="01"><span><b>出題の判断をテストできる形にする。</b>10問の組み立ては問題集・成績・直近の履歴を受け取る処理に分け、乱数を固定して苦手なグループの優先や重複回避を検証します。</span></li>
+					<li data-no="02"><span><b>進行とオンラインの状態を分ける。</b>ローカルの記録保存を先に完了し、ランキングは参加を選んだ新しいプレイだけを送信。進行のバックアップが、別のオンライン参加者の認証を上書きしない構成にしています。</span></li>
+					<li data-no="03"><span><b>画面と掲載素材を同じ実装から出す。</b>アプリのウィジェットを、日本語・英語とストア指定の端末サイズで撮影。UIの変更を実画面で確認し、掲載画像もその撮影結果から更新します。</span></li>
 				</ul>
 			</div>
 		</div>
@@ -368,28 +178,13 @@ import { shots } from '../../data/site';
 
 	<div class="band">
 		<div class="shell section">
-			<p class="label" data-reveal><b>08</b> Where to play</p>
+			<p class="label" data-reveal><b>09</b> Where to play</p>
 			<div class="section__body" data-reveal style="--reveal-delay:.09s">
 				<h2 class="h2">公開先</h2>
 				<ul class="links" style="margin-top: 2.5rem">
-					<li>
-						<a href="https://braininfinity.googja.dev/" rel="noopener">
-							<b>Web ↗</b><span>ブラウザからそのままプレイできます。</span>
-						</a>
-					</li>
-					<li>
-						<a href="https://apps.apple.com/jp/app/id6755319401" rel="noopener">
-							<b>App Store ↗</b><span>iPhone・iPad版。</span>
-						</a>
-					</li>
-					<li>
-						<a
-							href="https://play.google.com/store/apps/details?id=com.sangraal.androidfirst&hl=ja"
-							rel="noopener"
-						>
-							<b>Google Play ↗</b><span>Android版。</span>
-						</a>
-					</li>
+					<li><a href="https://braininfinity.googja.dev/" rel="noopener"><b>Web ↗</b><span>ブラウザから脳トレと基地開拓をプレイできます。</span></a></li>
+					<li><a href="https://apps.apple.com/jp/app/id6755319401" rel="noopener"><b>App Store ↗</b><span>iPhone・iPad版。ランキングにも参加できます。</span></a></li>
+					<li><a href="https://play.google.com/store/apps/details?id=com.sangraal.androidfirst&hl=ja" rel="noopener"><b>Google Play ↗</b><span>Android版。ランキングにも参加できます。</span></a></li>
 				</ul>
 			</div>
 		</div>
