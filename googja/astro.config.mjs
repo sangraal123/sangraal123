@@ -19,6 +19,10 @@ import { remarkMermaid } from './src/plugins/remark-mermaid.mjs';
  */
 export default defineConfig({
 	site: 'https://googja.dev',
+	// 運営者情報は About にまとめた。以前の /company/ への参照は About の該当節へ送る。
+	redirects: {
+		'/company': '/about/#company',
+	},
 	// ```mermaid を Expressive Code に渡す前に <pre class="mermaid"> へ変換する。
 	// 描画は下の head スクリプト（mermaid.js）が引き受ける。
 	markdown: {
@@ -205,7 +209,7 @@ new MutationObserver(render).observe(document.documentElement, {
 						{ label: '目的別の学習コース', link: '/vibecode-mobile/learning-paths/' },
 						{ label: '教材の更新・検証範囲', link: '/vibecode-mobile/status/' },
 						{
-							label: 'googja.dev（ポートフォリオ）',
+							label: 'googja.dev（トップ）',
 							link: '/',
 							attrs: { 'data-back-to-site': 'true' },
 						},

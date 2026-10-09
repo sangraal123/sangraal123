@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import { business } from '../data/site';
 ---
 
 <Base title="Privacy Policy" description="googja.devにおけるアクセス解析と広告配信について。">
@@ -10,7 +11,7 @@ import Base from '../layouts/Base.astro';
 
 	<div class="band">
 		<div class="shell section">
-			<p class="label" data-reveal><b>—</b> 最終更新 2026-08-27</p>
+			<p class="label" data-reveal><b>—</b> 最終更新 2026-10-09</p>
 			<div class="section__body" data-reveal style="--reveal-delay:.09s">
 				<div class="prose">
 					<p>
@@ -37,6 +38,12 @@ import Base from '../layouts/Base.astro';
 						<a href="https://braininfinity.googja.dev/privacy-policy.html" rel="noopener"
 							>無限脳 プライバシーポリシー ↗</a
 						>
+					</p>
+
+					<h2>運営者・お問い合わせ</h2>
+					<p>
+						googja.devは{business.name}が運営しています（<a href="/about/#company">運営者情報</a>）。本ポリシーに関するお問い合わせは
+						<a href={`mailto:${business.email}`}>{business.email}</a> までご連絡ください。
 					</p>
 
 					<h2>変更</h2>

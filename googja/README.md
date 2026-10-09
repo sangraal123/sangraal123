@@ -3,7 +3,8 @@
 個人事業 sangraal のサイト（事業・作品紹介と運営者情報）と、実践ガイド「VibeCode Mobile」を配信する Astro プロジェクト。
 
 事業者情報（屋号・代表者・開業日・所在地・D-U-N-S・連絡先）は `src/data/site.ts` の `business` に一本化している。
-運営者情報ページ、トップと運営者情報の構造化データ（JSON-LD）はそこから組み立てる。
+About の運営者情報（`/about/#company`）と、トップと About の構造化データ（JSON-LD）はそこから組み立てる。
+以前の `/company/` は `astro.config.mjs` の `redirects` で About の運営者情報へ転送している。
 
 ## 構成
 
@@ -11,7 +12,7 @@
 
 | 層 | URL | 実装 | 使うもの |
 | --- | --- | --- | --- |
-| ポートフォリオ | `/` `/works/` `/works/brain-infinity/` `/about/` `/company/` `/privacy/` `/404` | 素の Astro ページ（`src/pages/`） | `src/layouts/Base.astro` + `src/styles/site.css` |
+| ポートフォリオ | `/` `/works/` `/works/brain-infinity/` `/about/` `/privacy/` `/404` | 素の Astro ページ（`src/pages/`） | `src/layouts/Base.astro` + `src/styles/site.css` |
 | VibeCode Mobile ガイド | `/vibecode-mobile/` `/prep/…` `/research/…` ほか各フェーズ | Starlight（`src/content/docs/`） | `src/styles/custom.css` |
 
 Astro はファイルベースのルート（`src/pages/`）をインテグレーションの注入ルートより優先するため、

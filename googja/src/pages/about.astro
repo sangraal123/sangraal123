@@ -1,16 +1,25 @@
 ---
 import Base from '../layouts/Base.astro';
+import { business, businessJsonLd } from '../data/site';
+
+const addressJa = `${business.address.region}${business.address.locality}${business.address.street}`;
+// 表のセルで <a>{式}</a> と書くと、Astro のコンパイラがリンクを閉じそこね、後ろの要素が
+// すべてそのリンクに包まれる（配信ストアの見出しに下線が付き、一覧の先頭に空の枠ができた）。
+// 連絡先のリンクは中身を set:text で渡す。
+const mailto = `mailto:${business.email}`;
 ---
 
 <Base
 	title="About"
-	description="個人事業sangraalの紹介と、代表 上田悠太の得意領域・開発の考え方。"
+	description="sangraalの得意領域、開発の考え方、運営者情報と連絡先。"
 >
+	<script type="application/ld+json" slot="head" set:html={JSON.stringify(businessJsonLd)} />
+
 	<section class="shell pagehead">
 		<p class="label"><b>About</b> — sangraal</p>
 		<h1>プロダクトを、<br />企画から公開後まで。</h1>
 		<p class="lead">
-			sangraalは、代表の上田悠太が2026年8月に開業した個人事業です。AIエージェントを活用し、自社アプリの企画、UI実装、バックエンド連携、CI/CD、ストア公開、公開後の運営までを一貫して担当しています。
+			AIエージェントを活用し、モバイルアプリの企画、UI実装、バックエンド連携、CI/CD、ストア公開、公開後の運営までを一貫して手がけています。
 		</p>
 		<p class="lead">
 			個人プロジェクトではFlutter、チーム開発ではExpoを中心に使用しています。
@@ -40,9 +49,7 @@ import Base from '../layouts/Base.astro';
 						</tr>
 						<tr>
 							<th scope="row">AI-assisted</th>
-							<td>
-								Claude Codeをはじめとするコーディングエージェント、Deep Research、デザイン支援を工程ごとに使い分ける開発。
-							</td>
+							<td>Deep Research、デザイン支援、コーディングエージェントを工程ごとに使い分ける開発。</td>
 						</tr>
 					</tbody>
 				</table>
@@ -84,9 +91,114 @@ import Base from '../layouts/Base.astro';
 		</div>
 	</div>
 
+	<div class="band" id="company">
+		<div class="shell section">
+			<p class="label" data-reveal><b>03</b> Company</p>
+			<div class="section__body" data-reveal style="--reveal-delay:.09s">
+				<h2 class="h2">運営者情報</h2>
+				<p class="lead" lang="en" style="margin-top: 1.5rem">
+					sangraal is a sole proprietorship founded in August 2026 in {business.address.en}. We plan, build,
+					ship and operate our own mobile and web products, using AI agents throughout development.
+				</p>
+				<table class="table company" style="margin-top: 2.5rem">
+					<tbody>
+						<tr>
+							<th scope="row">屋号<span lang="en">Trade name</span></th>
+							<td>{business.name}</td>
+						</tr>
+						<tr>
+							<th scope="row">事業形態<span lang="en">Entity</span></th>
+							<td>
+								{business.entity}<span class="en" lang="en">{business.entityEn}</span>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">代表者<span lang="en">Owner</span></th>
+							<td>
+								{business.owner}<span class="en" lang="en">{business.ownerEn}</span>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">開業日<span lang="en">Founded</span></th>
+							<td>
+								<time datetime={business.founded}>{business.foundedJa}</time><span class="en" lang="en"
+									>{business.foundedEn}</span
+								>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">所在地<span lang="en">Address</span></th>
+							<td>{addressJa}<span class="en" lang="en">{business.address.en}</span></td>
+						</tr>
+						<tr>
+							<th scope="row">D-U-N-S<span lang="en">Number</span></th>
+							<td>{business.duns}</td>
+						</tr>
+						<tr>
+							<th scope="row">事業内容<span lang="en">Business</span></th>
+							<td>
+								<ul class="company__list">
+									<li>自社モバイルアプリ・Webアプリの企画、開発、運営</li>
+									<li>アプリ開発ガイドの執筆・公開</li>
+								</ul>
+								<span class="en" lang="en"
+									>Planning, development and operation of our own mobile and web apps; publishing
+									app-development guides.</span
+								>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">提供サービス<span lang="en">Products</span></th>
+							<td>
+								<ul class="company__list">
+									<li>
+										<a href="/works/brain-infinity/">無限脳</a> — 脳トレゲーム（iOS / Android / Web）
+									</li>
+									<li>
+										<a href="/vibecode-mobile/">VibeCode Mobile</a> — AIとExpoでモバイルアプリを作る実践ガイド
+									</li>
+								</ul>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">連絡先<span lang="en">Contact</span></th>
+							<td><a href={mailto} set:text={business.email} /></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
 	<div class="band">
 		<div class="shell section">
-			<p class="label" data-reveal><b>03</b> Contact</p>
+			<p class="label" data-reveal><b>04</b> Stores</p>
+			<div class="section__body" data-reveal style="--reveal-delay:.09s">
+				<h2 class="h2">配信ストア</h2>
+				<ul class="links" style="margin-top: 2.5rem">
+					<li>
+						<a href="https://apps.apple.com/jp/developer/yuta-ueda/id1853129120" rel="noopener">
+							<b>App Store ↗</b><span>開発者名 Yuta Ueda で配信しています。</span>
+						</a>
+					</li>
+					<li>
+						<a href="https://play.google.com/store/apps/developer?id=sangraal&hl=ja" rel="noopener">
+							<b>Google Play ↗</b><span>デベロッパー名 sangraal で配信しています。</span>
+						</a>
+					</li>
+					<li>
+						<a href="https://braininfinity.googja.dev/" rel="noopener">
+							<b>無限脳 Web版 ↗</b><span>braininfinity.googja.dev</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="band">
+		<div class="shell section">
+			<p class="label" data-reveal><b>05</b> Contact</p>
 			<div class="section__body" data-reveal style="--reveal-delay:.09s">
 				<h2 class="h2">連絡先とリンク</h2>
 				<p class="lead" style="margin-top: 1.5rem">
@@ -97,11 +209,6 @@ import Base from '../layouts/Base.astro';
 					<li>
 						<a href="mailto:admin@googja.dev">
 							<b>Mail →</b><span>admin@googja.dev</span>
-						</a>
-					</li>
-					<li>
-						<a href="/company/">
-							<b>運営者情報 →</b><span>屋号、代表者、所在地、開業日。</span>
 						</a>
 					</li>
 					<li>
@@ -124,3 +231,36 @@ import Base from '../layouts/Base.astro';
 		</div>
 	</div>
 </Base>
+
+<style>
+	/* 運営者情報の表。見出し列は和文の項目名を主に、英語名を小さく添える（海外からの確認にも読めるように）。 */
+	.company th {
+		font-family: inherit;
+		font-size: .875rem;
+		font-weight: 700;
+		letter-spacing: 0;
+		text-transform: none;
+		color: var(--ink);
+	}
+	.company th span {
+		display: block;
+		margin-top: .15rem;
+		font-family: var(--font-mono);
+		font-size: .6875rem;
+		font-weight: 500;
+		letter-spacing: .1em;
+		text-transform: uppercase;
+		color: var(--muted);
+	}
+	.company .en {
+		display: block;
+		font-size: .8125rem;
+		color: var(--muted);
+	}
+	.company__list {
+		list-style: none;
+	}
+	.company__list li + li {
+		margin-top: .25rem;
+	}
+</style>

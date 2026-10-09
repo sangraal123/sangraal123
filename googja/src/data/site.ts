@@ -1,4 +1,4 @@
-/** 事業者情報。運営者情報ページ・構造化データ・フッターで共有する。 */
+/** 事業者情報。About の運営者情報と構造化データで共有する。 */
 export const business = {
 	name: 'sangraal',
 	entity: '個人事業主',
@@ -19,7 +19,7 @@ export const business = {
 	url: 'https://googja.dev/',
 };
 
-/** 検索エンジンや審査で事業者を機械的に確認できるよう、トップと運営者情報に埋め込む。 */
+/** 検索エンジンや審査で事業者を機械的に確認できるよう、トップと About に埋め込む。 */
 export const businessJsonLd = {
 	'@context': 'https://schema.org',
 	'@type': 'Organization',

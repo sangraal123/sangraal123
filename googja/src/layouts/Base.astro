@@ -63,10 +63,9 @@ const ogImage = new URL('/Icon-512.png', Astro.site ?? 'https://googja.dev').hre
 			})();
 		</script>
 
-		<script
-			async
-			src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7543104245383277"
-			crossorigin="anonymous"></script>
+		{/* 事業・作品紹介のページには広告を出さない（AdSense の自動広告はガイド側だけ）。
+		    サイトの所有確認はタグを読み込まずにメタタグで続ける。 */}
+		<meta name="google-adsense-account" content="ca-pub-7543104245383277" />
 		<script async src="https://www.googletagmanager.com/gtag/js?id=G-5ZWD1BZHLD"></script>
 		<script is:inline>
 			window.dataLayer = window.dataLayer || [];
@@ -78,12 +77,16 @@ const ogImage = new URL('/Icon-512.png', Astro.site ?? 'https://googja.dev').hre
 		</script>
 	</head>
 	<body>
+		{/* Cloudflare のメール難読化をこの範囲だけ止める。有効なままだと、JS を実行しない読み手
+		    （審査や検索のクローラ）には連絡先が "[email protected]" に置き換わって見える。 */}
+		<!--email_off-->
 		<a class="skip-link" href="#main">本文へスキップ</a>
 		<SiteHeader />
 		<main id="main">
 			<slot />
 		</main>
 		<SiteFooter />
+		<!--/email_off-->
 
 		<script>
 			// 節が視界に入ったら現れる。要素ごとに少し遅らせて、上から順に立ち上がるようにする。
