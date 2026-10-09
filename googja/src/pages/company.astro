@@ -1,0 +1,163 @@
+---
+import Base from '../layouts/Base.astro';
+import { business, businessJsonLd } from '../data/site';
+
+const addressJa = `${business.address.region}${business.address.locality}${business.address.street}`;
+---
+
+<Base
+	title="運営者情報"
+	description={`sangraal（${business.foundedJa}開業の個人事業）の運営者情報。代表者、所在地、事業内容、連絡先。`}
+>
+	<script type="application/ld+json" slot="head" set:html={JSON.stringify(businessJsonLd)} />
+
+	<section class="shell pagehead">
+		<p class="label"><b>Company</b> — sangraal</p>
+		<h1>運営者情報</h1>
+		<p class="lead">
+			sangraalは、2026年8月に開業した個人事業です。AIエージェントを活用し、自社のモバイルアプリとWebアプリを企画からストア公開・運営まで手がけています。
+		</p>
+		<p class="lead" lang="en">
+			sangraal is a sole proprietorship founded in August 2026 in {business.address.en}. We plan, build,
+			ship and operate our own mobile and web products, using AI agents throughout development.
+		</p>
+	</section>
+
+	<div class="band">
+		<div class="shell section">
+			<p class="label" data-reveal><b>01</b> Profile</p>
+			<div class="section__body" data-reveal style="--reveal-delay:.09s">
+				<h2 class="h2">事業者の概要</h2>
+				<table class="table company" style="margin-top: 2.5rem">
+					<tbody>
+						<tr>
+							<th scope="row">屋号<span lang="en">Trade name</span></th>
+							<td>{business.name}</td>
+						</tr>
+						<tr>
+							<th scope="row">事業形態<span lang="en">Entity</span></th>
+							<td>
+								{business.entity}<span class="en" lang="en">{business.entityEn}</span>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">代表者<span lang="en">Owner</span></th>
+							<td>
+								{business.owner}<span class="en" lang="en">{business.ownerEn}</span>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">開業日<span lang="en">Founded</span></th>
+							<td>
+								<time datetime={business.founded}>{business.foundedJa}</time><span class="en" lang="en"
+									>{business.foundedEn}</span
+								>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">所在地<span lang="en">Address</span></th>
+							<td>{addressJa}<span class="en" lang="en">{business.address.en}</span></td>
+						</tr>
+						<tr>
+							<th scope="row">D-U-N-S<span lang="en">Number</span></th>
+							<td>{business.duns}</td>
+						</tr>
+						<tr>
+							<th scope="row">事業内容<span lang="en">Business</span></th>
+							<td>
+								<ul class="company__list">
+									<li>自社モバイルアプリ・Webアプリの企画、開発、運営</li>
+									<li>アプリ開発ガイドの執筆・公開</li>
+								</ul>
+								<span class="en" lang="en"
+									>Planning, development and operation of our own mobile and web apps; publishing
+									app-development guides.</span
+								>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">提供サービス<span lang="en">Products</span></th>
+							<td>
+								<ul class="company__list">
+									<li>
+										<a href="/works/brain-infinity/">無限脳</a> — 脳トレゲーム（iOS / Android / Web）
+									</li>
+									<li>
+										<a href="/vibecode-mobile/">VibeCode Mobile</a> — AIとExpoでモバイルアプリを作る実践ガイド
+									</li>
+								</ul>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">連絡先<span lang="en">Contact</span></th>
+							<td><a href={`mailto:${business.email}`}>{business.email}</a></td>
+						</tr>
+						<tr>
+							<th scope="row">ウェブサイト<span lang="en">Website</span></th>
+							<td><a href={business.url}>googja.dev</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<div class="band">
+		<div class="shell section">
+			<p class="label" data-reveal><b>02</b> Stores</p>
+			<div class="section__body" data-reveal style="--reveal-delay:.09s">
+				<h2 class="h2">配信ストア</h2>
+				<ul class="links" style="margin-top: 2.5rem">
+					<li>
+						<a href="https://apps.apple.com/jp/developer/yuta-ueda/id1853129120" rel="noopener">
+							<b>App Store ↗</b><span>開発者名 Yuta Ueda で配信しています。</span>
+						</a>
+					</li>
+					<li>
+						<a href="https://play.google.com/store/apps/developer?id=sangraal&hl=ja" rel="noopener">
+							<b>Google Play ↗</b><span>デベロッパー名 sangraal で配信しています。</span>
+						</a>
+					</li>
+					<li>
+						<a href="https://braininfinity.googja.dev/" rel="noopener">
+							<b>無限脳 Web版 ↗</b><span>braininfinity.googja.dev</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</Base>
+
+<style>
+	/* 見出し列は和文の項目名を主に、英語名を小さく添える（海外からの確認にも読めるように）。 */
+	.company th {
+		font-family: inherit;
+		font-size: .875rem;
+		font-weight: 700;
+		letter-spacing: 0;
+		text-transform: none;
+		color: var(--ink);
+	}
+	.company th span {
+		display: block;
+		margin-top: .15rem;
+		font-family: var(--font-mono);
+		font-size: .6875rem;
+		font-weight: 500;
+		letter-spacing: .1em;
+		text-transform: uppercase;
+		color: var(--muted);
+	}
+	.company .en {
+		display: block;
+		font-size: .8125rem;
+		color: var(--muted);
+	}
+	.company__list {
+		list-style: none;
+	}
+	.company__list li + li {
+		margin-top: .25rem;
+	}
+</style>

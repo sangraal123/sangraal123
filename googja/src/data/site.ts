@@ -1,3 +1,49 @@
+/** 事業者情報。運営者情報ページ・構造化データ・フッターで共有する。 */
+export const business = {
+	name: 'sangraal',
+	entity: '個人事業主',
+	entityEn: 'Sole proprietorship',
+	owner: '上田 悠太',
+	ownerEn: 'Yuta Ueda',
+	founded: '2026-08-08',
+	foundedJa: '2026年8月8日',
+	foundedEn: 'August 8, 2026',
+	address: {
+		region: '愛媛県',
+		locality: '松山市',
+		street: '鷹子町804番地1',
+		en: 'Matsuyama, Ehime, Japan',
+	},
+	duns: '699778965',
+	email: 'admin@googja.dev',
+	url: 'https://googja.dev/',
+};
+
+/** 検索エンジンや審査で事業者を機械的に確認できるよう、トップと運営者情報に埋め込む。 */
+export const businessJsonLd = {
+	'@context': 'https://schema.org',
+	'@type': 'Organization',
+	name: business.name,
+	url: business.url,
+	logo: 'https://googja.dev/Icon-512.png',
+	email: business.email,
+	foundingDate: business.founded,
+	founder: { '@type': 'Person', name: business.owner, alternateName: business.ownerEn },
+	address: {
+		'@type': 'PostalAddress',
+		streetAddress: business.address.street,
+		addressLocality: business.address.locality,
+		addressRegion: business.address.region,
+		addressCountry: 'JP',
+	},
+	duns: business.duns,
+	sameAs: [
+		'https://github.com/sangraal123',
+		'https://apps.apple.com/jp/developer/yuta-ueda/id1853129120',
+		'https://play.google.com/store/apps/developer?id=sangraal',
+	],
+};
+
 export interface Work {
 	no: string;
 	/** /works/ でのまとまり。product = 自分のプロダクト、collab = チーム・OSS。 */

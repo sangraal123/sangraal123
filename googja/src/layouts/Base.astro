@@ -43,6 +43,9 @@ const ogImage = new URL('/Icon-512.png', Astro.site ?? 'https://googja.dev').hre
 			href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap"
 		/>
 
+		{/* ページごとに head へ足すもの（構造化データなど） */}
+		<slot name="head" />
+
 		{/* Starlight と同じ localStorage キー・同じ data-theme を使い、
 		    ポートフォリオ ⇄ ガイド間で明暗設定を引き継ぐ。描画前に当てて FOUC を防ぐ。 */}
 		<script is:inline>

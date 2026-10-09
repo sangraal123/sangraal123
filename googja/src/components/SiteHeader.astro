@@ -9,6 +9,7 @@ const isCurrent = (href: string) => (path === href || path.startsWith(href) ? 'p
 		<nav aria-label="サイト">
 			<a href="/works/" aria-current={isCurrent('/works/')}>Works</a>
 			<a href="/about/" aria-current={isCurrent('/about/')}>About</a>
+			<a class="is-long" href="/company/" aria-current={isCurrent('/company/')}>Company</a>
 			<a href="/vibecode-mobile/" aria-current={isCurrent('/vibecode-mobile/')}>
 				<span class="on-wide">VibeCode Mobile</span><span class="on-narrow">Guide</span>
 			</a>
