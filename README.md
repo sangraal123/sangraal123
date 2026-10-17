@@ -2,7 +2,7 @@
 
 I'm a Full-Cycle Cross-Platform Engineer who loves building apps from scratch to store release, leveraging AI agents. 
 
-I strategically use **Flutter** for my personal projects and **Expo** for team development to maximize performance and efficiency.
+I use **Flutter** and **Expo** to build and operate my own mobile products, as well as collaborate on team projects.
 
 - 🔭 I’m currently working on: Cross-platform applications (iOS, Android, & Web) using Flutter and Expo.
 - 🌱 I’m currently learning: Best practices for cybersecurity and scalable architectures. Specifically exploring:
@@ -14,10 +14,14 @@ I strategically use **Flutter** for my personal projects and **Expo** for team d
   - **CI/CD & Automation:** GitHub Actions, Fastlane
   - **Release & Distribution:** Google Play Console, App Store Connect
 - 📫 How to reach me: You can find my SNS accounts with the handle name **sangraal123**.
-- 📱 My Apps: **BrainInfinity**
+- 📱 My Apps: **無限脳 — Brain Infinity** (iOS / Android)
+  - Version 1.1.2 includes colony building, interactive puzzles, a review notebook, a floating companion, and mobile leaderboards.
   - [Google Play](https://play.google.com/store/apps/details?id=com.sangraal.androidfirst&hl=en)
   - [App Store](https://apps.apple.com/us/app/brain-infinity/id6755319401)
-  - [Web](https://braininfinity.googja.dev)
+  - [Product page](https://braininfinity.googja.dev) — the browser game has been retired.
+- 🛠️ In development: **漢字脳 — Kanjinou** (iOS / Android, Expo)
+  - Daily kanji puzzles featuring 和同開珎, four-character idioms, and cued word recall.
+  - [Product page and sample puzzle](https://kanjinou.googja.dev)
 - ⚡ Fun fact: I handle the entire app lifecycle myself—from UI implementation and Firebase backend integration to CI/CD automation and cross-platform releases!
 
 ---

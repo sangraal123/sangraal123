@@ -56,9 +56,9 @@ const sections = [
 		lead: '通常問題の全30レベルと操作パズルは無料で遊べます。モバイル版は広告と広告除去の買い切りで運営し、プレイから基地開拓までの流れを計測して、公開後の改善につなげています。',
 		rows: [
 			['Ads', 'バナーは研究ラボのスクロール末尾に配置。全画面広告は、通常問題・アクションラボ・Infinity・複合アノマリーの完了回数を共有し、5回ごとに最大1回、記録保存後・結果表示前に出します。回答中には表示しません。'],
-			['Purchase', '「広告を非表示」は期限も自動更新もない非消費型アイテムで、バナーと全画面広告を除去します。同じストアのアカウントで購入を復元でき、購入なしでもすべての問題を遊べます。Web版にはアプリ内決済を表示しません。'],
-			['Analytics', 'モバイルのFirebase AnalyticsとWebのGA4で、トレーニング、復習、報酬、基地開拓、RTS遠征、広告・購入のイベントを定義。計測仕様とBigQueryの集計を合わせて管理し、遠征の完了・中断と未確定の記録も区別します。'],
-			['Consent', '年齢確認と利用状況データの共有設定に応じて分析を開始します。共有は設定から停止でき、Webでも同じ確認を経てGA4を読み込みます。ランキングへの参加は、この分析同意とは別に選べます。'],
+			['Purchase', '「広告を非表示」は期限も自動更新もない非消費型アイテムで、バナーと全画面広告を除去します。同じストアのアカウントで購入を復元でき、購入なしでもすべての問題を遊べます。'],
+			['Analytics', 'モバイルのFirebase Analyticsで、トレーニング、復習、報酬、基地開拓、RTS遠征、広告・購入のイベントを定義。計測仕様とBigQueryの集計を合わせて管理し、遠征の完了・中断と未確定の記録も区別します。'],
+			['Consent', '年齢確認と利用状況データの共有設定に応じて分析を開始します。共有は設定から停止できます。ランキングへの参加は、この分析同意とは別に選べます。'],
 		],
 	},
 ];
@@ -67,7 +67,7 @@ const stack = [
 	['App / Game', 'Flutter、Material 3、GoRouter、Flame'],
 	['State / Local', 'Provider、Flutter Bloc、SharedPreferences、JSON問題集・進行バックアップ'],
 	['Online', 'Firebase匿名認証、Cloud Firestore（モバイル版ランキング）'],
-	['Analytics', 'Firebase Analytics、Web GA4、BigQuery'],
+	['Analytics', 'Firebase Analytics、BigQuery'],
 	['Ads / Purchases', 'Google Mobile Ads、in_app_purchase、StoreKit、Google Play Billing'],
 	['Quality', 'flutter_test、Mockito、レスポンシブ回帰テスト、実画面の自動撮影'],
 	['Delivery', 'GitHub Actions、Fastlane、App Store Connect、Google Play Console'],
@@ -76,7 +76,7 @@ const stack = [
 
 <Base
 	title="無限脳"
-	description="脳トレの積み重ねで7つのコロニーを開拓する「無限脳」のケーススタディ。Flutter・FlameによるRTS遠征、復習帳、モバイル版ランキングを備え、iOS・Android・Webへ公開。"
+	description="脳トレの積み重ねで7つのコロニーを開拓する「無限脳」のケーススタディ。Flutter・FlameによるRTS遠征、復習帳、モバイル版ランキングを備え、iOS・Androidで公開中。ブラウザ版は公開を終了し、アプリ紹介サイトへ変更しています。"
 >
 	<section class="shell pagehead">
 		<p class="label"><b>Case study</b> — Product</p>
@@ -88,14 +88,14 @@ const stack = [
 					数学・論理・記憶・注意・言語のクイズと操作パズル。その積み重ねが、7つのコロニーの建設・復旧と、リアルタイムの拠点奪還戦につながるトレーニングゲームです。
 				</p>
 				<p class="lead">
-					Infinityと複合アノマリー、復習帳、相棒のマスコット、モバイル版ランキングも用意。一つのFlutterコードベースから、日本語・英語でiOS・Android・Webへ配信しています。
+					Infinityと複合アノマリー、復習帳、相棒のマスコット、モバイル版ランキングも用意。一つのFlutterコードベースから、日本語・英語でiOS・Androidへ配信しています。
 				</p>
 				<ul class="tags" style="margin-top: 2rem">
-					<li>Released</li><li>Flutter / Flame</li><li>iOS</li><li>Android</li><li>Web</li>
+					<li>Released — 1.1.2</li><li>Flutter / Flame</li><li>iOS</li><li>Android</li>
 					<li>日本語 / English（Brain Infinity）</li>
 				</ul>
 				<div class="actions">
-					<a class="btn" href="https://braininfinity.googja.dev/" rel="noopener">Web版を試す<span aria-hidden="true">↗</span></a>
+					<a class="btn" href="https://braininfinity.googja.dev/" rel="noopener">アプリ紹介・ダウンロード先へ<span aria-hidden="true">↗</span></a>
 					<a class="ulink" href="/works/">Worksへ戻る<span aria-hidden="true">→</span></a>
 				</div>
 			</div>
@@ -110,7 +110,7 @@ const stack = [
 		<div class="shell section">
 			<p class="label" data-reveal><b>01</b> Screens</p>
 			<div class="section__body" data-reveal style="--reveal-delay:.09s">
-				<h2 class="h2">いまの無限脳を、12の画面で。</h2>
+				<h2 class="h2">1.1.2の無限脳を、12の画面で。</h2>
 				<p class="lead" style="margin-top: 1.5rem">
 					1.1.2のアプリ本体から、ストア用の撮影テストで書き出した日本語版の実画面です。進行や成績には撮影用データを使っています。
 				</p>
@@ -137,7 +137,7 @@ const stack = [
 				</p>
 				<ul class="notes" style="margin-top: 2.5rem">
 					<li data-no="01"><span><b>学習とゲーム進行をつなぐ。</b>回答の報酬をコアの成長と基地開拓へ結び、結果から次の施設へ進める流れを設計しています。</span></li>
-					<li data-no="02"><span><b>複数の端末と遊び方に対応する。</b>スマートフォン、タブレット、ブラウザの幅や向きに合わせて配置を切り替え、高コントラスト、文字拡大、動きの軽減、形状とラベル、効果音の字幕を用意しています。</span></li>
+					<li data-no="02"><span><b>複数の端末と遊び方に対応する。</b>スマートフォンとタブレットの幅や向きに合わせて配置を切り替え、高コントラスト、文字拡大、動きの軽減、形状とラベル、効果音の字幕を用意しています。</span></li>
 					<li data-no="03"><span><b>配信する素材も軽くする。</b>1.1.2では相棒とランキングの追加に加え、画像のWebP化でアプリ容量を約110MB削減しました。</span></li>
 				</ul>
 			</div>
@@ -181,8 +181,9 @@ const stack = [
 			<p class="label" data-reveal><b>09</b> Where to play</p>
 			<div class="section__body" data-reveal style="--reveal-delay:.09s">
 				<h2 class="h2">公開先</h2>
+				<p class="lead" style="margin-top: 1.5rem">ブラウザ版の公開は終了しました。旧URLはアプリ紹介ページに切り替え、iOS・Androidのダウンロード先をご案内しています。</p>
 				<ul class="links" style="margin-top: 2.5rem">
-					<li><a href="https://braininfinity.googja.dev/" rel="noopener"><b>Web ↗</b><span>ブラウザから脳トレと基地開拓をプレイできます。</span></a></li>
+					<li><a href="https://braininfinity.googja.dev/" rel="noopener"><b>アプリ紹介サイト ↗</b><span>遊び方、よくある質問、ストアへの案内を掲載しています。</span></a></li>
 					<li><a href="https://apps.apple.com/jp/app/id6755319401" rel="noopener"><b>App Store ↗</b><span>iPhone・iPad版。ランキングにも参加できます。</span></a></li>
 					<li><a href="https://play.google.com/store/apps/details?id=com.sangraal.androidfirst&hl=ja" rel="noopener"><b>Google Play ↗</b><span>Android版。ランキングにも参加できます。</span></a></li>
 				</ul>

@@ -35,7 +35,7 @@ export default defineConfig({
 				root: { label: '日本語', lang: 'ja' },
 			},
 			description: 'ExpoとAIでモバイルアプリを企画・実装・公開・収益化するための実践ガイド。',
-			favicon: '/favicon.svg',
+			favicon: '/profile-icon-48.png',
 			// 404 はポートフォリオ側（src/pages/404.astro）で出す。
 			// 有効なままだと Starlight の 404 とルートが衝突して警告になる。
 			disable404Route: true,
@@ -49,6 +49,10 @@ export default defineConfig({
 				Footer: './src/components/GuideFooter.astro',
 			},
 			head: [
+				{
+					tag: 'link',
+					attrs: { rel: 'apple-touch-icon', href: '/profile-icon-180.png', sizes: '180x180' },
+				},
 				{
 					tag: 'link',
 					attrs: { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
@@ -68,14 +72,14 @@ export default defineConfig({
 					tag: 'meta',
 					attrs: {
 						property: 'og:image',
-						content: 'https://googja.dev/Icon-512.png',
+						content: 'https://googja.dev/profile-icon.png',
 					},
 				},
 				{
 					tag: 'meta',
 					attrs: {
 						property: 'og:image:alt',
-						content: 'googja.dev のアイコン',
+						content: 'sangraalのプロフィールアイコン',
 					},
 				},
 				{

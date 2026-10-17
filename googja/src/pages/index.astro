@@ -7,7 +7,7 @@ import { works, phases, shots, businessJsonLd } from '../data/site';
 <Base
 	bare
 	title="sangraal — Independent Mobile Product Studio"
-	description="AIエージェントを活用し、脳トレゲーム「無限脳」などのモバイルアプリを企画からストア公開・運営まで一貫して開発するsangraal。開発ガイド「VibeCode Mobile」も公開しています。"
+	description="脳トレゲーム「無限脳」をiOS・Androidで運営し、漢字パズル「漢字脳」を開発中のsangraal。AIを活用した企画・実装・ストア公開と、開発ガイド「VibeCode Mobile」を紹介します。"
 >
 	<script type="application/ld+json" slot="head" set:html={JSON.stringify(businessJsonLd)} />
 
@@ -107,18 +107,18 @@ import { works, phases, shots, businessJsonLd } from '../data/site';
 			<p class="label" data-reveal><b>01</b> Featured</p>
 			<div class="section__body feature" data-reveal style="--reveal-delay:.09s">
 				<div>
-					<p class="status">Released — iOS / Android / Web</p>
+					<p class="status">Released — 1.1.2 / iOS / Android</p>
 					<h2 class="feature__name">無限脳</h2>
 					<p class="lead">
 						数学、論理、記憶、注意、言語の5領域を鍛え、その積み重ねで宇宙の基地を育てる脳トレゲーム。クイズと操作パズルから、7つのコロニーの開拓とリアルタイムの拠点奪還戦へつながります。
 					</p>
 					<p class="lead">
-						Infinityと複合アノマリー、復習帳、相棒のマスコット、モバイル版ランキングも実装。企画からFlutter・Flameでのゲーム開発、Firebase連携、分析、広告と課金、3プラットフォームへの公開まで担当しています。
+						1.1.2では、Infinityと複合アノマリーのランキングと、ホーム・結果画面に浮遊する相棒を追加しました。画像の軽量化でアプリ容量も約110MB削減。企画からFlutter・Flameでのゲーム開発、Firebase連携、分析、広告と課金、ストア運営まで担当しています。
 					</p>
 					<ul class="figures">
 						<li><b>5</b><span>Categories</span></li>
 						<li><b>2</b><span>Languages</span></li>
-						<li><b>3</b><span>Platforms</span></li>
+						<li><b>2</b><span>Platforms</span></li>
 						<li><b>1</b><span>Codebase</span></li>
 					</ul>
 					<div class="actions">
@@ -126,7 +126,7 @@ import { works, phases, shots, businessJsonLd } from '../data/site';
 							>ケーススタディを読む<span aria-hidden="true">→</span></a
 						>
 						<a class="ulink" href="https://braininfinity.googja.dev/" rel="noopener"
-							>Web版を試す<span aria-hidden="true">↗</span></a
+							>アプリ紹介サイト<span aria-hidden="true">↗</span></a
 						>
 					</div>
 				</div>
@@ -140,6 +140,32 @@ import { works, phases, shots, businessJsonLd } from '../data/site';
 						loading="lazy"
 					/>
 					<figcaption><span>無限脳</span><span>Flutter</span></figcaption>
+				</figure>
+			</div>
+		</div>
+	</div>
+
+	<div class="band" id="kanjinou">
+		<div class="shell section">
+			<p class="label" data-reveal><b>—</b> In development</p>
+			<div class="section__body feature" data-reveal style="--reveal-delay:.09s">
+				<div>
+					<p class="status">開発中・公開準備中 — iOS / Android</p>
+					<h2 class="feature__name">漢字脳</h2>
+					<p class="lead">思い出すって、ちょっと、うれしい。</p>
+					<p class="lead">
+						4つの二字熟語をつなぐ「和同開珎」、読み・意味・用例に出会う「四字熟語」、覚えた言葉を選ぶ「手がかり想起」。3つの遊びを1日3問から楽しむ、大人の漢字パズルをExpoで開発しています。
+					</p>
+					<p class="lead">
+						本日の脳活、語彙帳、プレイカレンダーを用意。iPhone・iPad・Android向けの公開を準備しており、紹介サイトでは和同開珎をお試しいただけます。
+					</p>
+					<div class="actions">
+						<a class="ulink" href="https://kanjinou.googja.dev/" rel="noopener">漢字脳の紹介・お試しへ<span aria-hidden="true">↗</span></a>
+					</div>
+				</div>
+				<figure class="plate">
+					<img src="/works/kanjinou/app-icon.png" width="512" height="512" alt="漢字脳のアプリアイコン" loading="lazy" />
+					<figcaption><span>漢字脳</span><span>Expo</span></figcaption>
 				</figure>
 			</div>
 		</div>
@@ -166,7 +192,7 @@ import { works, phases, shots, businessJsonLd } from '../data/site';
 			<div class="section__body" data-reveal style="--reveal-delay:.09s">
 				<h2 class="h2">コードだけでなく、<br />プロダクトの一生を扱う。</h2>
 				<p class="lead" style="margin-top: 1.75rem">
-					個人開発ではFlutter、チーム開発ではExpoを中心に使用しています。
+					無限脳はFlutter・Flame、開発中の漢字脳はExpoで実装し、プロダクトに合わせて技術を選んでいます。
 				</p>
 				<p class="lead">
 					画面を実装して終わりにせず、Firebaseによるバックエンドと分析基盤、ストアへの提出、公開後の数字の確認と改善までを続けます。

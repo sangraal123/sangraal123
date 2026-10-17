@@ -13,7 +13,7 @@ interface Props {
 const { title, description, bare = false } = Astro.props;
 const pageTitle = bare ? title : `${title} | googja.dev`;
 const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://googja.dev').href;
-const ogImage = new URL('/Icon-512.png', Astro.site ?? 'https://googja.dev').href;
+const ogImage = new URL('/profile-icon.png', Astro.site ?? 'https://googja.dev').href;
 ---
 
 <!doctype html>
@@ -24,8 +24,8 @@ const ogImage = new URL('/Icon-512.png', Astro.site ?? 'https://googja.dev').hre
 		<title>{pageTitle}</title>
 		<meta name="description" content={description} />
 		<link rel="canonical" href={canonical} />
-		<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-		<link rel="apple-touch-icon" href="/Icon-512.png" />
+		<link rel="icon" href="/profile-icon-48.png" type="image/png" sizes="48x48" />
+		<link rel="apple-touch-icon" href="/profile-icon-180.png" sizes="180x180" />
 
 		<meta property="og:type" content="website" />
 		<meta property="og:site_name" content="googja.dev" />
@@ -34,6 +34,7 @@ const ogImage = new URL('/Icon-512.png', Astro.site ?? 'https://googja.dev').hre
 		<meta property="og:description" content={description} />
 		<meta property="og:url" content={canonical} />
 		<meta property="og:image" content={ogImage} />
+		<meta property="og:image:alt" content="sangraalのプロフィールアイコン" />
 		<meta name="twitter:card" content="summary_large_image" />
 
 		<link rel="preconnect" href="https://fonts.googleapis.com" />

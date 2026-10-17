@@ -25,7 +25,7 @@ export const businessJsonLd = {
 	'@type': 'Organization',
 	name: business.name,
 	url: business.url,
-	logo: 'https://googja.dev/Icon-512.png',
+	logo: 'https://googja.dev/profile-icon.png',
 	email: business.email,
 	foundingDate: business.founded,
 	founder: { '@type': 'Person', name: business.owner, alternateName: business.ownerEn },
@@ -70,6 +70,16 @@ export const works: Work[] = [
 	{
 		no: '02',
 		group: 'product',
+		name: '漢字脳',
+		note: '和同開珎・四字熟語・手がかり想起を、1日3問から楽しむ漢字パズル',
+		stack: 'Expo / SQLite / Firebase',
+		status: '開発中',
+		href: 'https://kanjinou.googja.dev/',
+		external: true,
+	},
+	{
+		no: '03',
+		group: 'product',
 		name: 'VibeCode Mobile',
 		note: 'AIとExpoでモバイルアプリを作り切るための実践ガイド',
 		stack: 'Astro / Writing',
@@ -77,7 +87,7 @@ export const works: Work[] = [
 		href: '/vibecode-mobile/',
 	},
 	{
-		no: '03',
+		no: '04',
 		group: 'collab',
 		name: 'HENKAKU Initiation',
 		note: 'ウォレット準備から申請までを案内するNext.jsアプリ',
@@ -87,7 +97,7 @@ export const works: Work[] = [
 		external: true,
 	},
 	{
-		no: '04',
+		no: '05',
 		group: 'collab',
 		name: 'ぼどぷる',
 		note: 'ボードゲームのプレイ履歴を写真と電子サインつきのNFTで残すアプリ',
