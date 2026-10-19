@@ -56,15 +56,21 @@ export interface Work {
 	external?: boolean;
 }
 
+export const brainInfinity = {
+	version: '1.1.4',
+	screenshotsCaptured: '2026-10-19',
+	screenshotsCapturedJa: '2026年10月19日',
+};
+
 /** トップと /works/ で共有する作品の索引。順番がそのまま通し番号になる。 */
 export const works: Work[] = [
 	{
 		no: '01',
 		group: 'product',
 		name: '無限脳',
-		note: '脳トレの積み重ねで基地を育てる、日英対応のトレーニングゲーム',
+		note: '900問の推理・操作パズル・全モードの復習と、7コロニーの基地開拓を楽しむ脳トレゲーム',
 		stack: 'Flutter / Flame / Firebase',
-		status: 'Released',
+		status: `v${brainInfinity.version}`,
 		href: '/works/brain-infinity/',
 	},
 	{
@@ -136,81 +142,93 @@ export interface Shot {
 	height: number;
 }
 
-/** 無限脳 1.1.2 の実画面。2026-10-07 生成の store-shots 素材
-    （日本語・iPhone 6.5）を幅720pxのWebPへ変換。撮影用の進行データを使用。
-    番号は capture_store_test.dart のシーン順に対応する。
+/** 無限脳 1.1.4+89 の実画面。2026-10-19 生成の store-shots 素材。
+    日本語・iPhone 6.5、進行・フィード・アカウントは撮影用データ。
+    .screenshots/store の実画面を幅720pxのWebPへ変換。
     バージョン別のパスで、以前の画像のブラウザキャッシュを避ける。 */
 export const shots: Shot[] = [
 	{
-		no: '01',
-		src: '/works/brain-infinity/v1.1.2/01-home.webp',
-		caption: '相棒と、今日のトレーニングへ',
-		alt: '無限脳のホーム画面。脳の姿をした相棒、数学・論理・記憶・注意・言語の5カテゴリ、チャレンジ問題への入口とレベル選択が並ぶ。',
+		"no": "01",
+		"src": "/works/brain-infinity/v1.1.4/01-home.webp",
+		"caption": "相棒と、今日のトレーニングへ",
+		"alt": "無限脳1.1.4のホーム画面。相棒、数学・論理・記憶・注意・言語の5分野とチャレンジ問題、レベル選択、画面下部の4つのナビゲーションを表示。"
 	},
 	{
-		no: '02',
-		src: '/works/brain-infinity/v1.1.2/02-frontier.webp',
-		caption: '脳トレで育てるコロニー',
-		alt: 'フロンティアのORIGIN STATION。ルミナ、ブレインコア、設備復旧数の下に、居住棟・温室・観測所などの施設と、次の設備復旧目標を表示。',
+		"no": "02",
+		"src": "/works/brain-infinity/v1.1.4/02-frontier.webp",
+		"caption": "表示を刷新した7つのコロニー",
+		"alt": "フロンティアのORIGIN STATION。刷新した基地の外観、施設のレベル、ルミナとコアレベル、復旧目標と遠征への入口を表示。"
 	},
 	{
-		no: '03',
-		src: '/works/brain-infinity/v1.1.2/03-expedition.webp',
-		caption: '3部隊を指揮する拠点奪還戦',
-		alt: '居住支援の遠征の戦闘画面。拠点を結ぶ戦場、残り時間と電力、前衛隊・射撃隊・工兵隊、進軍と守備の指示ボタンを表示。',
+		"no": "03",
+		"src": "/works/brain-infinity/v1.1.4/03-reasoning.webp",
+		"caption": "900問の推理チャレンジ",
+		"alt": "推理チャレンジの図形行列。3×3の図形と空欄、規則を探す説明、選択肢と残り時間を表示。"
 	},
 	{
-		no: '04',
-		src: '/works/brain-infinity/v1.1.2/04-quiz.webp',
-		caption: '回答履歴に合わせた10問',
-		alt: '数学の通常トレーニング画面。1問30秒のタイマー、10問の進捗、数列の問題、4つの選択肢とヒント・報告への入口を表示。',
+		"no": "04",
+		"src": "/works/brain-infinity/v1.1.4/04-action-catalog.webp",
+		"caption": "10形式から選ぶ操作パズル",
+		"alt": "アクションラボの一覧。5分野の絞り込みと、つなぎ算・数の天秤などの形式、選択した難度とプレイボタンを表示。"
 	},
 	{
-		no: '05',
-		src: '/works/brain-infinity/v1.1.2/05-action-catalog.webp',
-		caption: '無料で選べる10形式のパズル',
-		alt: 'アクションラボの形式一覧。5カテゴリの絞り込みと、つなぎ算・数の天秤のイラスト、選択中の難度、この形式で遊ぶボタンを表示。',
+		"no": "05",
+		"src": "/works/brain-infinity/v1.1.4/05-action-puzzle.webp",
+		"caption": "タップと配置で解く「数の天秤」",
+		"alt": "数の天秤の操作パズル。遊び方、左右の皿の合計、使えるブロック、リセットと答え合わせのボタンを表示。"
 	},
 	{
-		no: '06',
-		src: '/works/brain-infinity/v1.1.2/06-result.webp',
-		caption: '結果から、次の開拓目標へ',
-		alt: '相棒のいる結果画面。銀メダルと9問正解、獲得ルミナとブレインコアXP、現在の開拓目標と目標の施設へ進むボタンを表示。',
+		"no": "06",
+		"src": "/works/brain-infinity/v1.1.4/06-review-notebook.webp",
+		"caption": "分野を選んで、要復習の問題を解く",
+		"alt": "復習帳。全モードの間違い、要復習・復習済みの切り替え、数学・論理・記憶・注意・言語の絞り込みと解き直しボタンを表示。"
 	},
 	{
-		no: '07',
-		src: '/works/brain-infinity/v1.1.2/07-mission.webp',
-		caption: '毎日の目標とランキングへの入口',
-		alt: 'ミッション画面。ランキングへの入口と、通常問題・チャレンジ問題・遠征のメインミッション、選定理由と達成条件を表示。',
+		"no": "07",
+		"src": "/works/brain-infinity/v1.1.4/07-missions.webp",
+		"caption": "通常・推理・操作パズルの毎日の目標",
+		"alt": "ミッション画面。通常問題・推理チャレンジ・アクションラボのメインミッション、開始ボタン、フィードとランキングへの入口を表示。"
 	},
 	{
-		no: '08',
-		src: '/works/brain-infinity/v1.1.2/08-lab.webp',
-		caption: 'ブレインコアと成長軌道',
-		alt: '研究ラボ画面。成長したブレインコアの姿、コアレベルと経験値、NEURAL INDEXとその成長軌道を表示。',
+		"no": "08",
+		"src": "/works/brain-infinity/v1.1.4/08-community.webp",
+		"caption": "みんなの達成に「お祝い」を送る",
+		"alt": "みんなのフィード。撮影用の自己ベスト更新、連続トレーニング、メインミッション達成のカードと、お祝い・更新ボタンを表示。"
 	},
 	{
-		no: '09',
-		src: '/works/brain-infinity/v1.1.2/09-calendar.webp',
-		caption: 'プレイとミッションの積み重ね',
-		alt: '2026年10月のプレイカレンダー。メダル獲得数、累計連続正解数、連続ミッション、連続チェックイン、プレイ日数の成長ログと記録済みの日付を表示。',
+		"no": "09",
+		"src": "/works/brain-infinity/v1.1.4/09-cloud-account.webp",
+		"caption": "任意のアカウント連携とクラウド保存",
+		"alt": "設定のデータ欄。撮影用のGoogle連携済み表示、Apple連携、連携解除、クラウド保存の説明とアカウント削除への入口を表示。"
 	},
 	{
-		no: '10',
-		src: '/works/brain-infinity/v1.1.2/10-settings.webp',
-		caption: '名前・音・データ共有を選ぶ',
-		alt: '設定画面。言語、ランキング参加時に公開する名前、効果音と音楽、アクセシビリティ、生まれた年、利用状況データの送信と広告除去の購入を表示。',
+		"no": "10",
+		"src": "/works/brain-infinity/v1.1.4/10-rankings.webp",
+		"caption": "今週・先週・全期間の記録を比較",
+		"alt": "ランキング画面。自分の順位、上位100人の名前と記録、プロフィール表示への入口を撮影用データで表示。"
 	},
 	{
-		no: '11',
-		src: '/works/brain-infinity/v1.1.2/11-accessibility.webp',
-		caption: 'アクセシビリティ',
-		alt: 'アクセシビリティ画面。高コントラスト、文字を拡大する画面のズーム、形状とラベル、視差効果を減らす、効果音の字幕を切り替えられる。',
+		"no": "11",
+		"src": "/works/brain-infinity/v1.1.4/11-lab.webp",
+		"caption": "ブレインコアと成長の記録",
+		"alt": "研究ラボ。見た目を調整したブレインコア、コアレベルと経験値、ゲーム内の成長指標NEURAL INDEXと成長軌道を表示。"
 	},
 	{
-		no: '12',
-		src: '/works/brain-infinity/v1.1.2/12-action-puzzle.webp',
-		caption: 'タップと配置で解く「数の天秤」',
-		alt: '数の天秤の操作パズル。4つのブロックを左右の皿に配置して合計をそろえる問題と、選択中の標準難度、10問の進捗を表示。',
+		"no": "12",
+		"src": "/works/brain-infinity/v1.1.4/12-calendar.webp",
+		"caption": "毎日のプレイをカレンダーに残す",
+		"alt": "プレイカレンダー。メダルと連続記録、プレイ日数、2026年10月のプレイ日とメインミッションの達成状況を撮影用データで表示。"
 	},
+	{
+		"no": "13",
+		"src": "/works/brain-infinity/v1.1.4/13-settings.webp",
+		"caption": "名前・音・表示と公開設定を選ぶ",
+		"alt": "設定画面。公開する名前、音楽・効果音、アクセシビリティ、生年、達成フィードの公開停止と利用状況データの設定を表示。"
+	},
+	{
+		"no": "14",
+		"src": "/works/brain-infinity/v1.1.4/14-expedition.webp",
+		"caption": "3部隊で指揮する拠点奪還戦",
+		"alt": "居住支援の遠征。制限時間と電力、拠点を結ぶ戦場、3部隊の状況、進軍・守備・全体表示への操作を表示。"
+	}
 ].map((shot) => ({ ...shot, width: 720, height: 1558 }));

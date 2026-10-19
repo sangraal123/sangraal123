@@ -15,7 +15,7 @@ I use **Flutter** and **Expo** to build and operate my own mobile products, as w
   - **Release & Distribution:** Google Play Console, App Store Connect
 - 📫 How to reach me: You can find my SNS accounts with the handle name **sangraal123**.
 - 📱 My Apps: **無限脳 — Brain Infinity** (iOS / Android)
-  - Version 1.1.2 includes colony building, interactive puzzles, a review notebook, a floating companion, and mobile leaderboards.
+  - Version 1.1.4 refreshes all seven colonies, improves reasoning explanations and automatic question progression, adds review filters by subject, and improves loading. Includes 900 reasoning questions, an achievement feed, and optional Google/Apple-linked cloud saves.
   - [Google Play](https://play.google.com/store/apps/details?id=com.sangraal.androidfirst&hl=en)
   - [App Store](https://apps.apple.com/us/app/brain-infinity/id6755319401)
   - [Product page](https://braininfinity.googja.dev) — the browser game has been retired.

@@ -1,7 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import WorkList from '../components/WorkList.astro';
-import { works, phases, shots, businessJsonLd } from '../data/site';
+import { works, phases, shots, businessJsonLd, brainInfinity } from '../data/site';
 ---
 
 <Base
@@ -25,7 +25,7 @@ import { works, phases, shots, businessJsonLd } from '../data/site';
 		    最初の画面のすぐ下で、作ったものが動いているところが横に流れていく。
 
 		    継ぎ目を消す条件: 1組ぶん送ったあとも画面が埋まっていること＝(組数-1)×1組の幅 ≥ 画面幅。
-		    12枚の1組を4組並べ、広い画面でも継ぎ目が空かないようにする。
+		    実画面の1組を4組並べ、広い画面でも継ぎ目が空かないようにする。
 		    繰り返し分の画像はブラウザのキャッシュから出る。
 		    2組目以降は読み上げ対象から外す。 */}
 		<div class="proof">
@@ -107,13 +107,13 @@ import { works, phases, shots, businessJsonLd } from '../data/site';
 			<p class="label" data-reveal><b>01</b> Featured</p>
 			<div class="section__body feature" data-reveal style="--reveal-delay:.09s">
 				<div>
-					<p class="status">Released — 1.1.2 / iOS / Android</p>
+					<p class="status">Version {brainInfinity.version} — iOS / Android</p>
 					<h2 class="feature__name">無限脳</h2>
 					<p class="lead">
-						数学、論理、記憶、注意、言語の5領域を鍛え、その積み重ねで宇宙の基地を育てる脳トレゲーム。クイズと操作パズルから、7つのコロニーの開拓とリアルタイムの拠点奪還戦へつながります。
+						数学、論理、記憶、注意、言語の5領域を楽しむ脳トレゲーム。通常問題、15形式・900問の推理チャレンジ、操作パズルから、7つのコロニーの開拓とリアルタイムの拠点奪還戦へつながります。
 					</p>
 					<p class="lead">
-						1.1.2では、Infinityと複合アノマリーのランキングと、ホーム・結果画面に浮遊する相棒を追加しました。画像の軽量化でアプリ容量も約110MB削減。企画からFlutter・Flameでのゲーム開発、Firebase連携、分析、広告と課金、ストア運営まで担当しています。
+						1.1.4では全コロニーの外観と室内表示を刷新し、推理の説明・自動進行、復習帳の分野別絞り込み、読み込み処理を改善しました。達成をお祝いするフィードと、任意のGoogle・Apple連携によるクラウド保存も備えています。
 					</p>
 					<ul class="figures">
 						<li><b>5</b><span>Categories</span></li>
