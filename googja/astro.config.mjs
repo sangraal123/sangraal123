@@ -35,7 +35,7 @@ export default defineConfig({
 				root: { label: '日本語', lang: 'ja' },
 			},
 			description: 'ExpoとAIでモバイルアプリを企画・実装・公開・収益化するための実践ガイド。',
-			favicon: '/profile-icon-48.png',
+			favicon: '/profile-icon-48.png?v=20261102',
 			// 404 はポートフォリオ側（src/pages/404.astro）で出す。
 			// 有効なままだと Starlight の 404 とルートが衝突して警告になる。
 			disable404Route: true,
@@ -51,7 +51,7 @@ export default defineConfig({
 			head: [
 				{
 					tag: 'link',
-					attrs: { rel: 'apple-touch-icon', href: '/profile-icon-180.png', sizes: '180x180' },
+					attrs: { rel: 'apple-touch-icon', href: '/profile-icon-180.png?v=20261102', sizes: '180x180' },
 				},
 				{
 					tag: 'link',
@@ -72,7 +72,7 @@ export default defineConfig({
 					tag: 'meta',
 					attrs: {
 						property: 'og:image',
-						content: 'https://googja.dev/profile-icon.png',
+						content: 'https://googja.dev/profile-icon.png?v=20261102',
 					},
 				},
 				{
@@ -219,15 +219,15 @@ new MutationObserver(render).observe(document.documentElement, {
 						},
 					],
 				},
-				{ label: 'Phase01：準備編', items: [{ autogenerate: { directory: 'prep' } }] },
-				{ label: 'Phase02：リサーチ編', items: [{ autogenerate: { directory: 'research' } }] },
-				{ label: 'Phase03：リデザイン編', items: [{ autogenerate: { directory: 'redesign' } }] },
-				{ label: 'Phase04：コーディング編', items: [{ autogenerate: { directory: 'coding' } }] },
-				{ label: 'Phase05：フィードバック編', items: [{ autogenerate: { directory: 'feedback' } }] },
-				{ label: 'Phase06：公開＆マネタイズ編', items: [{ autogenerate: { directory: 'publish' } }] },
-				{ label: 'PhaseEx：応用事項編', items: [{ autogenerate: { directory: 'advanced' } }] },
-				{ label: 'PhaseSec：セキュリティ編', items: [{ autogenerate: { directory: 'security' } }] },
-				{ label: '補講：運用・検証編', items: [{ autogenerate: { directory: 'operations' } }] },
+				{ label: 'Phase01：準備編', autogenerate: { directory: 'prep' } },
+				{ label: 'Phase02：リサーチ編', autogenerate: { directory: 'research' } },
+				{ label: 'Phase03：リデザイン編', autogenerate: { directory: 'redesign' } },
+				{ label: 'Phase04：コーディング編', autogenerate: { directory: 'coding' } },
+				{ label: 'Phase05：フィードバック編', autogenerate: { directory: 'feedback' } },
+				{ label: 'Phase06：公開＆マネタイズ編', autogenerate: { directory: 'publish' } },
+				{ label: 'PhaseEx：応用事項編', autogenerate: { directory: 'advanced' } },
+				{ label: 'PhaseSec：セキュリティ編', autogenerate: { directory: 'security' } },
+				{ label: '補講：運用・検証編', autogenerate: { directory: 'operations' } },
 			],
 		}),
 	],

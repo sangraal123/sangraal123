@@ -25,7 +25,7 @@ export const businessJsonLd = {
 	'@type': 'Organization',
 	name: business.name,
 	url: business.url,
-	logo: 'https://googja.dev/profile-icon.png',
+	logo: 'https://googja.dev/profile-icon.png?v=20261102',
 	email: business.email,
 	foundingDate: business.founded,
 	founder: { '@type': 'Person', name: business.owner, alternateName: business.ownerEn },
